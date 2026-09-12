@@ -2,7 +2,7 @@
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 def files():
- exact=['.gitignore','README.md','game/project.godot','game/export_presets.cfg','game/bootstrap.tscn','game/edition2011.tscn','game/main.tscn','game/session.tscn','tools/import_client.py','tools/convert_client2011.py','tools/client2011_formats.py','tools/client16_formats.py','tools/supplement_client16.py','tools/build.py','tools/build2011.py','docs/GODOT_LICENSE.txt','docs/MIRGO_LICENSE.txt']
+ exact=['game/tests2011/promo_capture.gd','tools/run_dev.py','启动最新开发版.command','.gitignore','README.md','game/project.godot','game/export_presets.cfg','game/bootstrap.tscn','game/edition2011.tscn','game/main.tscn','game/session.tscn','tools/import_client.py','tools/convert_client2011.py','tools/client2011_formats.py','tools/client16_formats.py','tools/supplement_client16.py','tools/build.py','tools/build2011.py','docs/GODOT_LICENSE.txt','docs/MIRGO_LICENSE.txt']
  selected=[ROOT/p for p in exact]
  for folder in ['game/scripts','game/content','game/fonts','game/addons','tools/release','tests/release','release','.github']:
   for p in (ROOT/folder).rglob('*'):

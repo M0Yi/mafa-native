@@ -14,7 +14,7 @@
 
 ## 开发运行
 
-安装 Godot **4.7.2 标准版**，Compatibility 渲染器。打开 `game/project.godot` 或 `godot --path game`。源码不附素材，首次通过资源设置导入。
+安装 Godot **4.7.2 标准版**，Compatibility 渲染器。三平台均可使用 `python tools/run_dev.py` 启动源码（引擎路径可用 `GODOT` 指定）。打开 `game/project.godot` 或 `godot --path game`。源码不附素材，首次通过资源设置导入。
 
 开发导入器使用 Python 3.13+：
 
