@@ -1,0 +1,47 @@
+name: Desktop code-only release
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            target: macOS
+            importer: mafa-importer
+          - os: windows-latest
+            target: Windows
+            importer: mafa-importer.exe
+          - os: ubuntu-24.04
+            target: Linux
+            importer: mafa-importer
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r release/requirements.txt
+      - run: python tools/release/setup_engine.py
+      - run: python -m unittest discover -s tests/release -v
+      - name: Build local importer
+        shell: bash
+        run: python -m PyInstaller --noconfirm --onefile --name mafa-importer --distpath .cache/importer-dist --workpath .cache/importer-build --paths tools --add-data "game/content/2011/maps.json:game/content/2011" tools/import_client.py
+      - name: Export and audit package
+        shell: bash
+        run: python tools/release/build.py --release --platform '${{ matrix.target }}' --importer '.cache/importer-dist/${{ matrix.importer }}'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.target }}
+          path: dist/0.14.0-preview.1/*
+      - name: Attach to prerelease
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload '${{ github.ref_name }}' dist/0.14.0-preview.1/* --clobber

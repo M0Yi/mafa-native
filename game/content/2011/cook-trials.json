@@ -1,0 +1,373 @@
+{
+  "format_version": 1,
+  "npc": "server:merchant:50",
+  "requires": "story_feast_cook_trail",
+  "source": "mirgo/serverconfig/npcs/merchant_scripts/9Wqu-1.txt",
+  "source_sha256": "0ec9e496f716406a773e9210a539887eea4ee9ca4f81af269e20ba189ae5a4bc",
+  "source_regional_sha256": "255492351a2f523fd9de461d82defc2c7b749487b04c0c256b61a614e2b7cb8a",
+  "trials": [
+    {
+      "job": "战士",
+      "map": "q001",
+      "map_sha256": "ca5a28b0c7e07a5cc3c151b392b3ef8931e00b73aabbb5786c8d1b5fc1d5b619",
+      "source_monster": "骷髅精灵2",
+      "reconstructed_from": "骷髅精灵",
+      "monster_raw": {
+        "name": "骷髅精灵",
+        "race": 89,
+        "raceImg": 14,
+        "appr": 150,
+        "lvl": 50,
+        "undead": 1,
+        "coolEye": 1,
+        "exp": 960,
+        "hp": 500,
+        "mp": 0,
+        "ac": 5,
+        "mac": 4,
+        "dc": 7,
+        "dcMax": 24,
+        "mc": 0,
+        "sc": 0,
+        "speed": 15,
+        "hit": 14,
+        "walkSpeed": 1200,
+        "walkStep": 1,
+        "walkWait": 0,
+        "attackSpd": 2000,
+        "attackState": 0,
+        "exploreItem": 0,
+        "attackSource": 0,
+        "disableSimpleActor": 0
+      },
+      "monster_profile": {
+        "appearance": 150,
+        "bank": "mon16",
+        "base": 0,
+        "actions": {
+          "stand": {
+            "start": 0,
+            "count": 4,
+            "skip": 6,
+            "ms": 200,
+            "loop": true
+          },
+          "walk": {
+            "start": 80,
+            "count": 6,
+            "skip": 4,
+            "ms": 160,
+            "loop": true
+          },
+          "attack": {
+            "start": 160,
+            "count": 6,
+            "skip": 4,
+            "ms": 100,
+            "loop": false
+          },
+          "hurt": {
+            "start": 240,
+            "count": 2,
+            "skip": 0,
+            "ms": 100,
+            "loop": false
+          },
+          "die": {
+            "start": 260,
+            "count": 10,
+            "skip": 0,
+            "ms": 120,
+            "loop": false
+          },
+          "corpse": {
+            "start": 340,
+            "count": 10,
+            "skip": 0,
+            "ms": 100,
+            "loop": false
+          }
+        },
+        "damage": 24,
+        "sounds": {
+          "idle": 1701,
+          "attack": 1702,
+          "weapon": 1703,
+          "hurt": 1704,
+          "die": 1705
+        }
+      },
+      "source_spawn_center": [
+        10,
+        10
+      ],
+      "source_spawn_range": 10,
+      "proposed_monster_cell": [
+        10,
+        10
+      ],
+      "proposed_player_cell": [
+        12,
+        12
+      ],
+      "monster_count": 1,
+      "duration_seconds": 60,
+      "completion_item": "ref:218",
+      "source_reward_drop_defined": false,
+      "proposed_drop": [
+        {
+          "item": "ref:218",
+          "count": 1,
+          "probability": 1,
+          "provenance": "singleplayer_reconstruction"
+        }
+      ],
+      "provenance": "source_job_map_time_reconstructed_monster_stats_and_drop",
+      "status": "runtime_enabled_pending_combat_acceptance"
+    },
+    {
+      "job": "法师",
+      "map": "q002",
+      "map_sha256": "ca5a28b0c7e07a5cc3c151b392b3ef8931e00b73aabbb5786c8d1b5fc1d5b619",
+      "source_monster": "半兽勇士2",
+      "reconstructed_from": "半兽勇士",
+      "monster_raw": {
+        "name": "半兽勇士",
+        "race": 81,
+        "raceImg": 19,
+        "appr": 102,
+        "lvl": 28,
+        "undead": 0,
+        "coolEye": 1,
+        "exp": 720,
+        "hp": 300,
+        "mp": 0,
+        "ac": 0,
+        "mac": 0,
+        "dc": 15,
+        "dcMax": 32,
+        "mc": 0,
+        "sc": 0,
+        "speed": 15,
+        "hit": 13,
+        "walkSpeed": 1500,
+        "walkStep": 1,
+        "walkWait": 0,
+        "attackSpd": 1500,
+        "attackState": 0,
+        "exploreItem": 0,
+        "attackSource": 0,
+        "disableSimpleActor": 0
+      },
+      "monster_profile": {
+        "appearance": 102,
+        "bank": "mon11",
+        "base": 720,
+        "actions": {
+          "stand": {
+            "start": 0,
+            "count": 4,
+            "skip": 6,
+            "ms": 200,
+            "loop": true
+          },
+          "walk": {
+            "start": 80,
+            "count": 6,
+            "skip": 4,
+            "ms": 160,
+            "loop": true
+          },
+          "attack": {
+            "start": 160,
+            "count": 6,
+            "skip": 4,
+            "ms": 100,
+            "loop": false
+          },
+          "hurt": {
+            "start": 240,
+            "count": 2,
+            "skip": 0,
+            "ms": 100,
+            "loop": false
+          },
+          "die": {
+            "start": 260,
+            "count": 10,
+            "skip": 0,
+            "ms": 140,
+            "loop": false
+          },
+          "corpse": {
+            "start": 340,
+            "count": 1,
+            "skip": 0,
+            "ms": 140,
+            "loop": false
+          }
+        },
+        "damage": 32,
+        "sounds": {
+          "idle": 1221,
+          "attack": 1222,
+          "weapon": 1223,
+          "hurt": 1224,
+          "die": 1225
+        }
+      },
+      "source_spawn_center": [
+        10,
+        10
+      ],
+      "source_spawn_range": 10,
+      "proposed_monster_cell": [
+        10,
+        10
+      ],
+      "proposed_player_cell": [
+        12,
+        12
+      ],
+      "monster_count": 1,
+      "duration_seconds": 60,
+      "completion_item": "ref:218",
+      "source_reward_drop_defined": false,
+      "proposed_drop": [
+        {
+          "item": "ref:218",
+          "count": 1,
+          "probability": 1,
+          "provenance": "singleplayer_reconstruction"
+        }
+      ],
+      "provenance": "source_job_map_time_reconstructed_monster_stats_and_drop",
+      "status": "runtime_enabled_pending_combat_acceptance"
+    },
+    {
+      "job": "道士",
+      "map": "q003",
+      "map_sha256": "ca5a28b0c7e07a5cc3c151b392b3ef8931e00b73aabbb5786c8d1b5fc1d5b619",
+      "source_monster": "巨型多角虫2",
+      "reconstructed_from": "巨型多角虫",
+      "monster_raw": {
+        "name": "巨型多角虫",
+        "race": 81,
+        "raceImg": 19,
+        "appr": 91,
+        "lvl": 27,
+        "undead": 0,
+        "coolEye": 1,
+        "exp": 480,
+        "hp": 250,
+        "mp": 0,
+        "ac": 0,
+        "mac": 0,
+        "dc": 7,
+        "dcMax": 15,
+        "mc": 0,
+        "sc": 0,
+        "speed": 13,
+        "hit": 12,
+        "walkSpeed": 1000,
+        "walkStep": 1,
+        "walkWait": 0,
+        "attackSpd": 2500,
+        "attackState": 0,
+        "exploreItem": 0,
+        "attackSource": 0,
+        "disableSimpleActor": 0
+      },
+      "monster_profile": {
+        "appearance": 91,
+        "bank": "mon10",
+        "base": 360,
+        "actions": {
+          "stand": {
+            "start": 0,
+            "count": 4,
+            "skip": 6,
+            "ms": 200,
+            "loop": true
+          },
+          "walk": {
+            "start": 80,
+            "count": 6,
+            "skip": 4,
+            "ms": 160,
+            "loop": true
+          },
+          "attack": {
+            "start": 160,
+            "count": 6,
+            "skip": 4,
+            "ms": 100,
+            "loop": false
+          },
+          "hurt": {
+            "start": 240,
+            "count": 2,
+            "skip": 0,
+            "ms": 100,
+            "loop": false
+          },
+          "die": {
+            "start": 260,
+            "count": 10,
+            "skip": 0,
+            "ms": 140,
+            "loop": false
+          },
+          "corpse": {
+            "start": 340,
+            "count": 1,
+            "skip": 0,
+            "ms": 140,
+            "loop": false
+          }
+        },
+        "damage": 15,
+        "sounds": {
+          "idle": 1111,
+          "attack": 1112,
+          "hurt": 1114,
+          "die": 1115
+        }
+      },
+      "source_spawn_center": [
+        10,
+        10
+      ],
+      "source_spawn_range": 10,
+      "proposed_monster_cell": [
+        10,
+        10
+      ],
+      "proposed_player_cell": [
+        12,
+        12
+      ],
+      "monster_count": 1,
+      "duration_seconds": 60,
+      "completion_item": "ref:218",
+      "source_reward_drop_defined": false,
+      "proposed_drop": [
+        {
+          "item": "ref:218",
+          "count": 1,
+          "probability": 1,
+          "provenance": "singleplayer_reconstruction"
+        }
+      ],
+      "provenance": "source_job_map_time_reconstructed_monster_stats_and_drop",
+      "status": "runtime_enabled_pending_combat_acceptance"
+    }
+  ],
+  "remaining": [
+    "原怪物2配置缺失：三职业数值平衡和60秒实战未验证",
+    "真实鼠标键盘与手柄入口、凭证交付和重试流程验收",
+    "原MonGen没有随附掉落表，凭证保证落地属于重建",
+    "特殊油及后续料理任务链待补齐"
+  ],
+  "runtime_enabled": true
+}

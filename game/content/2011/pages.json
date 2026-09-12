@@ -1,0 +1,793 @@
+{
+  "format_version": 1,
+  "resource_version": "2.0.1.11",
+  "entries": [
+    {
+      "id": "login",
+      "controls": [
+        {
+          "id": "login",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "login.login",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "register",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "login.register",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "change_password",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "login.change_password",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "import_old_identities",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "login.import_old_identities",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "quit",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "login.quit",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "local_account_recovery",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "create",
+      "controls": [
+        {
+          "id": "name",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "create.name",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "job",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "create.job",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "gender",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "create.gender",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "fixed_difficulty",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "create.fixed_difficulty",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "create",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "create.create",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "back",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "create.back",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "roster",
+      "controls": [
+        {
+          "id": "enter_character",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "roster.enter_character",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "create",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "roster.create",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "logout",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "roster.logout",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "delete_character",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "inventory",
+      "controls": [
+        {
+          "id": "use",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "inventory.use",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "equip",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "inventory.equip",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "drop",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "split",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "sort",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "character",
+      "controls": [
+        {
+          "id": "view_attributes",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "character.view_attributes",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "unequip",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "durability_details",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "quest",
+      "controls": [
+        {
+          "id": "view_progress",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "quest.view_progress",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "quest_tracking",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "repeat_cycles",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "world_map",
+      "controls": [
+        {
+          "id": "view_metadata",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "world_map.view_metadata",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "find_guide",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "world_map.find_guide",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "minimap",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "historical_entrances",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "travel",
+      "controls": [
+        {
+          "id": "filter",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "travel.filter",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "teleport",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "travel.teleport",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "shop",
+      "controls": [
+        {
+          "id": "buy",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "shop.buy",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "sell",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "shop.sell",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "currency_mall",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "craft",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "exchange",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "warehouse",
+      "controls": [
+        {
+          "id": "deposit",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "warehouse.deposit",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "withdraw",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "warehouse.withdraw",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "settings",
+      "controls": [
+        {
+          "id": "zoom",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "settings.zoom",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "mute",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "settings.mute",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "save",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "settings.save",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "hero",
+      "controls": [
+        {
+          "id": "recruit",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "hero.recruit",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "follow",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "hero.follow",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "equipment",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "skills",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "independent_growth",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "ai_combat",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "training",
+      "controls": [
+        {
+          "id": "inner_level",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "training.inner_level",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "meridian_level",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "training.meridian_level",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "combo",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "inner_skills",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "meridians_effects",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "social",
+      "controls": [
+        {
+          "id": "friend",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "social.friend",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "party",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "social.party",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "create_guild",
+          "status": "baseline_implemented_verification_pending",
+          "behavior": "social.create_guild",
+          "data": "SQLite world or metadata",
+          "sound": "sound.lst:100_shared_pending_event_verification",
+          "test": null
+        },
+        {
+          "id": "ai_trade",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "guild_management",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "siege",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "skills",
+      "controls": [
+        {
+          "id": "learn",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "practice",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "targeting",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "cost",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "effect",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "animation",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "sound",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "death",
+      "controls": [
+        {
+          "id": "revive",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "drops",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "friends",
+      "controls": [
+        {
+          "id": "local_messages",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "trade",
+      "controls": [
+        {
+          "id": "offer",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "confirm",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "cancel",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "atomic_settlement",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "siege",
+      "controls": [
+        {
+          "id": "schedule",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "join",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "capture",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        },
+        {
+          "id": "result",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "account_protection",
+      "controls": [
+        {
+          "id": "local_password_protection",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    },
+    {
+      "id": "mail",
+      "controls": [
+        {
+          "id": "local_rewards",
+          "status": "not_implemented",
+          "behavior": null,
+          "data": null,
+          "sound": null,
+          "test": null
+        }
+      ],
+      "layout_status": "native_development_layout_original_layout_pending",
+      "complete": false
+    }
+  ]
+}

@@ -1,0 +1,1786 @@
+{
+  "format_version": 1,
+  "resource_version": "2.0.1.11",
+  "source_modified": false,
+  "banks": [
+    {
+      "bank": "cboeffect_wis",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 4250,
+      "readable_frames": 4250,
+      "max_dimensions": [
+        479,
+        468
+      ],
+      "pack_sha256": "06dd06a2a7e56e5ba2ec3bdfb1adcecd9c851e0ae895876101541330c3b49ea4",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "cbohair_wis",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 36000,
+      "readable_frames": 36000,
+      "max_dimensions": [
+        36,
+        36
+      ],
+      "pack_sha256": "fc7fb9991245481a2408f8dfeebbdb31b5e1fb5c56c1fe269998f1af521ac28c",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "cbohum3_wis",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 36000,
+      "readable_frames": 36000,
+      "max_dimensions": [
+        209,
+        170
+      ],
+      "pack_sha256": "f81b0910386c1eeba54f2fa696ba9adc818640ccf795f866ddf813a79e7f5af1",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "cbohum_wis",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 96000,
+      "readable_frames": 96000,
+      "max_dimensions": [
+        201,
+        174
+      ],
+      "pack_sha256": "c05d502ff4bcdcb4f9c1df3b5d8a5c7b0612d3f2e7ce2f71ad72754dcf66a6ac",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "cbohumeffect2",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 24000,
+      "readable_frames": 24000,
+      "max_dimensions": [
+        135,
+        141
+      ],
+      "pack_sha256": "9091b74fe205f3b017e1914384e676a770da5ac75fe49615de37395204f5d57e",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "cbohumeffect_wis",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 56000,
+      "readable_frames": 56000,
+      "max_dimensions": [
+        124,
+        130
+      ],
+      "pack_sha256": "4fcfdc6edfff604cf6cf72f97723473848e8195dc489d0637ebee93bcf46f0a6",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "cboweapon3",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 32000,
+      "readable_frames": 32000,
+      "max_dimensions": [
+        113,
+        113
+      ],
+      "pack_sha256": "97ec43d5856688994abd342d43064a89f821b91e01711c962035360dda1ab303",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "cboweapon_wis",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 236000,
+      "readable_frames": 236000,
+      "max_dimensions": [
+        136,
+        136
+      ],
+      "pack_sha256": "34eedadcaf00c3ea21b91d6fe024a1943e0cedb4c17c2aba71ae44090fc6fb02",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "chrsel",
+      "role": "entry_animation_and_background",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 280,
+      "readable_frames": 280,
+      "max_dimensions": [
+        800,
+        600
+      ],
+      "pack_sha256": "72601c01689d290961a62a022a16ae3f72129ea7f43f05d48f62732704b82dee",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "deco",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 317,
+      "readable_frames": 317,
+      "max_dimensions": [
+        796,
+        665
+      ],
+      "pack_sha256": "57901663adb441c98365ea1f760df1f383f247b8318ffe22a038fba5974ef79a",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "dnitems",
+      "role": "item_and_skill_icons",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 2610,
+      "readable_frames": 2610,
+      "max_dimensions": [
+        44,
+        39
+      ],
+      "pack_sha256": "c9c4aa9dbd9781b65089b314ff24e705665761d816093a5185d963bc4ee3734f",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "dragon",
+      "role": "needs_manual_classification",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 527,
+      "readable_frames": 527,
+      "max_dimensions": [
+        576,
+        1308
+      ],
+      "pack_sha256": "6fb9cf5504291406d034bcce24fe9507acf54f0a87edccd77cf143f97a4ef98b",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "effect",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 923,
+      "readable_frames": 923,
+      "max_dimensions": [
+        348,
+        281
+      ],
+      "pack_sha256": "c97f318f6abd5a1bded081b26e22b9ce11bee55b7cf29dfc13c8b655b1b4386f",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "effect_se",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 20,
+      "readable_frames": 20,
+      "max_dimensions": [
+        800,
+        600
+      ],
+      "pack_sha256": "430d60c1f1e455ca61fa6262ae72e332ddb8d1de53a04310b9ebd2726bc471dd",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "hair",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3600,
+      "readable_frames": 3600,
+      "max_dimensions": [
+        32,
+        36
+      ],
+      "pack_sha256": "58c164194db785ed364f8aa65f038377f672437cea540fc765d407da84b2f535",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "hair2",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 10800,
+      "readable_frames": 10800,
+      "max_dimensions": [
+        32,
+        36
+      ],
+      "pack_sha256": "686d58e6d229766cf4027e7c91a9287a7f21aee70e880ccc429f0903d227c432",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "hair2_ball",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 272,
+      "readable_frames": 272,
+      "max_dimensions": [
+        24,
+        34
+      ],
+      "pack_sha256": "12ce8adc9d099cebba12358374de30a156ec0918563484c91304b6f825c58314",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "hum",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 14400,
+      "readable_frames": 14400,
+      "max_dimensions": [
+        128,
+        117
+      ],
+      "pack_sha256": "180fbd09be632e933f83963a5f74ae15ad476a286c2718f426e383cc4264f0cf",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "hum2",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 14400,
+      "readable_frames": 14400,
+      "max_dimensions": [
+        132,
+        116
+      ],
+      "pack_sha256": "45e84f15b49f885b0e54cc645fb2be059930b7679997796ed4c44212ebe65e83",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "hum3",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 10800,
+      "readable_frames": 10800,
+      "max_dimensions": [
+        133,
+        116
+      ],
+      "pack_sha256": "d88a6b25c17ef046bdf6ebefb4533067b83e92f213c3f5e9682a9c2134372c2e",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "hum3_ball",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 544,
+      "readable_frames": 544,
+      "max_dimensions": [
+        97,
+        100
+      ],
+      "pack_sha256": "2fc89a4f4b60dba8d5100f1dcee759efacda3cad82ff8b885a419d442b1c2a20",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "humeffect",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 12000,
+      "readable_frames": 12000,
+      "max_dimensions": [
+        132,
+        143
+      ],
+      "pack_sha256": "b6ae69b8e7c524204dc5ed61c04164e39321a4d389dffdf9b950c09ef86ae748",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "humeffect2",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 12000,
+      "readable_frames": 12000,
+      "max_dimensions": [
+        202,
+        207
+      ],
+      "pack_sha256": "877ea83a62ea722f176579e957952351f1cb0513f688b681640d5add0189e8b0",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "items",
+      "role": "item_and_skill_icons",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 2620,
+      "readable_frames": 2620,
+      "max_dimensions": [
+        44,
+        39
+      ],
+      "pack_sha256": "d5f2a98c2a15f3ae92bcde6d810f03a304513ff06a015d8f61cf580c5080a348",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magic",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 4010,
+      "readable_frames": 4010,
+      "max_dimensions": [
+        564,
+        472
+      ],
+      "pack_sha256": "b0de40f3db54cd3155d72a4350997cf1da66d7504e6a5eeb3d0244f1b5aceb58",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magic2",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1410,
+      "readable_frames": 1410,
+      "max_dimensions": [
+        999,
+        997
+      ],
+      "pack_sha256": "21f41ae0400ee297cc6999af00334b7729087d6109f53e6d212eb05abe7d5e9d",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magic3",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 220,
+      "readable_frames": 220,
+      "max_dimensions": [
+        512,
+        511
+      ],
+      "pack_sha256": "578a1bc6cfdd71efa659555667bae292385b6cba7b2a27f4022c757a76b35fa8",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magic4",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 830,
+      "readable_frames": 830,
+      "max_dimensions": [
+        512,
+        511
+      ],
+      "pack_sha256": "5957a0dc26ec9e76832c5a6e0ee36743ab40d555e2c56f378a19549fbfd5a9a4",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magic5",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 800,
+      "readable_frames": 800,
+      "max_dimensions": [
+        324,
+        376
+      ],
+      "pack_sha256": "8700f1295f6584d225a348d9292e3c58339fa19a232fdb0f8a13cfb9084c2140",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magic6",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 762,
+      "readable_frames": 762,
+      "max_dimensions": [
+        540,
+        661
+      ],
+      "pack_sha256": "e851be24d28d7e31d670b1ff3c0be0b9711b4227316860e9a80755e1e17f7f1c",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magic7",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 890,
+      "readable_frames": 890,
+      "max_dimensions": [
+        800,
+        997
+      ],
+      "pack_sha256": "764487759fddb8e9faa2be48305086471a56ba0fbc0616d1b4637842c8c55566",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magic8",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 2510,
+      "readable_frames": 2510,
+      "max_dimensions": [
+        485,
+        825
+      ],
+      "pack_sha256": "61f76511a324a1db7903805a1abce5cf8c54914258150150d9762c7f28080e57",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magicon",
+      "role": "item_and_skill_icons",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 430,
+      "readable_frames": 430,
+      "max_dimensions": [
+        32,
+        30
+      ],
+      "pack_sha256": "7c50819c355ceaaf61dc318407c81fb3ae7e5b779382eb3c4f2c7ae5c29956f8",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "magicon2",
+      "role": "item_and_skill_icons",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 540,
+      "readable_frames": 540,
+      "max_dimensions": [
+        32,
+        30
+      ],
+      "pack_sha256": "4fa063d561d6d94192141a12f617690d821e1e9e5759fd04b60554202a54244c",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mmap",
+      "role": "minimap",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 218,
+      "readable_frames": 218,
+      "max_dimensions": [
+        1500,
+        799
+      ],
+      "pack_sha256": "b2b600507cbcee67d86d3cc2de6f1e63caddf4becbd6f5fbd76c61cd0813a787",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon1",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1086,
+      "readable_frames": 1086,
+      "max_dimensions": [
+        192,
+        152
+      ],
+      "pack_sha256": "ed3e3b8f6b9dd5675816aa6952b7e9edc9ed31ab521aea0c24b722498e199830",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon10",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1440,
+      "readable_frames": 1440,
+      "max_dimensions": [
+        200,
+        222
+      ],
+      "pack_sha256": "5560945488a8ee320cfa80a1c687b7e79b61c3a693d64c894627b04ac0f7fdcb",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon11",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1440,
+      "readable_frames": 1440,
+      "max_dimensions": [
+        272,
+        191
+      ],
+      "pack_sha256": "f7bd69202ddae3114ed83f3e40f4322d6217884eb4b515e2982392817aa906de",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon12",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3610,
+      "readable_frames": 3610,
+      "max_dimensions": [
+        364,
+        242
+      ],
+      "pack_sha256": "64ced8804b8326363c85772672f4ccb61bb77cfaaba525a33bbec1964625102d",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon13",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1344,
+      "readable_frames": 1344,
+      "max_dimensions": [
+        264,
+        280
+      ],
+      "pack_sha256": "693f8fc1bccdfa1905909d89f0178ac2450f903cb9d81c0f8a7de4463b31aab0",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon14",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 780,
+      "readable_frames": 780,
+      "max_dimensions": [
+        256,
+        178
+      ],
+      "pack_sha256": "edb010653c14a5e26316b14ac31c60fa80b8ef376090d6672edf5e525a4f6c77",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon15",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3269,
+      "readable_frames": 3269,
+      "max_dimensions": [
+        412,
+        460
+      ],
+      "pack_sha256": "b0336eb3272787d9f9ceb4e351d6ec78230db66c6a6665410f849be7825c258f",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon16",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1588,
+      "readable_frames": 1588,
+      "max_dimensions": [
+        640,
+        383
+      ],
+      "pack_sha256": "edc4cae46ce57311bd564393a264b156ffe747ba1ce847e35613686f2e6268e6",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon17",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 2617,
+      "readable_frames": 2617,
+      "max_dimensions": [
+        276,
+        237
+      ],
+      "pack_sha256": "bdd71cd188cda28c5472a7e1b67cc746e133e3c84a27051ae7b19eb7f89495c5",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon18",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1630,
+      "readable_frames": 1630,
+      "max_dimensions": [
+        228,
+        220
+      ],
+      "pack_sha256": "1858ddcc5f2284e38a95a3568e6159c45aea109776e3ee1b04323b2ed7ad02d6",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon19",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3359,
+      "readable_frames": 3359,
+      "max_dimensions": [
+        640,
+        383
+      ],
+      "pack_sha256": "1b1211174d35cf3f39d4f79408833774654dfc3c65ec4b29d7e9df6cbcb473b4",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon2",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 490,
+      "readable_frames": 490,
+      "max_dimensions": [
+        180,
+        134
+      ],
+      "pack_sha256": "a3c433011013c86c5d9dcce2f788edb933b8cd514db01c7129a8098232c88007",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon20",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3689,
+      "readable_frames": 3689,
+      "max_dimensions": [
+        284,
+        289
+      ],
+      "pack_sha256": "5bc4de14564b70aa2ac469127212cecfd47e520591a6e7c4d820f52db650ab2a",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon21",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3797,
+      "readable_frames": 3797,
+      "max_dimensions": [
+        644,
+        480
+      ],
+      "pack_sha256": "c99a56ac4d18548046bb8248fee38b0d9beaa22537e6af1dba3941c514013031",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon22",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3855,
+      "readable_frames": 3855,
+      "max_dimensions": [
+        516,
+        443
+      ],
+      "pack_sha256": "5183d02d14bca5d385df9ff565052df8aa0e3c4faf702f04e7a26c899c013cbb",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon23",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 2322,
+      "readable_frames": 2322,
+      "max_dimensions": [
+        644,
+        394
+      ],
+      "pack_sha256": "6a4797b23eda9294f72fff47d3ba6392aeb565a7d4eea3dd61afa261dd669d0b",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon24",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 5160,
+      "readable_frames": 5160,
+      "max_dimensions": [
+        452,
+        454
+      ],
+      "pack_sha256": "e7cc6b7eff50b8185e7906df392a41d5950b7631aeef898114c7c91b89d41618",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon25",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1620,
+      "readable_frames": 1620,
+      "max_dimensions": [
+        556,
+        480
+      ],
+      "pack_sha256": "8cf3a93d8d549b594390b5e43f5d848abf8e6ea6b883eb2f55f7097a43ea4fb9",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon26",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 4520,
+      "readable_frames": 4520,
+      "max_dimensions": [
+        800,
+        600
+      ],
+      "pack_sha256": "21ce1e347d851b138ba3c1864ea7f82e7037abd82f5f486350fa3a5e3a73009f",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon27",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 4600,
+      "readable_frames": 4600,
+      "max_dimensions": [
+        796,
+        600
+      ],
+      "pack_sha256": "89435ab44638e79190a96935957a623630297e6d43095cdbc68c399522fb4c34",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon28",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 2330,
+      "readable_frames": 2330,
+      "max_dimensions": [
+        299,
+        252
+      ],
+      "pack_sha256": "b5e350cdfb8ac4f40ce9a7e46977026765356b3ca66978b8984ebdaf2518c14e",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon29",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1020,
+      "readable_frames": 1020,
+      "max_dimensions": [
+        208,
+        217
+      ],
+      "pack_sha256": "ebf65a981b3b9318f0b693b3e72c8542cbb183bca4e3584f788f3336c67efe13",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon3",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3690,
+      "readable_frames": 3690,
+      "max_dimensions": [
+        640,
+        383
+      ],
+      "pack_sha256": "f30a73a167837282a705233fd8b86fa5e33f51cc59da5af64eef69d41bd5dd36",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon30",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1060,
+      "readable_frames": 1060,
+      "max_dimensions": [
+        387,
+        285
+      ],
+      "pack_sha256": "6a6414b0364da6f7f9171fabd6c15e49edc798e1d7b11cc3d05629f17c7fb859",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon33",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1930,
+      "readable_frames": 1930,
+      "max_dimensions": [
+        440,
+        997
+      ],
+      "pack_sha256": "21a99c067d6a1e93749a79aaa5f051f6a0f5cad0c50e3438098daf3275587184",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon4",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3670,
+      "readable_frames": 3670,
+      "max_dimensions": [
+        200,
+        191
+      ],
+      "pack_sha256": "380eccd74050c37bf868afcbf3e375171975200f4282d244690acb8f48930f2a",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon5",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3600,
+      "readable_frames": 3600,
+      "max_dimensions": [
+        492,
+        380
+      ],
+      "pack_sha256": "0b588cf88a81e496f1f50258722e37bd05c981c463699bfe1cb93cb9d8bb9374",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon6",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1720,
+      "readable_frames": 1720,
+      "max_dimensions": [
+        128,
+        257
+      ],
+      "pack_sha256": "bf68b3f484fcc13e191709205765de427f076343d6a3b2f11477a0c4ab266c0d",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon7",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1770,
+      "readable_frames": 1770,
+      "max_dimensions": [
+        280,
+        253
+      ],
+      "pack_sha256": "ab848d4db3cc630ad6e9a971b667e73d7964a87ef8130c99c3586f46fd718601",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon8",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1800,
+      "readable_frames": 1800,
+      "max_dimensions": [
+        164,
+        136
+      ],
+      "pack_sha256": "9633ef67700e9eecfba3d3f207d5511b947dbe5c1761de03782dce0e36f4a7a8",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "mon9",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1520,
+      "readable_frames": 1520,
+      "max_dimensions": [
+        152,
+        117
+      ],
+      "pack_sha256": "99a18218f6c98345a8a80b1e80de06f1c02053bc691c2aecc9c91dbe13837587",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "newopui",
+      "role": "interface_mixed",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 40,
+      "readable_frames": 40,
+      "max_dimensions": [
+        800,
+        252
+      ],
+      "pack_sha256": "9078f901e75b87e84e3222056ee22203e788c8359514f70533c0df9b3d291ee7",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "npc",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 4840,
+      "readable_frames": 4840,
+      "max_dimensions": [
+        640,
+        480
+      ],
+      "pack_sha256": "d2b29fd5faabc87360b400df54a3b12baea18b8107fb4c6e2af910c838b7a0e1",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "npc2",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 690,
+      "readable_frames": 690,
+      "max_dimensions": [
+        120,
+        141
+      ],
+      "pack_sha256": "f7c0c9cb0e497073d21fc5ed2b64b4a8d94988a18553f8f8de8baa547da2b5a3",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 9999,
+      "readable_frames": 9999,
+      "max_dimensions": [
+        124,
+        987
+      ],
+      "pack_sha256": "7b81bb50384fd361937a68390a3331c8c6ccfe7573521a210cabe015de5bee19",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects10",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 7199,
+      "readable_frames": 7199,
+      "max_dimensions": [
+        48,
+        1024
+      ],
+      "pack_sha256": "caa2097b03cbe759bf001804514978a056a3e4fae4aa18ae1f30cfb87376f97a",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects13",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 7003,
+      "readable_frames": 7003,
+      "max_dimensions": [
+        224,
+        768
+      ],
+      "pack_sha256": "3b2bb52ec57172750bba608af99a2b92e5cfb3205ab87cfa2340432c9a6823a0",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects14",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 3648,
+      "readable_frames": 3648,
+      "max_dimensions": [
+        48,
+        1120
+      ],
+      "pack_sha256": "7e9d8559a292c60d727ec2bf6c1e7c24af54bbb4e2c49da82efa6c018518235f",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects15",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 26,
+      "readable_frames": 26,
+      "max_dimensions": [
+        80,
+        197
+      ],
+      "pack_sha256": "04f9458304532c6364fab53be7e085a550d946a898dd6b38a83bd4f4699acf35",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects16",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 4252,
+      "readable_frames": 4252,
+      "max_dimensions": [
+        48,
+        832
+      ],
+      "pack_sha256": "0fd36fd0a3ae0872718a7a384163ac35d72b2ef4774a3b0986a6e3ceff9ea7bd",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects2",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 10024,
+      "readable_frames": 10024,
+      "max_dimensions": [
+        80,
+        1024
+      ],
+      "pack_sha256": "b5fdf43da640a52ab0e4fd76b33d043a13c81984fe36f3188c797534515e0134",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects3",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 9229,
+      "readable_frames": 9229,
+      "max_dimensions": [
+        432,
+        832
+      ],
+      "pack_sha256": "15fe0c17be11e7c7c1450ca6528617b8cc76db507e9004e905951ce2154419af",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects4",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 10062,
+      "readable_frames": 10062,
+      "max_dimensions": [
+        96,
+        725
+      ],
+      "pack_sha256": "2eba2efde1b8630fcd249ba6bbc98d8f416590aa66348b6b02e5e255add59cbb",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects5",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 10872,
+      "readable_frames": 10872,
+      "max_dimensions": [
+        48,
+        1536
+      ],
+      "pack_sha256": "7c67b9f3fe5f41087ce2c67bb10b22d9f666c22fc839fda35e8fd6f5cfc49fa6",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects6",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 7751,
+      "readable_frames": 7751,
+      "max_dimensions": [
+        48,
+        1184
+      ],
+      "pack_sha256": "639d93f5edf5471f7c46085e6ff4722aa889a5f91dd2a20994a1167a9a995cea",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects7",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 9984,
+      "readable_frames": 9984,
+      "max_dimensions": [
+        48,
+        1176
+      ],
+      "pack_sha256": "6c8e6c5065f2e352fa92989de83e58c66921bf95d3f910144e4c1e3119de3287",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects8",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 9919,
+      "readable_frames": 9919,
+      "max_dimensions": [
+        48,
+        608
+      ],
+      "pack_sha256": "86e462a7fccd48808f1a42800cd49ea1f0bb9b2d60c89304fbed5af7c6446da1",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "objects9",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 9067,
+      "readable_frames": 9067,
+      "max_dimensions": [
+        48,
+        768
+      ],
+      "pack_sha256": "4cec3637ac06f56647f14024cda9d6f797277ececfb29303270436872a640d2a",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "petaleffect",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 190,
+      "readable_frames": 190,
+      "max_dimensions": [
+        100,
+        100
+      ],
+      "pack_sha256": "6c2bca1007a03ce870b074fc85a8f10e7a8ad745ae07cf012aaf241ba12a0799",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "prguse",
+      "role": "interface_mixed",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1770,
+      "readable_frames": 1770,
+      "max_dimensions": [
+        800,
+        600
+      ],
+      "pack_sha256": "c4413d308386f039735b1789cb2d1785c48fda000ea00bf095b783d21de39c64",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "prguse2",
+      "role": "interface_mixed",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 760,
+      "readable_frames": 760,
+      "max_dimensions": [
+        800,
+        600
+      ],
+      "pack_sha256": "1a84ec596af5a8467cf5433445cbed4730367269436d01899125a8c52b1fdfad",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "prguse3",
+      "role": "interface_mixed",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 750,
+      "readable_frames": 750,
+      "max_dimensions": [
+        800,
+        600
+      ],
+      "pack_sha256": "cd0f5bc31b62f686db350a7ac21786513442a0a7b3df753a4d3588e211f5ccc9",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "smtiles",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1176,
+      "readable_frames": 1176,
+      "max_dimensions": [
+        48,
+        32
+      ],
+      "pack_sha256": "8651676576df3df39cc7cbc8d4a143a74de73996d0f17cc678a0798c25bed8bf",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "stateeffect",
+      "role": "animated_effects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 600,
+      "readable_frames": 600,
+      "max_dimensions": [
+        165,
+        192
+      ],
+      "pack_sha256": "5f39ea732cc1f6d0892d43048d759a82319d09c052d219701da3e27f4d06a312",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "stateitem",
+      "role": "item_and_skill_icons",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 2610,
+      "readable_frames": 2610,
+      "max_dimensions": [
+        168,
+        231
+      ],
+      "pack_sha256": "c9de281c8e136d3adcaeefe3abc78adade14eddc33fcd0de5cd288cf04dac802",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "tiles",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 31725,
+      "readable_frames": 31725,
+      "max_dimensions": [
+        96,
+        64
+      ],
+      "pack_sha256": "a5b795c60b0b3e1bcb5fcefa2db3a0fba2f17830b3cf786da14751eabee15249",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "tiles2",
+      "role": "map_tiles_and_objects",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 36800,
+      "readable_frames": 36800,
+      "max_dimensions": [
+        96,
+        64
+      ],
+      "pack_sha256": "26919d39c61e00b7d17647720159345dc88928e273aaeabb29cdbcbceff55eb1",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "ui1",
+      "role": "interface_mixed",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 1690,
+      "readable_frames": 1690,
+      "max_dimensions": [
+        800,
+        600
+      ],
+      "pack_sha256": "850fdd2242d347f26220496cc7ac83eb0ace66eebc1afda3aeeb56967dc28eb9",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "ui3",
+      "role": "interface_mixed",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 524,
+      "readable_frames": 524,
+      "max_dimensions": [
+        800,
+        600
+      ],
+      "pack_sha256": "4395245b4d770baa053cd36b1e962d0df512496e10362cb87b661e58328d4520",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "weapon",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 45600,
+      "readable_frames": 45600,
+      "max_dimensions": [
+        104,
+        101
+      ],
+      "pack_sha256": "ebbe11b6cb162a04a8821e841c781ccd168537acbabccacd64ac6518ef945621",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "weapon2",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 16800,
+      "readable_frames": 16800,
+      "max_dimensions": [
+        136,
+        131
+      ],
+      "pack_sha256": "4ff55e43ddd51c97eb96998343753fdcd14964703414993964680cbbe3ddb5c6",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "weapon2_wis",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 25200,
+      "readable_frames": 25200,
+      "max_dimensions": [
+        136,
+        134
+      ],
+      "pack_sha256": "e5a5c435e31fe25089de20ddd3b706f7a2ba5257aba2b102e9dc6a29dd257131",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    },
+    {
+      "bank": "weapon3",
+      "role": "layered_characters",
+      "classification_basis": "bank name; separate from visual acceptance",
+      "indexed_frames": 9600,
+      "readable_frames": 9600,
+      "max_dimensions": [
+        113,
+        112
+      ],
+      "pack_sha256": "a82eb12289fde8c929f09389c5aa3f999e425ccd6173c6b4f230613695453c40",
+      "filter": "nearest",
+      "aspect_ratio": "preserve",
+      "scale": "runtime integer scale; no duplicated 2x/3x frame banks",
+      "offsets": "source foot anchor for world sprites; explicit panel layout for interface",
+      "hd_redraw_status": "not redrawn",
+      "visual_acceptance": "per-frame review pending"
+    }
+  ],
+  "summary": {
+    "banks": 98,
+    "readable_frames": 985709,
+    "unclassified": [
+      "dragon"
+    ]
+  },
+  "policies": {
+    "backgrounds": "repeat compatible stone borders; preserve central artwork",
+    "hud": "native left/center/right slices with anchored hit areas",
+    "windows": "uniform zoom and normalized saved placement",
+    "fonts": "scale-aware vector oversampling",
+    "animations": "all body/equipment/effect layers share map scale and source offsets"
+  },
+  "manual_review_file": "docs/DISPLAY_ADAPTATION.md"
+}

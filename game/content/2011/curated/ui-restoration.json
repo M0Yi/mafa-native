@@ -1,0 +1,182 @@
+{
+  "format_version": 1,
+  "resource_version": "2.0.1.11",
+  "complete": false,
+  "scope": "Supplement to 707-map full edition; no prior acceptance requirements removed",
+  "reference_priority": [
+    "supplied 2.0.1.11 assets",
+    "mirgo matching frames and behavior",
+    "documented offline reconstruction"
+  ],
+  "generated_reference": "../ui-reference.generated.json",
+  "implemented_pending_visual_acceptance": [
+    "login",
+    "register_local",
+    "password_change",
+    "recovery_code_once",
+    "local_world_selection",
+    "door_animation",
+    "roster_pagination",
+    "class_gender_creation",
+    "selection_unfreeze",
+    "selection_freeze",
+    "selection_effect",
+    "notice",
+    "soft_delete",
+    "restore_character",
+    "window_stack",
+    "window_drag",
+    "window_position_save",
+    "settings_pause",
+    "focus_pause",
+    "classic_hud_partial",
+    "inventory_instances",
+    "inventory_grid",
+    "inventory_drag",
+    "warehouse_drag",
+    "equipment_drag",
+    "inventory_split",
+    "inventory_sort"
+  ],
+  "still_incomplete": [
+    "original_all_window_layouts",
+    "original_paperdoll",
+    "all_equipment_slots",
+    "npc_nested_dialogs",
+    "craft",
+    "exchange",
+    "currency_mall",
+    "quest_tracking",
+    "repeat_quests",
+    "minimap",
+    "quickbar_drag_assignment",
+    "item_drop_pickup",
+    "skill_learning",
+    "skill_practice",
+    "all_skill_animation_rules",
+    "hero_equipment",
+    "hero_combat",
+    "combo",
+    "inner_effects",
+    "meridians_effects",
+    "trade",
+    "friends_messages",
+    "guild_management",
+    "siege",
+    "mail",
+    "death_revive",
+    "all_scene_animations",
+    "all_monster_actions",
+    "all_sound_timing",
+    "native_60fps",
+    "two_hour_soak"
+  ],
+  "rules": {
+    "ordinary_window_pauses": false,
+    "settings_pauses": true,
+    "lost_focus_pauses": true,
+    "resume_requires_confirmation": true,
+    "preserve_existing_characters": true
+  },
+  "layout": {
+    "minimum_window": [
+      800,
+      600
+    ],
+    "default_window": [
+      1280,
+      800
+    ],
+    "integer_ui_scale": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "zero_means_auto": true,
+    "art_offsets": "UI ignores archive HotX/HotY; actor offsets require separate definitions",
+    "registration_identity_area": "replaced by local instructions; no real identity fields"
+  },
+  "animation": {
+    "door": {
+      "bank": "chrsel",
+      "first": 23,
+      "count": 10,
+      "frame_ms": 300,
+      "loop": false,
+      "sound": 100,
+      "source": "mirgo/cmd/client/scenelogin.go"
+    },
+    "selection_unfreeze": {
+      "bank": "chrsel",
+      "bases": [
+        60,
+        100,
+        140,
+        180,
+        220,
+        260
+      ],
+      "count": 13,
+      "frame_ms": 50,
+      "loop": false,
+      "sound": 101
+    },
+    "selection_freeze": {
+      "bank": "chrsel",
+      "bases": [
+        60,
+        100,
+        140,
+        180,
+        220,
+        260
+      ],
+      "count": 13,
+      "frame_ms": 50,
+      "reverse": true,
+      "loop": false
+    },
+    "selection_idle": {
+      "bank": "chrsel",
+      "bases": [
+        40,
+        80,
+        120,
+        160,
+        200,
+        240
+      ],
+      "count": 16,
+      "frame_ms": 300,
+      "loop": true
+    },
+    "selection_effect": {
+      "bank": "chrsel",
+      "first": 4,
+      "count": 14,
+      "frame_ms": 50,
+      "loop": false,
+      "active_when": "selection_unfreeze",
+      "visible_duration_ms": 650,
+      "note": "14 source frames available; overlay stops with the 13 x 50 ms portrait revival, matching reference visibility guard."
+    }
+  },
+  "sound": {
+    "stone_button": 104,
+    "glass_button": 105,
+    "door": 100,
+    "stone_transform": 101,
+    "gold": 106,
+    "consume_potion": 107,
+    "item_click": 108
+  },
+  "differences": [
+    "Wide margins use repeated original wall crop",
+    "Hover states without native frames use a tint",
+    "Character deletion is recoverable",
+    "Local world selection preserves per-character saves",
+    "Item stats remain reconstructed seven-item baseline",
+    "Game windows still use reconstructed outer frames"
+  ]
+}

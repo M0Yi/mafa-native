@@ -1,0 +1,25 @@
+{
+  "format_version": 1,
+  "overrides": {
+    "0152": {
+      "name": "沙巴克仓库",
+      "reconstructed": true,
+      "source": {
+        "npc_script": "mirgo/serverconfig/npcs/merchant_scripts/6Awh-0152.txt",
+        "map_reference": "mirgo/asset/server/Envir/mapinfo.txt:635",
+        "original_name": "服装店",
+        "note": "参考地图表名称与该房间仓储NPC服务冲突；按当前单机实际服务校订，非声称恢复历史原名。"
+      }
+    },
+    "0145": {
+      "name": "盟重仓库",
+      "reconstructed": true,
+      "source": {
+        "npc_script": "mirgo/serverconfig/npcs/merchant_scripts/6Mwh-0145.txt",
+        "map_reference": "mirgo/serverconfig/maps/map_info.jsonc:0145",
+        "original_name": "室内",
+        "note": "依据盟重仓库保管员及当前房间用途细化显示名称；原资料只称室内，非声称恢复历史专名。"
+      }
+    }
+  }
+}

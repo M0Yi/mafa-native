@@ -1,0 +1,79 @@
+{
+  "npc": "server:merchant:126",
+  "recipes": [
+    {
+      "product": "ref:293",
+      "name": "赤血魔剑",
+      "cost": 100,
+      "materials": {
+        "ref:284": 1,
+        "ref:285": 1,
+        "ref:286": 1,
+        "ref:287": 1,
+        "ref:288": 1,
+        "ref:289": 1,
+        "ref:290": 1
+      }
+    },
+    {
+      "product": "ref:294",
+      "name": "魔血戒指",
+      "cost": 100,
+      "materials": {
+        "ref:297": 1,
+        "ref:226": 1
+      }
+    },
+    {
+      "product": "ref:295",
+      "name": "魔血手镯",
+      "cost": 100,
+      "materials": {
+        "ref:298": 1,
+        "ref:226": 1
+      }
+    },
+    {
+      "product": "ref:296",
+      "name": "魔血项链",
+      "cost": 100,
+      "materials": {
+        "ref:299": 1,
+        "ref:226": 1
+      }
+    },
+    {
+      "product": "ref:297",
+      "name": "虹魔戒指",
+      "cost": 100,
+      "materials": {
+        "ref:294": 1,
+        "ref:226": 1
+      }
+    },
+    {
+      "product": "ref:298",
+      "name": "虹魔手镯",
+      "cost": 100,
+      "materials": {
+        "ref:295": 1,
+        "ref:226": 1
+      }
+    },
+    {
+      "product": "ref:299",
+      "name": "虹魔项链",
+      "cost": 100,
+      "materials": {
+        "ref:296": 1,
+        "ref:226": 1
+      }
+    }
+  ],
+  "source_sha256": {
+    "mirgo/serverconfig/items/make_items.jsonc": "f6568cc3d530d4176150493c86c27ce594bc3ba490845d915dae6bf3149aa05e",
+    "mirgo/serverconfig/npcs/merchant_scripts/9maker-r001.txt": "4fa6b36ae2cba3067b76e99c16fa354b72cc00ef26a847dc062a533475152a7e",
+    "mirgo/cmd/server/makedrug.go": "4e5b5dafb8ccf7d526ae62c096daefac269ac86b39cd928c08e5545157d9728d"
+  },
+  "difference": "采用NPC明确报价100金币；参考Go通用默认值500。装备产物按当前单机属性，不宣称特殊诅咒和套装效果完整。"
+}

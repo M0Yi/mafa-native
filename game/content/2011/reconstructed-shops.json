@@ -1,0 +1,289 @@
+{
+  "format_version": 1,
+  "provenance": "singleplayer_reconstruction",
+  "entries": [
+    {
+      "npc": "server:merchant:12",
+      "reason": "铁矿正式掉落和商店来源缺失；补齐火龙换装材料采购，非历史商店商品表。",
+      "goods": [
+        {
+          "name": "铁矿",
+          "type": "ore",
+          "count": 20,
+          "restock_seconds": 600,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 锻造材料"
+        }
+      ]
+    },
+    {
+      "npc": "server:merchant:157",
+      "reason": "参考工程缺失魔龙城服务脚本，补齐现有远征任务的药品与仓储服务。",
+      "services": {},
+      "service_note": "单机补建服务 · 原NPC位置保留",
+      "goods": [
+        {
+          "name": "金创药(小量)",
+          "type": "potion",
+          "count": 100,
+          "restock_seconds": 60,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 魔龙远征补给"
+        },
+        {
+          "name": "魔法药(小量)",
+          "type": "mana",
+          "count": 100,
+          "restock_seconds": 60,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 魔龙远征补给"
+        },
+        {
+          "name": "金创药(中量)",
+          "type": "ref:96",
+          "count": 100,
+          "restock_seconds": 60,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 魔龙远征补给"
+        },
+        {
+          "name": "魔法药(中量)",
+          "type": "ref:97",
+          "count": 100,
+          "restock_seconds": 60,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 魔龙远征补给"
+        },
+        {
+          "name": "强效金创药",
+          "type": "ref:161",
+          "count": 100,
+          "restock_seconds": 60,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 魔龙远征补给"
+        },
+        {
+          "name": "强效魔法药",
+          "type": "ref:162",
+          "count": 100,
+          "restock_seconds": 60,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 魔龙远征补给"
+        }
+      ]
+    },
+    {
+      "npc": "server:merchant:160",
+      "reason": "参考工程缺失魔龙城服务脚本，补齐现有远征任务的药品与仓储服务。",
+      "services": {
+        "warehouse": true
+      },
+      "service_note": "单机补建服务 · 原NPC位置保留",
+      "goods": []
+    },
+    {
+      "npc": "server:merchant:156",
+      "reason": "参考魔龙城脚本缺失；单机远征分类供货与修理，非历史商品表。",
+      "accepted_modes": [
+        25
+      ],
+      "services": {
+        "repair": false
+      },
+      "service_note": "单机补建服务 · 原NPC位置保留",
+      "goods": [
+        {
+          "name": "护身符",
+          "type": "charm",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "回城石",
+          "type": "return_stone",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        }
+      ]
+    },
+    {
+      "npc": "server:merchant:158",
+      "reason": "参考魔龙城脚本缺失；单机远征分类供货与修理，非历史商品表。",
+      "accepted_modes": [
+        5,
+        6
+      ],
+      "services": {
+        "repair": true
+      },
+      "service_note": "单机补建服务 · 原NPC位置保留",
+      "goods": [
+        {
+          "name": "修罗",
+          "type": "ref:34",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "凝霜",
+          "type": "ref:13",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "偃月",
+          "type": "ref:81",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "降魔",
+          "type": "ref:82",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        }
+      ]
+    },
+    {
+      "npc": "server:merchant:159",
+      "reason": "参考魔龙城脚本缺失；单机远征分类供货与修理，非历史商品表。",
+      "accepted_modes": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        26
+      ],
+      "services": {
+        "repair": true
+      },
+      "service_note": "单机补建服务 · 原NPC位置保留",
+      "goods": [
+        {
+          "name": "死神手套",
+          "type": "ref:113",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "魔法手镯",
+          "type": "ref:115",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "金项链",
+          "type": "ref:48",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        }
+      ]
+    },
+    {
+      "npc": "server:merchant:161",
+      "reason": "参考魔龙城脚本缺失；单机远征分类供货与修理，非历史商品表。",
+      "accepted_modes": [
+        10,
+        11,
+        15
+      ],
+      "services": {
+        "repair": true
+      },
+      "service_note": "单机补建服务 · 原NPC位置保留",
+      "goods": [
+        {
+          "name": "重盔甲(男)",
+          "type": "ref:24",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "重盔甲(女)",
+          "type": "ref:21",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "魔法长袍(男)",
+          "type": "ref:25",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "魔法长袍(女)",
+          "type": "ref:22",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "灵魂战衣(男)",
+          "type": "ref:26",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        },
+        {
+          "name": "灵魂战衣(女)",
+          "type": "ref:23",
+          "count": 20,
+          "restock_seconds": 180,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 远征行装"
+        }
+      ]
+    },
+    {
+      "npc": "server:merchant:54",
+      "reason": "原Goods金创药、魔法药缺少规格，当前物品表无精确对应；保留未解析原行，单机新增小量红蓝药，不声称恢复原规格。",
+      "service_note": "单机补建小量红蓝药；原无规格药名仍待核实，商品沿用本店180%价格。",
+      "goods": [
+        {
+          "name": "金创药(小量)",
+          "type": "potion",
+          "count": 1000,
+          "restock_seconds": 60,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 原药名规格未明"
+        },
+        {
+          "name": "魔法药(小量)",
+          "type": "mana",
+          "count": 1000,
+          "restock_seconds": 60,
+          "provenance": "singleplayer_reconstruction",
+          "note": "单机补建 · 原药名规格未明"
+        }
+      ]
+    }
+  ]
+}

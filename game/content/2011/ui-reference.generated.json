@@ -1,0 +1,1032 @@
+{
+  "format_version": 1,
+  "resource_version": "2.0.1.11",
+  "reference": "mirgo local snapshot; incomplete Go port, not historical authority",
+  "files": [
+    {
+      "path": "mirgo/cmd/client/actor.go",
+      "sha256": "d15a6ddc0f5ce0c00f756a42c28b8965ca8e98e3fcc3708e48ffe419746b5be9"
+    },
+    {
+      "path": "mirgo/cmd/client/actorbase.go",
+      "sha256": "3da55df08a9996909311a4d1996679c24aea07870780c059a1871e354dd5cd95"
+    },
+    {
+      "path": "mirgo/cmd/client/actorcorpse_test.go",
+      "sha256": "d3166d9f9a46a1bc3722d2b2d1c06edcd65a3c311abf08b516f45ef070d34a91"
+    },
+    {
+      "path": "mirgo/cmd/client/actormanager.go",
+      "sha256": "24587ee6c645d16497b3fe8807d71986b7752aea3ae28c910330e4c14abe2905"
+    },
+    {
+      "path": "mirgo/cmd/client/actorsound.go",
+      "sha256": "f50a2b272784950c55fc64299bc97360e2497bfa1c8924699cde0cec6852ffd8"
+    },
+    {
+      "path": "mirgo/cmd/client/magiceffect.go",
+      "sha256": "0d7de38e14911fd4d8224d5c48a9e563ab413328784db6f6d378fc8151bb3569"
+    },
+    {
+      "path": "mirgo/cmd/client/scenelogin.go",
+      "sha256": "207c61b4cf3447ee9080e9c93a088509bf0061662608ede5fea957e762277d29"
+    },
+    {
+      "path": "mirgo/cmd/client/scenenotice.go",
+      "sha256": "ce5e50dd7fb29d4eb6f96262a7b62ff6aa2350fc4683479d9f9658d20b8fdf34"
+    },
+    {
+      "path": "mirgo/cmd/client/sceneplay.go",
+      "sha256": "9c30e6e73bcadee9e7391f9668e5b02695ff0e595566cfd4afa00995a62d20cd"
+    },
+    {
+      "path": "mirgo/cmd/client/sceneplay_test.go",
+      "sha256": "b2a431b48b2d51e8759add49fce760e85e666b5c5b3cab55a332e649e644b6bd"
+    },
+    {
+      "path": "mirgo/cmd/client/sceneselectchr.go",
+      "sha256": "143103567de2691fc908019c7ddc5cbafb24530361f88ba045b1737824b5144f"
+    },
+    {
+      "path": "mirgo/cmd/client/sound.go",
+      "sha256": "5547cc9f0d4e68a88753ca837a32b729a1f03721011ad5ddaf4c40d340677a48"
+    },
+    {
+      "path": "mirgo/cmd/client/soundconst.go",
+      "sha256": "672191844d2269d874b194f506a95c319281bd134b5498ab0eb4c58233dc7817"
+    },
+    {
+      "path": "mirgo/cmd/client/uiabil.go",
+      "sha256": "e7e27bf88b12f9025b94f3a27a09916060f8e7b296770b0f93620e47c91e5556"
+    },
+    {
+      "path": "mirgo/cmd/client/uiaudit.go",
+      "sha256": "ad4506bfe2079de22361555b307c0c90dd6a844d810486a3f51142e98660db4e"
+    },
+    {
+      "path": "mirgo/cmd/client/uibag.go",
+      "sha256": "baba9f2c12f481721b6bb4800a0d87345ef394e0f4ceb81dc7b42332701d353e"
+    },
+    {
+      "path": "mirgo/cmd/client/uiconst.go",
+      "sha256": "05d3aa4e90f0e2cdfba91a4a3bb5c1aa743a213b4fd905f8a3a64f4bb3109b54"
+    },
+    {
+      "path": "mirgo/cmd/client/uicontrol.go",
+      "sha256": "9d913cf1b7dbeb046e2ff0d4cfd73d3c80197ad9f5b74d492eb00276429d11d9"
+    },
+    {
+      "path": "mirgo/cmd/client/uideal.go",
+      "sha256": "b0626635e2bee2a76c5cdec524ccdef26415fc848029827a14af3930ad547da3"
+    },
+    {
+      "path": "mirgo/cmd/client/uidelphi_test.go",
+      "sha256": "66da7b20d6619b3f13c89a9dd4a6c01c91c75a47b9aa4337676e92cc2766739e"
+    },
+    {
+      "path": "mirgo/cmd/client/uidialog.go",
+      "sha256": "72e2518d3ba149b19b00ce4db8c46a7af542626f9ba5ae7cf81be09f7de8b8ac"
+    },
+    {
+      "path": "mirgo/cmd/client/uiedit.go",
+      "sha256": "c13e17b75814381d549acd4f2d16a18db46a6564aaba2e181572f7baaecfcb81"
+    },
+    {
+      "path": "mirgo/cmd/client/uifriend.go",
+      "sha256": "0145c4a263f18f82a6e9277f05944539582b1f4d10a6663e85c8ea33e3d7a9f5"
+    },
+    {
+      "path": "mirgo/cmd/client/uiguild.go",
+      "sha256": "1299d817d1e6759d62a4c39864afcf63e55e0784b901cf03b8c8da19cac6aa70"
+    },
+    {
+      "path": "mirgo/cmd/client/uihud.go",
+      "sha256": "2e4b1082a79aa28ee5a2222e526f62c8ffc05c52494dfc907e930e8647e70e66"
+    },
+    {
+      "path": "mirgo/cmd/client/uilayout_test.go",
+      "sha256": "e9eeb29b8316929a18ac8913be349f6ce7f47b47d87dc19ead4bf92f3781b003"
+    },
+    {
+      "path": "mirgo/cmd/client/uimanager.go",
+      "sha256": "1b2ca25291072062a8c157b7093b3f348e15f3c118ed7837eb4d881a4fd11314"
+    },
+    {
+      "path": "mirgo/cmd/client/uimanager_test.go",
+      "sha256": "7a926e63bb3d05d5f90b35571494f62be05ef010ae22b41e1db71a16bbf7ed2c"
+    },
+    {
+      "path": "mirgo/cmd/client/uimemo.go",
+      "sha256": "b28471b1161dd3526d78216d454092cfbc79b6de9c41c66fd5f8a0d7eb54cc18"
+    },
+    {
+      "path": "mirgo/cmd/client/uinpc.go",
+      "sha256": "b73903730909d48cce9aeb20acb5b7d2f25772c3048e68f7d6c150dd843428c8"
+    },
+    {
+      "path": "mirgo/cmd/client/uinpc_test.go",
+      "sha256": "d220baf246d253cf667b4e259f247385d76eab4e06b1ffbce26c0ad6f6d3ed73"
+    },
+    {
+      "path": "mirgo/cmd/client/uistate.go",
+      "sha256": "259ca27e4f50040a7bcdc2377e12930d266eefd050fafc40b68cfe49751f78fd"
+    },
+    {
+      "path": "mirgo/cmd/client/uitooltip.go",
+      "sha256": "a6955d5d212ce62b59e775fb21e7058454132ea0c6c2cbc97cf4bccbc24cb641"
+    },
+    {
+      "path": "mirgo/cmd/client/uitooltip_test.go",
+      "sha256": "594ccb92a02d66eae22e584e985b7ad6df3a3cc99eeaa5448fb57b25e8ccc75b"
+    },
+    {
+      "path": "mirgo/cmd/client/worder.go",
+      "sha256": "bd4953a420164b8ce6fdc5197ac06a7efacf5705ecc37fee5004c921919d19e5"
+    }
+  ],
+  "literal_controls": [
+    {
+      "id": "scenelogin:DLoginPanel",
+      "name": "DLoginPanel",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/scenelogin.go",
+      "line": 437,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "scenelogin:DRegPanel",
+      "name": "DRegPanel",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/scenelogin.go",
+      "line": 482,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "scenelogin:DChgPanel",
+      "name": "DChgPanel",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/scenelogin.go",
+      "line": 562,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "scenelogin:DSrvPanel",
+      "name": "DSrvPanel",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/scenelogin.go",
+      "line": 626,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "scenelogin:BtnSrvClose",
+      "name": "BtnSrvClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/scenelogin.go",
+      "line": 641,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "scenelogin:DLoginDlg",
+      "name": "DLoginDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/scenelogin.go",
+      "line": 1121,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "scenelogin:DDlgBtn",
+      "name": "DDlgBtn",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/scenelogin.go",
+      "line": 1155,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "scenenotice:DMessageDlg",
+      "name": "DMessageDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/scenenotice.go",
+      "line": 80,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "scenenotice:DMessageDlgBtn",
+      "name": "DMessageDlgBtn",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/scenenotice.go",
+      "line": 108,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "sceneselectchr:DCreatePanel",
+      "name": "DCreatePanel",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/sceneselectchr.go",
+      "line": 181,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "sceneselectchr:BtnCreateOk",
+      "name": "BtnCreateOk",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/sceneselectchr.go",
+      "line": 254,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "sceneselectchr:BtnCreateClose",
+      "name": "BtnCreateClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/sceneselectchr.go",
+      "line": 261,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "sceneselectchr:DDeletePanel",
+      "name": "DDeletePanel",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/sceneselectchr.go",
+      "line": 269,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiabil:DAdjustAbility",
+      "name": "DAdjustAbility",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uiabil.go",
+      "line": 45,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiabil:DPlus",
+      "name": "DPlus",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiabil.go",
+      "line": 73,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiabil:DMinus",
+      "name": "DMinus",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiabil.go",
+      "line": 83,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiabil:DAdjustAbilOk",
+      "name": "DAdjustAbilOk",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiabil.go",
+      "line": 94,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiabil:DAdjustAbilClose",
+      "name": "DAdjustAbilClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiabil.go",
+      "line": 102,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiabil:DUserState1",
+      "name": "DUserState1",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uiabil.go",
+      "line": 117,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiabil:DCloseUS1",
+      "name": "DCloseUS1",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiabil.go",
+      "line": 157,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uibag:DItemBag",
+      "name": "DItemBag",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uibag.go",
+      "line": 19,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uibag:DItemGrid",
+      "name": "DItemGrid",
+      "kind": "KindGrid",
+      "source": "mirgo/cmd/client/uibag.go",
+      "line": 39,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uibag:DGold",
+      "name": "DGold",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uibag.go",
+      "line": 59,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uibag:DRepairItem",
+      "name": "DRepairItem",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uibag.go",
+      "line": 95,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uibag:DClosebag",
+      "name": "DClosebag",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uibag.go",
+      "line": 107,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uideal:DDealRemoteDlg",
+      "name": "DDealRemoteDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uideal.go",
+      "line": 14,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uideal:DDealDlg",
+      "name": "DDealDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uideal.go",
+      "line": 28,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uideal:DDGrid",
+      "name": "DDGrid",
+      "kind": "KindGrid",
+      "source": "mirgo/cmd/client/uideal.go",
+      "line": 43,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uideal:DDRGrid",
+      "name": "DDRGrid",
+      "kind": "KindControl",
+      "source": "mirgo/cmd/client/uideal.go",
+      "line": 59,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uideal:DDGold",
+      "name": "DDGold",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uideal.go",
+      "line": 72,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uideal:DDealOk",
+      "name": "DDealOk",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uideal.go",
+      "line": 81,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uideal:DDealClose",
+      "name": "DDealClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uideal.go",
+      "line": 89,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uidialog:DMsgDlg",
+      "name": "DMsgDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uidialog.go",
+      "line": 128,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uidialog:DMsgDlgBtn",
+      "name": "DMsgDlgBtn",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uidialog.go",
+      "line": 175,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uifriend:DFrdFriendDlg",
+      "name": "DFrdFriendDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uifriend.go",
+      "line": 24,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uifriend:DFrdClose",
+      "name": "DFrdClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uifriend.go",
+      "line": 37,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uifriend:DFrdAdd",
+      "name": "DFrdAdd",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uifriend.go",
+      "line": 48,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uifriend:DFrdDel",
+      "name": "DFrdDel",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uifriend.go",
+      "line": 60,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGuildDlg",
+      "name": "DGuildDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 18,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGDUp",
+      "name": "DGDUp",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 105,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGDDown",
+      "name": "DGDDown",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 118,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGroupDlg",
+      "name": "DGroupDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 131,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGrpDlgClose",
+      "name": "DGrpDlgClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 145,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGrpAllowGroup",
+      "name": "DGrpAllowGroup",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 153,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGuildEditNotice",
+      "name": "DGuildEditNotice",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 408,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGEOk",
+      "name": "DGEOk",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 423,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGEClose",
+      "name": "DGEClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 440,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGuildEditGrade",
+      "name": "DGuildEditGrade",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 461,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGEGOk",
+      "name": "DGEGOk",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 481,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uiguild:DGEGClose",
+      "name": "DGEGClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uiguild.go",
+      "line": 494,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uihud:DBottom",
+      "name": "DBottom",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uihud.go",
+      "line": 27,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uihud:DButtonHP",
+      "name": "DButtonHP",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uihud.go",
+      "line": 151,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uihud:DButtonMP",
+      "name": "DButtonMP",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uihud.go",
+      "line": 158,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uihud:DBelt",
+      "name": "DBelt",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uihud.go",
+      "line": 170,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager:DBackground",
+      "name": "DBackground",
+      "kind": "KindControl",
+      "source": "mirgo/cmd/client/uimanager.go",
+      "line": 44,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:btn",
+      "name": "btn",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 15,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:grid",
+      "name": "grid",
+      "kind": "KindGrid",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 56,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:win",
+      "name": "win",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 90,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:behind",
+      "name": "behind",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 118,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:modal",
+      "name": "modal",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 125,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:modal",
+      "name": "modal",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 150,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:btn",
+      "name": "btn",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 179,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:btn",
+      "name": "btn",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 207,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:w1",
+      "name": "w1",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 231,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:w2",
+      "name": "w2",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 234,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:btn",
+      "name": "btn",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 268,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:win",
+      "name": "win",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 292,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:edit",
+      "name": "edit",
+      "kind": "KindControl",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 296,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:modal",
+      "name": "modal",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 325,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:dlg",
+      "name": "dlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 352,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:edit",
+      "name": "edit",
+      "kind": "KindControl",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 353,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:btn",
+      "name": "btn",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 374,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:dlg2",
+      "name": "dlg2",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 379,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uimanager_test:DSW",
+      "name": "DSW",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uimanager_test.go",
+      "line": 390,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DMerchantDlg",
+      "name": "DMerchantDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 115,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DMerchantDlgClose",
+      "name": "DMerchantDlgClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 130,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DMenuDlg",
+      "name": "DMenuDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 139,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DMenuPrev",
+      "name": "DMenuPrev",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 164,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DMenuNext",
+      "name": "DMenuNext",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 189,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DMenuBuy",
+      "name": "DMenuBuy",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 206,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DMenuClose",
+      "name": "DMenuClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 214,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DSellDlg",
+      "name": "DSellDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 223,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DSellDlgSpot",
+      "name": "DSellDlgSpot",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 237,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DSellDlgOk",
+      "name": "DSellDlgOk",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 273,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uinpc:DSellDlgClose",
+      "name": "DSellDlgClose",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uinpc.go",
+      "line": 281,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DStateWin",
+      "name": "DStateWin",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 62,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DCloseState",
+      "name": "DCloseState",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 91,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DPrevState",
+      "name": "DPrevState",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 100,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DNextState",
+      "name": "DNextState",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 110,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DStPageUp",
+      "name": "DStPageUp",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 121,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DStPageDown",
+      "name": "DStPageDown",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 134,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DSW",
+      "name": "DSW",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 154,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DStMag",
+      "name": "DStMag",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 173,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DKeySelDlg",
+      "name": "DKeySelDlg",
+      "kind": "KindWindow",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 521,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DKsF",
+      "name": "DKsF",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 551,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DKsConF",
+      "name": "DKsConF",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 573,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DKsOk",
+      "name": "DKsOk",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 587,
+      "status": "reference_only",
+      "implemented": false
+    },
+    {
+      "id": "uistate:DKsNone",
+      "name": "DKsNone",
+      "kind": "KindButton",
+      "source": "mirgo/cmd/client/uistate.go",
+      "line": 605,
+      "status": "reference_only",
+      "implemented": false
+    }
+  ],
+  "dynamic_control_factories_require_manual_review": true
+}

@@ -1,0 +1,12 @@
+{
+  "maps": 707,
+  "reconstructed_npcs": 1414,
+  "source_annotations_not_npcs": 182,
+  "source_skill_descriptions": 145,
+  "source_quest_descriptions": 6,
+  "source_item_description_lines": 365,
+  "pages_identified": 21,
+  "completion": "in_progress",
+  "unresolved_map_references": 51,
+  "missing_sound_lst_references": 15
+}

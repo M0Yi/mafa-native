@@ -1,0 +1,29 @@
+config_version=5
+
+[application]
+config/name="玛法十周年"
+config/version="0.14.0-preview.1"
+run/main_scene="res://bootstrap.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/use_custom_user_dir=true
+config/custom_user_dir_name="MafaNative2011"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/size/window_width_override=1280
+window/size/window_height_override=800
+window/size/resizable=true
+window/dpi/allow_hidpi=true
+window/vsync/vsync_mode=1
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.035, 0.045, 0.04, 1)
+
+[debug]
+gdscript/warnings/inference_on_variant=0

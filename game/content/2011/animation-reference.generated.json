@@ -1,0 +1,2046 @@
+{
+  "format_version": 1,
+  "source": "mirgo/cmd/client/actor.go",
+  "sha256": "d15a6ddc0f5ce0c00f756a42c28b8965ca8e98e3fcc3708e48ffe419746b5be9",
+  "status": "reference_templates_not_all_actors_integrated",
+  "templates": {
+    "HA": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 4,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 64,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 90,
+        "move_tick": 2
+      },
+      "ActRun": {
+        "start": 128,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 120,
+        "move_tick": 3
+      },
+      "ActRushLeft": {
+        "start": 128,
+        "count": 3,
+        "skip": 5,
+        "frame_ms": 120,
+        "move_tick": 3
+      },
+      "ActRushRight": {
+        "start": 131,
+        "count": 3,
+        "skip": 5,
+        "frame_ms": 120,
+        "move_tick": 3
+      },
+      "ActWarMode": {
+        "start": 192,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActHit": {
+        "start": 200,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 85,
+        "move_tick": 0
+      },
+      "ActHeavyHit": {
+        "start": 264,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 90,
+        "move_tick": 0
+      },
+      "ActBigHit": {
+        "start": 328,
+        "count": 8,
+        "skip": 0,
+        "frame_ms": 70,
+        "move_tick": 0
+      },
+      "ActFireHitReady": {
+        "start": 192,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 70,
+        "move_tick": 0
+      },
+      "ActSpell": {
+        "start": 392,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 60,
+        "move_tick": 0
+      },
+      "ActSitdown": {
+        "start": 456,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 300,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 472,
+        "count": 3,
+        "skip": 5,
+        "frame_ms": 70,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 536,
+        "count": 4,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      }
+    },
+    "MA9": {
+      "ActStand": {
+        "start": 0,
+        "count": 1,
+        "skip": 7,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 64,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 120,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 64,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 64,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 1,
+        "skip": 7,
+        "frame_ms": 140,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 1,
+        "skip": 7,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA10": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 4,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 64,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 120,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 128,
+        "count": 4,
+        "skip": 4,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 192,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 208,
+        "count": 4,
+        "skip": 4,
+        "frame_ms": 140,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 272,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA11": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 140,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 340,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA12": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 4,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 64,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 120,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 128,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 192,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 208,
+        "count": 4,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 272,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA13": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 10,
+        "count": 8,
+        "skip": 2,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 30,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 110,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 130,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 20,
+        "count": 9,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      }
+    },
+    "MA14": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 340,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      }
+    },
+    "MA15": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 1,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      }
+    },
+    "MA16": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 160,
+        "move_tick": 0
+      }
+    },
+    "MA17": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 60,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 340,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 140,
+        "move_tick": 0
+      }
+    },
+    "MA19": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 140,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 340,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 140,
+        "move_tick": 0
+      }
+    },
+    "MA20": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 340,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 170,
+        "move_tick": 0
+      }
+    },
+    "MA21": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 10,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 20,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 30,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA22": {
+      "ActStand": {
+        "start": 80,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 240,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 320,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 340,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 170,
+        "move_tick": 0
+      }
+    },
+    "MA23": {
+      "ActStand": {
+        "start": 20,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 100,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 180,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 260,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 280,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      }
+    },
+    "MA24": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 240,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 320,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 340,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 140,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 420,
+        "count": 1,
+        "skip": 0,
+        "frame_ms": 140,
+        "move_tick": 0
+      }
+    },
+    "MA25": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 70,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 20,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 10,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 50,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 60,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 80,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 3
+      }
+    },
+    "MA26": {
+      "ActStand": {
+        "start": 0,
+        "count": 1,
+        "skip": 7,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 56,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 500,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 64,
+        "count": 6,
+        "skip": 2,
+        "frame_ms": 500,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 4,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 24,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA27": {
+      "ActStand": {
+        "start": 0,
+        "count": 1,
+        "skip": 7,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA28": {
+      "ActStand": {
+        "start": 80,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 0,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      }
+    },
+    "MA29": {
+      "ActStand": {
+        "start": 80,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 240,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 320,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 340,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      }
+    },
+    "MA30": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 10,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 10,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 20,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 30,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 3
+      }
+    },
+    "MA31": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 10,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 2,
+        "skip": 8,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 20,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 3
+      }
+    },
+    "MA32": {
+      "ActStand": {
+        "start": 0,
+        "count": 1,
+        "skip": 9,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 200,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 0,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 2,
+        "skip": 8,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 80,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 80,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 80,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 3
+      }
+    },
+    "MA33": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 200,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 340,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      }
+    },
+    "MA34": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 200,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 320,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 400,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 420,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 420,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      }
+    },
+    "MA35": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 30,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 1,
+        "skip": 9,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA36": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 30,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 1,
+        "skip": 9,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA37": {
+      "ActStand": {
+        "start": 30,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 30,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 1,
+        "skip": 9,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA38": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA39": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 300,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 10,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 20,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 30,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 80,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA40": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 250,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 210,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 110,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 580,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 135,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 130,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 260,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 130,
+        "move_tick": 0
+      }
+    },
+    "MA41": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA42": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 10,
+        "count": 8,
+        "skip": 2,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 30,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 30,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      }
+    },
+    "MA43": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 160,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 260,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 340,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      }
+    },
+    "MA44": {
+      "ActStand": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 300,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 10,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 20,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 40,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 40,
+        "count": 2,
+        "skip": 8,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 30,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 150,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA45": {
+      "ActStand": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 300,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 300,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 10,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 300,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 10,
+        "count": 10,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 1,
+        "skip": 9,
+        "frame_ms": 300,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 1,
+        "skip": 9,
+        "frame_ms": 300,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 1,
+        "skip": 9,
+        "frame_ms": 300,
+        "move_tick": 0
+      }
+    },
+    "MA46": {
+      "ActStand": {
+        "start": 0,
+        "count": 20,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActAttack": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 0,
+        "count": 0,
+        "skip": 0,
+        "frame_ms": 0,
+        "move_tick": 0
+      }
+    },
+    "MA47": {
+      "ActStand": {
+        "start": 0,
+        "count": 4,
+        "skip": 6,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActWalk": {
+        "start": 80,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 200,
+        "move_tick": 3
+      },
+      "ActAttack": {
+        "start": 160,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActCritical": {
+        "start": 260,
+        "count": 6,
+        "skip": 4,
+        "frame_ms": 120,
+        "move_tick": 0
+      },
+      "ActStruck": {
+        "start": 240,
+        "count": 2,
+        "skip": 0,
+        "frame_ms": 100,
+        "move_tick": 0
+      },
+      "ActDie": {
+        "start": 524,
+        "count": 6,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      },
+      "ActDeath": {
+        "start": 524,
+        "count": 6,
+        "skip": 0,
+        "frame_ms": 200,
+        "move_tick": 0
+      }
+    }
+  }
+}

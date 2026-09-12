@@ -1,0 +1,207 @@
+{
+  "format_version": 1,
+  "reference_sha256": "e0256bb1207b6fd928a7e666db32ce5e8e7fed6a2b49a7d20e54b740baff3ebb",
+  "entries": [
+    {
+      "id": "0149:shop:3Mdr",
+      "map": "0149",
+      "kind": "npc",
+      "name": "张家布店老板",
+      "cell": [
+        23,
+        20
+      ],
+      "bank": "npc",
+      "frame": 700,
+      "frames": 4,
+      "service": "room_shop",
+      "goods": [
+        "robe"
+      ],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "3Mdr",
+        "services": "singleplayer_current_item_catalog"
+      }
+    },
+    {
+      "id": "0149:shop:3Mga",
+      "map": "0149",
+      "kind": "npc",
+      "name": "手套店老板",
+      "cell": [
+        11,
+        18
+      ],
+      "bank": "npc",
+      "frame": 400,
+      "frames": 4,
+      "service": "room_shop",
+      "goods": [
+        "bracelet"
+      ],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "3Mga",
+        "services": "singleplayer_current_item_catalog"
+      }
+    },
+    {
+      "id": "0149:shop:3Mhe",
+      "map": "0149",
+      "kind": "npc",
+      "name": "老张头盔店",
+      "cell": [
+        8,
+        5
+      ],
+      "bank": "npc",
+      "frame": 500,
+      "frames": 4,
+      "service": "room_shop",
+      "goods": [
+        "helmet"
+      ],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "3Mhe",
+        "services": "singleplayer_current_item_catalog"
+      }
+    },
+    {
+      "id": "0159:shop:2Mwe",
+      "map": "0159",
+      "kind": "npc",
+      "name": "铁匠铺老板",
+      "cell": [
+        5,
+        9
+      ],
+      "bank": "npc",
+      "frame": 0,
+      "frames": 4,
+      "service": "room_shop",
+      "goods": [
+        "wood_sword",
+        "sword"
+      ],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "2Mwe",
+        "services": "singleplayer_current_item_catalog"
+      }
+    },
+    {
+      "id": "0151:shop:2Awe",
+      "map": "0151",
+      "kind": "npc",
+      "name": "铁匠铺老板",
+      "cell": [
+        7,
+        14
+      ],
+      "bank": "npc",
+      "frame": 0,
+      "frames": 4,
+      "service": "room_shop",
+      "goods": [
+        "wood_sword",
+        "sword"
+      ],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "2Awe",
+        "services": "singleplayer_current_item_catalog"
+      }
+    },
+    {
+      "id": "0151:shop:2Are",
+      "map": "0151",
+      "kind": "npc",
+      "name": "铁匠铺老板",
+      "cell": [
+        3,
+        19
+      ],
+      "bank": "npc",
+      "frame": 0,
+      "frames": 4,
+      "service": "room_shop",
+      "goods": [
+        "wood_sword",
+        "sword"
+      ],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "2Are",
+        "services": "singleplayer_current_item_catalog"
+      }
+    },
+    {
+      "id": "0152:shop:6Awh",
+      "map": "0152",
+      "kind": "npc",
+      "name": "仓库保管员",
+      "cell": [
+        7,
+        12
+      ],
+      "bank": "npc",
+      "frame": 600,
+      "frames": 4,
+      "service": "room_warehouse",
+      "goods": [],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "6Awh",
+        "services": "singleplayer_current_item_catalog"
+      }
+    },
+    {
+      "id": "0151:shop:9Aup",
+      "map": "0151",
+      "kind": "npc",
+      "name": "兵器店老板",
+      "cell": [
+        12,
+        10
+      ],
+      "bank": "npc",
+      "frame": 0,
+      "frames": 4,
+      "service": "room_shop",
+      "goods": [
+        "wood_sword",
+        "sword"
+      ],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "9Aup",
+        "services": "singleplayer_current_item_catalog"
+      }
+    },
+    {
+      "id": "0152:shop:9Ech",
+      "map": "0152",
+      "kind": "npc",
+      "name": "商人",
+      "cell": [
+        4,
+        15
+      ],
+      "bank": "npc",
+      "frame": 900,
+      "frames": 4,
+      "service": "room_shop",
+      "goods": [
+        "robe",
+        "boots"
+      ],
+      "provenance": {
+        "position_and_appearance": "mirgo/serverconfig/npcs/merchant_list.jsonc",
+        "reference_id": "9Ech",
+        "services": "singleplayer_current_item_catalog"
+      }
+    }
+  ]
+}

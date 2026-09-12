@@ -1,0 +1,141 @@
+{
+  "format_version": 1,
+  "notes": "Appearance92 candidate checked against supplied Mon10. Stats, timing, spawn and basic loot authored; rare equipment and historical accuracy unverified. Not King Kong harvesting.",
+  "sources": [
+    "https://www.bluem2.cn/thread-3099-1-1.html",
+    "artifacts/world-story/twin-boss-candidates/audit.json"
+  ],
+  "entries": [
+    {
+      "name": "双头血魔",
+      "definition": {
+        "runtime_stats": {
+          "walk_ms": 1000,
+          "attack_ms": 1800,
+          "walk_step": 1,
+          "walk_wait_ms": 0
+        },
+        "catalog_group": "boss_elite",
+        "catalog_group_source": "singleplayer reconstruction",
+        "raw": {
+          "name": "双头血魔",
+          "race": 81,
+          "raceImg": 19,
+          "appr": 92,
+          "lvl": 50,
+          "undead": 1,
+          "coolEye": 0,
+          "exp": 4000,
+          "hp": 5000,
+          "mp": 0,
+          "ac": 10,
+          "mac": 20,
+          "dc": 80,
+          "dcMax": 120,
+          "mc": 0,
+          "sc": 0,
+          "speed": 25,
+          "hit": 17,
+          "walkSpeed": 1000,
+          "walkStep": 1,
+          "walkWait": 0,
+          "attackSpd": 1800,
+          "attackState": 0,
+          "exploreItem": 0,
+          "attackSource": 0,
+          "disableSimpleActor": 0
+        },
+        "enabled": true,
+        "profile": {
+          "appearance": 92,
+          "bank": "mon10",
+          "base": 720,
+          "actions": {
+            "stand": {
+              "start": 0,
+              "count": 4,
+              "skip": 6,
+              "ms": 200,
+              "loop": true
+            },
+            "walk": {
+              "start": 80,
+              "count": 6,
+              "skip": 4,
+              "ms": 160,
+              "loop": true
+            },
+            "attack": {
+              "start": 160,
+              "count": 6,
+              "skip": 4,
+              "ms": 100,
+              "loop": false
+            },
+            "hurt": {
+              "start": 240,
+              "count": 2,
+              "skip": 0,
+              "ms": 100,
+              "loop": false
+            },
+            "die": {
+              "start": 260,
+              "count": 10,
+              "skip": 0,
+              "ms": 140,
+              "loop": false
+            },
+            "corpse": {
+              "start": 269,
+              "count": 1,
+              "skip": 9,
+              "ms": 140,
+              "loop": false
+            }
+          },
+          "damage": 120,
+          "sounds": {
+            "idle": 1121,
+            "attack": 1122,
+            "weapon": 1123,
+            "hurt": 1124,
+            "die": 1125
+          },
+          "corpse_note": "Singleplayer adaptation: retain last visible death frame in each direction; source base+340..347 are transparent blanks."
+        },
+        "drops": [
+          {
+            "prob": "1/1",
+            "name": "金币",
+            "count": 2000
+          },
+          {
+            "prob": "1/1",
+            "name": "金创药(小量)",
+            "count": 3
+          },
+          {
+            "prob": "1/2",
+            "name": "魔法药(小量)",
+            "count": 2
+          }
+        ],
+        "provenance": "singleplayer_reconstruction"
+      },
+      "spawn": {
+        "mapName": "D10061",
+        "x": 21,
+        "y": 22,
+        "name": "双头血魔",
+        "range": 0,
+        "count": 1,
+        "interval": 360,
+        "runtime_id": "reconstructed:twin-blood:altar",
+        "placed_count": 1,
+        "status": "enabled",
+        "provenance": "singleplayer_reconstruction"
+      }
+    }
+  ]
+}

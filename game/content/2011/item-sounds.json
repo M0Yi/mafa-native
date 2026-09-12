@@ -1,0 +1,4411 @@
+{
+  "version": 1,
+  "resource_version": "2.0.1.11",
+  "reference_sha256": "d7a9eed0741babfea0cb2b75c49ec95e4e8f9a921000279b8c416a1f4f351d7d",
+  "runtime": {
+    "potion": {
+      "name": "金创药(小量)",
+      "std_mode": 0,
+      "events": {
+        "select": 108,
+        "move": 108,
+        "split": 108,
+        "equip": null,
+        "unequip": null,
+        "use": 108
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "108.wav",
+        "move": "108.wav",
+        "split": "108.wav",
+        "equip": null,
+        "unequip": null,
+        "use": "108.wav"
+      }
+    },
+    "mana": {
+      "name": "魔法药(小量)",
+      "std_mode": 0,
+      "events": {
+        "select": 108,
+        "move": 108,
+        "split": 108,
+        "equip": null,
+        "unequip": null,
+        "use": 108
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "108.wav",
+        "move": "108.wav",
+        "split": "108.wav",
+        "equip": null,
+        "unequip": null,
+        "use": "108.wav"
+      }
+    },
+    "ore": {
+      "name": "铁矿",
+      "std_mode": 43,
+      "events": {
+        "select": 118,
+        "move": 118,
+        "split": 118,
+        "equip": null,
+        "unequip": null,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "118.wav",
+        "move": "118.wav",
+        "split": "118.wav",
+        "equip": null,
+        "unequip": null,
+        "use": null
+      }
+    },
+    "sword": {
+      "name": "铁剑",
+      "std_mode": 5,
+      "events": {
+        "select": 111,
+        "move": 111,
+        "split": 111,
+        "equip": 111,
+        "unequip": 111,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "111.wav",
+        "move": "111.wav",
+        "split": "111.wav",
+        "equip": "111.wav",
+        "unequip": "111.wav",
+        "use": null
+      }
+    },
+    "robe": {
+      "name": "布衣(男)",
+      "std_mode": 10,
+      "events": {
+        "select": 112,
+        "move": 112,
+        "split": 112,
+        "equip": 112,
+        "unequip": 112,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "112.wav",
+        "move": "112.wav",
+        "split": "112.wav",
+        "equip": "112.wav",
+        "unequip": "112.wav",
+        "use": null
+      }
+    },
+    "wood_sword": {
+      "name": "木剑",
+      "std_mode": 5,
+      "events": {
+        "select": 111,
+        "move": 111,
+        "split": 111,
+        "equip": 111,
+        "unequip": 111,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "111.wav",
+        "move": "111.wav",
+        "split": "111.wav",
+        "equip": "111.wav",
+        "unequip": "111.wav",
+        "use": null
+      }
+    },
+    "chicken_meat": {
+      "name": "鸡肉",
+      "std_mode": 40,
+      "events": {
+        "select": 118,
+        "move": 118,
+        "split": 118,
+        "equip": null,
+        "unequip": null,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "118.wav",
+        "move": "118.wav",
+        "split": "118.wav",
+        "equip": null,
+        "unequip": null,
+        "use": null
+      }
+    },
+    "helmet": {
+      "name": "青铜头盔",
+      "std_mode": 15,
+      "events": {
+        "select": 116,
+        "move": 116,
+        "split": 116,
+        "equip": 116,
+        "unequip": 116,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "116.wav",
+        "move": "116.wav",
+        "split": "116.wav",
+        "equip": "116.wav",
+        "unequip": "116.wav",
+        "use": null
+      }
+    },
+    "ring": {
+      "name": "古铜戒指",
+      "std_mode": 22,
+      "events": {
+        "select": 113,
+        "move": 113,
+        "split": 113,
+        "equip": 113,
+        "unequip": 113,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "113.wav",
+        "move": "113.wav",
+        "split": "113.wav",
+        "equip": "113.wav",
+        "unequip": "113.wav",
+        "use": null
+      }
+    },
+    "bracelet": {
+      "name": "铁手镯",
+      "std_mode": 24,
+      "events": {
+        "select": 117,
+        "move": 117,
+        "split": 117,
+        "equip": 117,
+        "unequip": 117,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "117.wav",
+        "move": "117.wav",
+        "split": "117.wav",
+        "equip": "117.wav",
+        "unequip": "117.wav",
+        "use": null
+      }
+    },
+    "boots": {
+      "name": "布鞋",
+      "std_mode": 62,
+      "events": {
+        "select": 118,
+        "move": 118,
+        "split": 118,
+        "equip": 118,
+        "unequip": 118,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "118.wav",
+        "move": "118.wav",
+        "split": "118.wav",
+        "equip": "118.wav",
+        "unequip": "118.wav",
+        "use": null
+      }
+    },
+    "charm": {
+      "name": "护身符",
+      "std_mode": 25,
+      "events": {
+        "select": 118,
+        "move": 118,
+        "split": 118,
+        "equip": null,
+        "unequip": null,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "reference_item_category",
+      "files": {
+        "select": "118.wav",
+        "move": "118.wav",
+        "split": "118.wav",
+        "equip": null,
+        "unequip": null,
+        "use": null
+      }
+    },
+    "poison": {
+      "name": "毒粉（本地材料）",
+      "std_mode": 25,
+      "events": {
+        "select": 118,
+        "move": 118,
+        "split": 118,
+        "equip": null,
+        "unequip": null,
+        "use": null
+      },
+      "mapping_note": "select/use: reference soundconst.go; equip/unequip/move/split: explicit local reuse of category sound; null: operation unsupported, no success sound",
+      "source": "local_material_category",
+      "files": {
+        "select": "118.wav",
+        "move": "118.wav",
+        "split": "118.wav",
+        "equip": null,
+        "unequip": null,
+        "use": null
+      }
+    }
+  },
+  "reference_items": [
+    {
+      "name": "金币1",
+      "std_mode": 41,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金创药(小量)",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "魔法药(小量)",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "肉",
+      "std_mode": 40,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "布衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "布衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "木剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "铁剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "青铜剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "轻型盔甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "轻型盔甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "干肉",
+      "std_mode": 1,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "包子",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "凝霜",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "火球术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "治愈术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "基本剑术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "蜡烛",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "短剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "精神力战法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "青铜斧",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "重盔甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "魔法长袍(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "灵魂战衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "重盔甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "魔法长袍(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "灵魂战衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "大火球",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "攻杀剑术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "施毒术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "匕首",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "井中月",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "银蛇",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "海魂",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "修罗",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "炼狱",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "凌风",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "破魂",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "斩马刀",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "食人树叶",
+      "std_mode": 42,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "毒蜘蛛牙齿",
+      "std_mode": 42,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "食人树的果实",
+      "std_mode": 42,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "蝎子的尾巴",
+      "std_mode": 42,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "蛆卵",
+      "std_mode": 42,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "灰色药粉(少量)",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "黄色药粉(少量)",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "古铜戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "青铜头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "金项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "铁手镯",
+      "std_mode": 24,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "灰色药粉(中量)",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "灰色药粉(大量)",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "黄色药粉(中量)",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "黄色药粉(大量)",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "乌木剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "魔杖",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "八荒",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "鸡肉",
+      "std_mode": 40,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "玻璃戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "牛角戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "蓝色水晶戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "六角戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "黑檀项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "黄色水晶项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "黑色水晶项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "魔法头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "沃玛号角",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "半月",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "皮制手套",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "坚固手套",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "钢手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "生铁戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "金戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "灯笼项链",
+      "std_mode": 19,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "白色虎齿项链",
+      "std_mode": 19,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "魅力戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "道德戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "白金项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "降妖除魔戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "躲避手链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "地牢逃脱卷",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "偃月",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "降魔",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "传统项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "小手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "银手镯",
+      "std_mode": 24,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "大手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "鹤嘴锄",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "隐身戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "抗拒火环",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "地狱火",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "雷电术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "疾光电影",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "灵魂火符",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "幽灵盾",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "神圣战甲术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金创药(中量)",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "魔法药(中量)",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "黑色水晶戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "魔鬼项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "珊瑚戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "蓝翡翠项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "蛇眼戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "琥珀项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "护身符",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "刺杀剑术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "放大镜",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "红宝石戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "珍珠戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "竹笛",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "铂金戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "骷髅戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "龙之戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "死神手套",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "骷髅头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "魔法手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "金手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "道士头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "传送戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "尽力手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "骑士手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "绿色项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "凤凰明珠",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "道士手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "三眼手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "灵魂项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "黑檀手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "思贝儿手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "恶魔铃铛",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "铜矿",
+      "std_mode": 43,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "铁矿",
+      "std_mode": 43,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "银矿",
+      "std_mode": 43,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金矿",
+      "std_mode": 43,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "战神油",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "回城卷",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "祝福油",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "麻痹戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "复活戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "火焰戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "防御戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "愤怒戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "护身戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "超负载戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "技巧项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "狂风戒指",
+      "std_mode": 23,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "夏普儿手镯",
+      "std_mode": 24,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "狂风项链",
+      "std_mode": 21,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "辟邪手镯",
+      "std_mode": 24,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "探测项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "困魔咒",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "召唤骷髅",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "隐身术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "集体隐身术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "诱惑之光",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "瞬息移动",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "火墙",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "爆裂火焰",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "地狱雷光",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "半月弯刀",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "太阳水",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "祖玛头像",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "强效金创药",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "强效魔法药",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "随机传送卷",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "无极棍",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "血饮",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "裁决之杖",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "记忆戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "记忆项链",
+      "std_mode": 19,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "记忆手镯",
+      "std_mode": 24,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "记忆头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "祈祷之刃",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "祈祷手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "祈祷项链",
+      "std_mode": 21,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "祈祷戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "祈祷头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "行会回城卷",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "修复油",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "黑铁矿石",
+      "std_mode": 43,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "生命项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "力量戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "心灵手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "黑铁头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "烈火剑法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "野蛮冲撞",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "心灵启示",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "群体治愈术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "召唤神兽",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔法盾",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "圣言术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "冰咆哮",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "超级金创药",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "超级魔法药",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "强效太阳水",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "骰子",
+      "std_mode": 45,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "木料",
+      "std_mode": 45,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "落魄神兵",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "彩票",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "中型盔甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "中型盔甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "上网卡",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "正版游戏",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "许中医的药1",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "许中医的药2",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "许中医的药3",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "药剂师的信",
+      "std_mode": 46,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "命运之刃",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "屠龙",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "龙纹剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "嗜魂法杖",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "紫碧螺",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "泰坦戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "幽灵手套",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "阎罗手套",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "龙之手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "天珠项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "幽灵项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "火把",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "鹿茸",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "骨玉权杖",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "神秘戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "神秘腰带",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "神秘头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "神水",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "命运之书",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金条",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "米糕",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "鹿血",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "生灵戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "生灵手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "生灵项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "魔力戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "魔力手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "魔力项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "佛牌",
+      "std_mode": 45,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "介绍信",
+      "std_mode": 46,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "疗伤药",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "薄荷叶",
+      "std_mode": 42,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "祈福项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "牢犯匕首",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "恶魔长袍(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "恶魔长袍(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "幽灵战衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "幽灵战衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "战神盔甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "战神盔甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "MP3随身听",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "AMD芯片",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "液晶显示器",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "时尚手机",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "数码相机",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "山洞凭证",
+      "std_mode": 46,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "筹码",
+      "std_mode": 46,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "特殊药水",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "万年雪霜",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "金创药(小)包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "魔法药(小)包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "金创药(中)包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "魔法药(中)包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "地牢逃脱卷包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "随机传送卷包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "回城卷包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "行会回城卷包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "筹码包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "魔法头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "求婚戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "血剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "金砖",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "宝箱",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "护身符(大)",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "面条",
+      "std_mode": 1,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "圣战头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "法神头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "天尊头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "圣战手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "法神手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "天尊手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "圣战戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "法神戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "天尊戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "圣战项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "法神项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "天尊项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "罗刹",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "攻击神水",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔力神水",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "精神神水",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "极速神水",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "体力强效神水",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔力强效神水",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金条包",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金盒",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "赤血魔剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "魔血戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "魔血手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "魔血项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "虹魔戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "虹魔手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "虹魔项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "血剑碎片",
+      "std_mode": 41,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "道神戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "道神手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "道神项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "玉水晶",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "血魔心脏",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔血油",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "红蛇果",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "火炬",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "星王冠",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章11号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章12号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章13号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章14号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章15号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章21号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章22号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章23号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章24号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章25号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章31号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章32号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章33号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章34号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章35号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章41号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章42号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章43号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章44号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "荣誉勋章45号",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "怒斩",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "龙牙",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "逍遥扇",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "留香",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "鬼面铠甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "火龙魔衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "玄天宝衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "鬼面铠甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "火龙魔衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "玄天宝衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "参赛证",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "大风起兮云飞扬",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "几施经略挫雄豪",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "天下谁人不识君",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "雏凤清于老凤声",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "人生乐在相知心",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "只羡鸳鸯不羡仙",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "一代红装照汗青",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "勋章之心",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "绿宝石矿",
+      "std_mode": 43,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "紫水晶矿",
+      "std_mode": 43,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "幻境凭证",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔血石(大)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "狮子吼",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "寒冰掌",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "灭天火",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "气功波",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "无极真气",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "开天斩",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "逐日剑法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "流星火雨",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "噬血术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "召唤月灵",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄基本剑术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄攻杀剑术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄刺杀剑术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄半月弯刀",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄野蛮冲撞",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄烈火剑法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄狮子吼",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄开天斩",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄逐日剑法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄火球术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄抗拒火环",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄诱惑之光",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄地狱火",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄雷电术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄大火球",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄瞬息移动",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄爆裂火焰",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄火墙",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄疾光电影",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄地狱雷光",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄魔法盾",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄圣言术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄冰咆哮",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄寒冰掌",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄灭天火",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄分身术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄流星火雨",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄治愈术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄精神战法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄施毒术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄灵魂火符",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄召唤骷髅",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄隐身术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄集体隐身",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄幽灵盾",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄神圣战甲",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄心灵启示",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄困魔咒",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄气功波",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄群体治疗",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄召唤神兽",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄无极真气",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄召唤月灵",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄噬血术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "破魂斩",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "劈星斩",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "雷霆一击",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "噬魂沼泽",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "末日审判",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "火龙气焰",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "修复神水",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "布鞋",
+      "std_mode": 62,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "鹿皮靴",
+      "std_mode": 62,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "紫绸靴",
+      "std_mode": 62,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "避魂靴",
+      "std_mode": 62,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "兽皮腰带",
+      "std_mode": 64,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "铁腰带",
+      "std_mode": 64,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "青铜腰带",
+      "std_mode": 64,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "钢铁腰带",
+      "std_mode": 64,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "独孤九剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "映邪天神",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "太极慧剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "天衣无缝(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "天衣无缝(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "水波项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "金刚铃项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "镇魂项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "八极手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "抗魔手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "伏魔手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "白驼臂铠",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "魂锁护腕",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "太极护腕",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "沃玛指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "鬼刃指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "心意指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "无极戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "雷雳戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "太极戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "黑狐项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "黑月神璎",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "红狐项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "赤月神璎",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "蓝狐项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "悲月神璎",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "黑狐护腕",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "黑月臂铠",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "红狐护腕",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "紫缎臂铠",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "蓝狐护腕",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "苍绸臂铠",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "黑狐戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "墨素指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "红狐戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "红花指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "蓝狐戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "素雪指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "破凰天魔衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "破凰天魔衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "祖玛裁决之杖",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "封魔屠龙",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "祖玛骨玉权杖",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "封魔嗜魂法杖",
+      "std_mode": 6,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "祖玛无极棍",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "封魔龙纹剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "天龙神型夺命剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "天龙不死衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "天龙不死衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "天龙燕月神",
+      "std_mode": 19,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "天龙狂魔轮",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "天龙魂世环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "天龙除魂帽",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "天龙神形步",
+      "std_mode": 62,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "天龙反向带",
+      "std_mode": 64,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "护心丹",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "超级护身符",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "超级灰色药粉",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "超级黄色药粉",
+      "std_mode": 25,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "分身术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "气血石(小)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "气血石(中)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "气血石(大)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "幻魔石(小)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "幻魔石(中)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "幻魔石(大)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔血石(小)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔血石(中)",
+      "std_mode": 7,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "比奇传送石",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "盟重传送石",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "随机传送石",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "双倍秘籍",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "双倍宝典",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "召唤强化卷",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "虎卫卷轴",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "太阳水捆药绳",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "雪霜捆药绳",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "疗伤药捆药绳",
+      "std_mode": 2,
+      "select": 118,
+      "use": 107
+    },
+    {
+      "name": "强效太阳水包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "万年雪霜包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "疗伤药包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "龙鳞",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "邪眼骷髅",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金创药(特量)",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "魔法药(特量)",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "金创药(巨量)",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "魔法药(巨量)",
+      "std_mode": 0,
+      "select": 108,
+      "use": 108
+    },
+    {
+      "name": "金创药(特)包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "魔法药(特)包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "金创药(巨)包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "魔法药(巨)包",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "勇猛宝玉",
+      "std_mode": 57,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔性宝玉",
+      "std_mode": 57,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "仙界宝玉",
+      "std_mode": 57,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "守护宝玉",
+      "std_mode": 57,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "制魔宝玉",
+      "std_mode": 57,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "集中宝玉",
+      "std_mode": 55,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "疾风宝玉",
+      "std_mode": 55,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "强化神珠",
+      "std_mode": 59,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "钢铁斧",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "火血匕",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "魔血剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "黑虎斧",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "神血枪",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "火莲杖",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "龙血剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "鹤羽扇",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "炎狱血剑",
+      "std_mode": 5,
+      "select": 111,
+      "use": null
+    },
+    {
+      "name": "灵晶甲胄(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "灵晶甲胄(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "赤魔甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "赤魔甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "绿魔甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "绿魔甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "青魔甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "青魔甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "监视者铠甲(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "监视者铠甲(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "黑虎甲胄(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "黑虎甲胄(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "莲盛魔衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "莲盛魔衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "鹤羽圣衣(男)",
+      "std_mode": 10,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "鹤羽圣衣(女)",
+      "std_mode": 11,
+      "select": 112,
+      "use": null
+    },
+    {
+      "name": "金萤帽",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "金铜头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "钢铁头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "勇士头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "英雄头盔",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "贤人帽",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "通天冠",
+      "std_mode": 15,
+      "select": 116,
+      "use": null
+    },
+    {
+      "name": "龙行鞋",
+      "std_mode": 62,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "赤燐鞋",
+      "std_mode": 62,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "黄金腰带",
+      "std_mode": 64,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金刚腰带",
+      "std_mode": 64,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "金纹长靴",
+      "std_mode": 62,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "暴压项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "紫晶石项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "(残)魔神鬼璎",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "(真)魔神鬼璎",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "斗士项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "破碎项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "破角",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "金刚陶坠",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "青雷",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "(残)魔玉战璎",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "(真)魔玉战璎",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "紫水晶项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "五玄项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "幻魔石项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "针坠",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "曜紫天坠",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "灵力项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "(残)昆仑眼泪",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "(真)昆仑眼泪",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "珍玉项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "灵玉项链",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "心如明镜",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "秀女十字盘",
+      "std_mode": 20,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "黑铁手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "(残)金娥月轮",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "(真)金娥月轮",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "监视者手套",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "暴压手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "世轮手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "破碎手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "钢铁手套",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "铁魔双轮",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "暴虎归山",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "绿翠手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "魔鬼手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "幻魔石手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "五玄手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "曜火虹轮",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "曜宝探魔轮",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "灵符手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "雪玉手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "灵玉手镯",
+      "std_mode": 26,
+      "select": 117,
+      "use": null
+    },
+    {
+      "name": "玉女天使",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "五行悟思轮",
+      "std_mode": 26,
+      "select": 114,
+      "use": null
+    },
+    {
+      "name": "暴压戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "(残)魔神戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "(真)魔神戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "世轮指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "虎威戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "破碎戒指",
+      "std_mode": 23,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "盟约戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "金龙之链戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "魔鬼戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "(残)万毒蛛环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "(真)万毒蛛环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "绿翠指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "幻魔石戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "五玄戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "血玉指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "飞曜指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "雪玉戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "白玉戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "(残)真云指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "(真)真云指环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "灵符戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "灵玉戒指",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "五行连环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "金刚伏魔环",
+      "std_mode": 22,
+      "select": 113,
+      "use": null
+    },
+    {
+      "name": "勇猛精酿[1h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "智慧精酿[1h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "仙界精酿[1h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "狂野精酿[30m]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "体力精酿[1h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "法力精酿[1h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "勇猛精酿[3h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "智慧精酿[3h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "仙界精酿[3h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "狂野精酿[1h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "体力精酿[3h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "法力精酿[3h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "勇猛精酿[5h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "智慧精酿[5h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "仙界精酿[5h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "狂野精酿[3h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "体力精酿[5h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "法力精酿[5h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "破坏力火炬[1]",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔法力火炬[1]",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "精神力火炬[1]",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "破坏力火炬[3]",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "魔法力火炬[3]",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "精神力火炬[3]",
+      "std_mode": 30,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "经验卷轴30%[1h]",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "经验卷轴30%[3h]",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "经验卷轴30%[5h]",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "经验卷轴30%[24h]",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "经验卷轴3[3h]",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "经验卷轴3[24h]",
+      "std_mode": 31,
+      "select": 108,
+      "use": null
+    },
+    {
+      "name": "狂暴之力药剂[3h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "狂暴之力药剂[24h]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "无尽能量药剂[30m]",
+      "std_mode": 3,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "装备特修锤",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "装备修理锤",
+      "std_mode": 47,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "雷霆剑法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "擒龙手",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "双龙斩",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "龙影剑法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "净化术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "剑气爆",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "护身气幕",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "嗜血术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "天务",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "天霜冰环",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "火龙气焰",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "冰焰术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "深延术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "瘟疫",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "诅咒术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "血龙水",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "毒云",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "阴阳盾",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "测试项链",
+      "std_mode": 19,
+      "select": 115,
+      "use": null
+    },
+    {
+      "name": "英雄雷霆剑法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄双龙斩",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄龙影剑法",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄嗜血术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "英雄净化术",
+      "std_mode": 4,
+      "select": 118,
+      "use": null
+    },
+    {
+      "name": "南蛮远古神石",
+      "std_mode": 44,
+      "select": 118,
+      "use": null
+    }
+  ]
+}

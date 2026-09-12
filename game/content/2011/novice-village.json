@@ -1,0 +1,172 @@
+{
+  "id": "border_village",
+  "name": "边界村",
+  "map": "0",
+  "spawn": [
+    289,
+    618
+  ],
+  "patrol": [
+    265,
+    665
+  ],
+  "bounds": [
+    250,
+    590,
+    80,
+    90
+  ],
+  "sources": {
+    "geometry": "client 2.0.1.11 0.map; original terrain and collision",
+    "spawn": "mirgo/serverconfig/maps/start_points.jsonc: 0,289,618",
+    "merchants": "mirgo/serverconfig/npcs/merchant_list.jsonc: 4Tdu,2Twe,3Tdr",
+    "monster_art": "monster_db.jsonc: chicken appr 160/raceImg 11; Mon17 MA11",
+    "quests_rewards_and_encounters": "singleplayer reconstruction; not a verified historical quest chain"
+  },
+  "npcs": [
+    {
+      "id": "border:elder",
+      "kind": "npc",
+      "name": "边界村长",
+      "bank": "npc",
+      "frame": 60,
+      "frames": 4,
+      "cell": [
+        287,
+        618
+      ],
+      "service": "village_quests",
+      "provenance": "singleplayer_reconstruction"
+    },
+    {
+      "id": "border:supply",
+      "kind": "npc",
+      "name": "边界村小店老板",
+      "bank": "npc",
+      "frame": 60,
+      "frames": 4,
+      "cell": [
+        291,
+        610
+      ],
+      "service": "village_shop",
+      "goods": [
+        "potion",
+        "mana"
+      ],
+      "provenance": "reference_position_and_appearance"
+    },
+    {
+      "id": "border:smith",
+      "kind": "npc",
+      "name": "铁匠铺老板",
+      "bank": "npc",
+      "frame": 0,
+      "frames": 4,
+      "cell": [
+        297,
+        612
+      ],
+      "service": "village_shop",
+      "goods": [
+        "wood_sword",
+        "sword",
+        "helmet",
+        "ring"
+      ],
+      "provenance": "reference_position_and_appearance"
+    },
+    {
+      "id": "border:cloth",
+      "kind": "npc",
+      "name": "白家服装老板",
+      "bank": "npc",
+      "frame": 420,
+      "frames": 4,
+      "cell": [
+        305,
+        607
+      ],
+      "service": "village_shop",
+      "goods": [
+        "robe",
+        "boots",
+        "bracelet"
+      ],
+      "provenance": "reference_position_and_appearance"
+    }
+  ],
+  "chickens": [
+    [
+      274,
+      656
+    ],
+    [
+      270,
+      657
+    ],
+    [
+      274,
+      660
+    ],
+    [
+      278,
+      659
+    ],
+    [
+      280,
+      662
+    ]
+  ],
+  "quests": [
+    {
+      "id": "nv_arrival",
+      "title": "初到边界村",
+      "previous": "",
+      "description": "与村长交谈，领取初行者的木剑和布衣。",
+      "objective": "领取一套新手行装",
+      "reward": {
+        "wood_sword": 1,
+        "robe": 1
+      },
+      "gold": 0,
+      "xp": 10
+    },
+    {
+      "id": "nv_equip",
+      "title": "整装出发",
+      "previous": "nv_arrival",
+      "description": "按 B 打开背包，双击木剑和布衣穿戴；按 I 检查装备与属性。",
+      "objective": "同时装备武器和衣服，再向村长报告",
+      "reward": {
+        "potion": 2
+      },
+      "gold": 30,
+      "xp": 20
+    },
+    {
+      "id": "nv_hunt",
+      "title": "村外的鸡群",
+      "previous": "nv_equip",
+      "description": "前往村外鸡群，击败三只鸡。鸡肉掉落在地面，需要拾取后才进入背包；带三份鸡肉交给村长。",
+      "objective": "接受后击败 3 只村外的鸡，并交付 3 份鸡肉",
+      "reward": {
+        "mana": 2
+      },
+      "gold": 100,
+      "xp": 40
+    },
+    {
+      "id": "nv_patrol",
+      "title": "探访村外小路",
+      "previous": "nv_hunt",
+      "description": "到村外小路标记处探查，再返回村长身边。完成后领取铁剑。",
+      "objective": "到达比奇省 265,665 附近并返回",
+      "reward": {
+        "sword": 1
+      },
+      "gold": 100,
+      "xp": 60
+    }
+  ]
+}
