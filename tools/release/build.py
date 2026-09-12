@@ -3,13 +3,14 @@
 import argparse,hashlib,json,os,platform,shutil,subprocess,sys,tempfile,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
-VERSION='0.14.0-preview.1'
+VERSION='0.14.0-preview.2'
 
 def run(args):subprocess.run([str(x) for x in args],check=True)
 def main():
  p=argparse.ArgumentParser();p.add_argument('--release',action='store_true');p.add_argument('--platform',choices=['macOS','Windows','Linux'],default={'Darwin':'macOS','Windows':'Windows'}.get(platform.system(),'Linux'));p.add_argument('--godot',default=os.environ.get('GODOT','godot'));p.add_argument('--importer',type=Path);a=p.parse_args()
  if not a.release:p.error('Explicit --release is required')
  if not a.importer or not a.importer.is_file():p.error('Provide the native mafa-importer executable with --importer')
+ run([a.importer.resolve(),'--help'])
  out=ROOT/'dist'/VERSION;out.mkdir(parents=True,exist_ok=True)
  with tempfile.TemporaryDirectory(prefix='mafa-export-') as raw:
   work=Path(raw);project=work/'game';project.mkdir()

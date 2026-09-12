@@ -38,10 +38,10 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.target }}
-          path: dist/0.14.0-preview.1/*
+          path: dist/0.14.0-preview.2/*
       - name: Attach to prerelease
         if: startsWith(github.ref, 'refs/tags/')
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload '${{ github.ref_name }}' dist/0.14.0-preview.1/* --clobber
+        run: gh release upload '${{ github.ref_name }}' dist/0.14.0-preview.2/* --clobber

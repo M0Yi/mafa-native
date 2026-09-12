@@ -14,5 +14,5 @@ for p in root.rglob('*'):
  if p.is_file() and (p.name.startswith('Godot') or p.name in ['Godot','godot']):p.chmod(p.stat().st_mode|0o111)
 exe=root/'Godot.app/Contents/MacOS/Godot' if system=='Darwin' else next(root.glob('Godot*.exe' if system=='Windows' else 'Godot*.x86_64'))
 base=Path(os.environ['APPDATA']) if system=='Windows' else Path.home()/'Library/Application Support' if system=='Darwin' else Path(os.environ.get('XDG_DATA_HOME',str(Path.home()/'.local/share')))
-templates=base/'Godot/export_templates/4.7.2.stable';shutil.copytree(root/'templates',templates,dirs_exist_ok=True)
+templates=base/('godot' if system=='Linux' else 'Godot')/'export_templates/4.7.2.stable';shutil.copytree(root/'templates',templates,dirs_exist_ok=True)
 with open(os.environ['GITHUB_ENV'],'a',encoding='utf-8') as f:f.write(f'GODOT={exe}\n')
