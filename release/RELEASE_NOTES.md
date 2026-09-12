@@ -10,3 +10,9 @@
 macOS 本机执行原始客户端完整导入与发布包验证。Windows/Linux 由 GitHub Actions 构建和基础启动检查，未进行完整硬件游玩，实体手柄与全地图视觉仍待验证。发布包未使用商业代码签名/公证。
 
 宣传视频使用独立演示角色录制，不附带演示存档。需要用户自行准备客户端，不是原游戏官方发布，也不宣称完整历史版本还原。
+
+## 宣传片与介绍
+
+[观看 / 下载 45 秒实机宣传片](https://github.com/M0Yi/mafa-native/releases/download/v0.14.0-preview.2/MafaNative-preview.mp4) · [仓库首页与实机预览](https://github.com/M0Yi/mafa-native) · [项目介绍](https://github.com/M0Yi/mafa-native/blob/main/release/宣传文章.md)
+
+宣传片和首页预览经用户授权公开展示，独立于程序包，不用于游戏素材加载。
