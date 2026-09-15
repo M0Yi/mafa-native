@@ -9,6 +9,13 @@ var opened := false
 
 func open() -> bool:
 	error=""
+	# SQLite would silently create an empty database if the primary vanished.
+	# Recover an existing backup before allowing that first-run behavior.
+	if not FileAccess.file_exists(path):
+		if FileAccess.file_exists(path+".backup.sqlite"):
+			if not recover_backup():return false
+		elif FileAccess.file_exists(path+"-wal") or FileAccess.file_exists(path+"-shm"):
+			error="主存档缺失且残留数据库日志；已保留文件，不能按新存档初始化。";return false
 	db=SQLite.new();db.path=path;db.verbosity_level=0
 	opened=db.open_db()
 	if not opened or not db.query("PRAGMA quick_check;") or db.query_result.is_empty() or str(db.query_result[0].values()[0])!="ok":
@@ -16,7 +23,7 @@ func open() -> bool:
 		if not recover_backup():return false
 		return open()
 	# Inspect an existing schema before making any changes to a newer database.
-	if not db.query("SELECT name FROM sqlite_master WHERE type='table' AND name='metadata';"):error=db.error_message;return false
+	if not db.query("SELECT name FROM sqlite_master WHERE type='table' AND name='metadata';"):error=db.error_message;close();return false
 	if not db.query_result.is_empty():
 		var version:=read_metadata("schema_version")
 		if version!="1":error="不支持的存档版本："+version+"；数据库未修改";close();return false
@@ -25,7 +32,7 @@ func open() -> bool:
 		"CREATE TABLE IF NOT EXISTS worlds (character_id TEXT PRIMARY KEY, revision INTEGER NOT NULL, state TEXT NOT NULL);",
 		"CREATE TABLE IF NOT EXISTS operations (id TEXT PRIMARY KEY, character_id TEXT NOT NULL, action TEXT NOT NULL, world_revision INTEGER NOT NULL);",
 		"INSERT OR IGNORE INTO metadata VALUES ('schema_version','1');"]:
-		if not db.query(sql):error=db.error_message;return false
+		if not db.query(sql):error=db.error_message;close();return false
 	return true
 
 func read_metadata(key: String) -> String:
@@ -71,6 +78,7 @@ func close() -> void:
 	db=null
 
 func backup() -> bool:
+	error=""
 	var target:=ProjectSettings.globalize_path(path+".backup.sqlite")
 	var temporary:=target+".tmp"
 	if FileAccess.file_exists(temporary):DirAccess.remove_absolute(temporary)
@@ -87,7 +95,7 @@ func recover_backup() -> bool:
 	if good:good=check.query("PRAGMA quick_check;") and not check.query_result.is_empty() and str(check.query_result[0].values()[0])=="ok"
 	check.close_db()
 	if not good:error="主存档和备份均未通过检查；原文件均已保留";return false
-	var quarantine:=original+".corrupt-"+str(Time.get_unix_time_from_system())
+	var quarantine:=original+".corrupt-"+str(Time.get_unix_time_from_system())+"-"+Crypto.new().generate_random_bytes(8).hex_encode()
 	for suffix in ["","-wal","-shm"]:
 		if FileAccess.file_exists(original+suffix):
 			if DirAccess.rename_absolute(original+suffix,quarantine+suffix)!=OK:error="无法隔离损坏存档";return false

@@ -5,6 +5,17 @@ var world
 var movers: Dictionary={}
 var brains: Dictionary={}
 
+static func occupied_by_other(occupied: Dictionary,cell: Vector2i,actor_id: String) -> bool:
+	if not occupied.has(cell):return false
+	var owners: Array=occupied[cell]
+	return owners.size()>1 or (owners.size()==1 and owners[0]!=actor_id)
+
+static func blocked_cells(occupied: Dictionary,actor_id: String) -> Dictionary:
+	var blocked: Dictionary={}
+	for cell in occupied:
+		if occupied_by_other(occupied,cell,actor_id):blocked[cell]=true
+	return blocked
+
 func reset() -> void:movers.clear();brains.clear()
 func player_reserved_cells() -> Array[Vector2i]:
 	var cells: Array[Vector2i]=[]
@@ -103,14 +114,15 @@ func update(delta: float,party: Array) -> void:
 		if entity.kind=="traveler" and int(entity.get("hp",250))<=0:continue
 		if entity.kind=="traveler" and world.elapsed<float(entity.get("stone_until",0)):continue
 		var motion:=mover(entity);var brain: Dictionary=brains[entity.id]
+		var previous_cells: Array[Vector2i]=[motion.cell,motion.destination]
 		var blocked: Dictionary={}
-		for cell in occupied:
-			if occupied[cell].any(func(id):return id!=entity.id):blocked[cell]=true
+		var actor_id: String=entity.id
 		var target_player: ClassicPlayer=world.player
 		var reserved_doors: Array[Vector2i]=[]
 		if entity.kind=="traveler":reserved_doors.assign(world.player.path_avoid)
-		motion.step_filter=func(next):return next!=target_player.cell and next!=target_player.destination and not blocked.has(next) and next not in reserved_doors
+		motion.step_filter=func(next):return next!=target_player.cell and next!=target_player.destination and not EditionActors.occupied_by_other(occupied,next,actor_id) and next not in reserved_doors
 		if entity.kind=="traveler":
+			blocked=blocked_cells(occupied,actor_id)
 			motion.path_avoid.assign(blocked.keys())
 			motion.path_avoid.append_array(reserved_doors)
 			motion.path_avoid.append(target_player.cell);motion.path_avoid.append(target_player.destination)
@@ -158,10 +170,11 @@ func update(delta: float,party: Array) -> void:
 					var index:=maxi(0,party.find(str(entity.name)))
 					for attempt in range(offsets.size()):
 						var target: Vector2i=world.player.cell+offsets[(index+attempt)%offsets.size()]
-						if not blocked.has(target) and world.navigation.walkable(target) and motion.go_to(target):break
+						if not occupied_by_other(occupied,target,actor_id) and world.navigation.walkable(target) and motion.go_to(target):break
 				else:motion.route.clear()
 		elif entity.kind=="monster" and entity.get("aggro",false) and brain.retarget<=0:
 			brain.retarget=0.35+posmod(hash(entity.id),5)*0.05
+			blocked=blocked_cells(occupied,actor_id)
 			EditionMonsterAI.approach(world,motion,blocked)
 		elif not entity.get("aggro",false) and motion.progress>=1 and motion.route.is_empty() and brain.wait<=0:
 			wander(entity,motion,brain);brain.wait=1.5+posmod(hash(entity.id)+int(brain.turn),9)*0.2
@@ -181,10 +194,11 @@ func update(delta: float,party: Array) -> void:
 				if motion.progress==0:
 					motion.route.push_front(motion.destination);motion.destination=motion.cell;motion.progress=1;motion.action="stand";motion.elapsed=0
 		entity.cell=[motion.cell.x,motion.cell.y];entity.direction=motion.direction
-		for cell in occupied.keys():
+		# This actor only reserved its previous step endpoints, not every cell.
+		for cell in previous_cells:
+			if not occupied.has(cell):continue
 			occupied[cell].erase(entity.id)
 			if occupied[cell].is_empty():occupied.erase(cell)
 		for cell in [motion.cell,motion.destination]:
 			if not occupied.has(cell):occupied[cell]=[]
 			if entity.id not in occupied[cell]:occupied[cell].append(entity.id)
-

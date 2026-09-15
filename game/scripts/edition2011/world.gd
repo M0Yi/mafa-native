@@ -6,10 +6,15 @@ signal moved(cell: Vector2i)
 signal actor_sound(id: int,at: Vector2,event: String)
 signal monster_hit(entity: Dictionary,damage: int)
 signal monster_hit_traveler(target: Dictionary,attack: Dictionary)
+var foreground_layer:=preload("res://scripts/edition2011/foreground_layer.gd").new()
+var foreground_objects: Dictionary={}
+var foreground_rows:=Vector2i.ZERO
+var sprite_canvas: CanvasItem
 var actors:=EditionActors.new()
 var party: Array=[]
 var player_alive:=true
 var player_stoned:=false
+var player_poison_until:=0.0
 var task_markers: Dictionary={}
 var resources: EditionResources
 var player:=ClassicPlayer.new()
@@ -31,39 +36,52 @@ var map_file: FileAccess
 var chunks: Dictionary={}
 var entities: Array=[]
 var elapsed:=0.0
+var manual_control_until:=0.0
 var gender:="男"
 var motion_override:=""
 var motion_left:=0.0
 var motion_duration:=0.6
 var equipment: Dictionary={}
 var weapon_order: Dictionary={}
-var font:=SystemFont.new()
+var font: Font=preload("res://fonts/NotoSansCJKsc-Regular.otf")
 var paused:=false
 var last_steps:=0
 
+func _notification(what: int) -> void:
+	if what==NOTIFICATION_PREDELETE:
+		for owned in [light_layer,monster_effects,labels,foreground_layer]:
+			if is_instance_valid(owned) and owned.get_parent()==null:owned.free()
+
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
-	font.font_names=PackedStringArray(["PingFang SC","Heiti SC"])
 	player.nav=navigation;actors.world=self
 	player.step_filter=actors.player_can_step
 	player.route_replanner=replan_player_route
 	weapon_order=JSON.parse_string(FileAccess.get_file_as_string("res://content/2011/weapon-order.json")).tables
+	foreground_layer.world=self;foreground_layer.z_index=1;add_child(foreground_layer)
+	light_layer.z_index=2;monster_effects.z_index=2;labels.z_index=3
 	add_child(light_layer)
 	monster_effects.world=self;add_child(monster_effects)
 	labels.world=self;add_child(labels)
 
 func enter_map(id: String,position_cell: Vector2i=Vector2i(-1,-1)) -> bool:
 	if not resources.map_by_id.has(id):return false
-	metadata=resources.map_by_id[id]
-	if not metadata.has("spawn"):return false
-	var w:=int(metadata.width);var h:=int(metadata.height)
+	var next_metadata: Dictionary=resources.map_by_id[id]
+	if not next_metadata.has("spawn"):return false
+	var w:=int(next_metadata.width);var h:=int(next_metadata.height)
 	var mask:=FileAccess.get_file_as_bytes(EditionResources.BASE+"maps/"+id+".walk")
 	if mask.size()!=w*h:return false
 	var rows: Array=[]
 	for y in range(h):rows.append(mask.slice(y*w,(y+1)*w))
+	var next_file:=FileAccess.open(EditionResources.BASE+"maps/"+id+".mapbin",FileAccess.READ)
+	if next_file==null:return false
+	var stride:=int(next_metadata.get("stride",0))
+	if w<=0 or h<=0 or stride<=0 or next_file.get_length()!=12+w*h*stride:return false
+	if next_file.get_buffer(4).get_string_from_ascii()!="M211":return false
+	if next_file.get_16()!=w or next_file.get_16()!=h or next_file.get_32()!=stride:return false
+	# Failed preparation must leave the current scene and its navigation intact.
+	metadata=next_metadata;map_file=next_file
 	navigation.configure({"size":[w,h],"walkable":rows})
-	map_file=FileAccess.open(EditionResources.BASE+"maps/"+id+".mapbin",FileAccess.READ)
-	if map_file==null:return false
 	chunks.clear();resources.clear_scene_cache();monster_effects.queue_redraw()
 	if position_cell==Vector2i(-1,-1):position_cell=EditionVillage.SPAWN if id=="0" else Vector2i(metadata.spawn[0],metadata.spawn[1])
 	if not navigation.mobile(position_cell):
@@ -197,6 +215,7 @@ func pick_entity(point: Vector2) -> Dictionary:
 
 func handle_click(point: Vector2) -> void:
 	if not player_alive:return
+	manual_control_until=elapsed+0.5
 	var passage: Dictionary=labels.passage_at(point)
 	if not passage.is_empty():approach(Vector2i(passage.cell[0],passage.cell[1]));return
 	var cell:=point_to_cell(point)
@@ -229,11 +248,13 @@ func update_world(delta: float,screen: Vector2,can_move: bool,pointer_allowed: b
 					running=stick.length()>0.8;break
 			if pointer_allowed and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 				var target:=point_to_cell(get_global_mouse_position());manual=Vector2i(signi(target.x-player.cell.x),signi(target.y-player.cell.y));running=true
+		if manual!=Vector2i.ZERO:manual_control_until=elapsed+0.5
 		if player_alive and not player_stoned:player.update(delta,manual,running)
 		if last_steps!=player.completed_steps:last_steps=player.completed_steps;moved.emit(player.cell)
 	actors.update(delta,party)
 	update_camera(screen)
 	monster_effects.queue_redraw()
+	labels.queue_redraw()
 	queue_redraw()
 
 func update_camera(screen: Vector2) -> void:
@@ -244,7 +265,8 @@ func update_camera(screen: Vector2) -> void:
 func sprite(bank: String,index: int,at: Vector2,offsets: bool=true,color:=Color.WHITE) -> void:
 	var image:=resources.frame(bank,index)
 	if image.is_empty():return
-	draw_texture(image.texture,(at+(image.offset if offsets else Vector2.ZERO)).round(),color)
+	var canvas: CanvasItem=sprite_canvas if is_instance_valid(sprite_canvas) else self
+	canvas.draw_texture(image.texture,(at+(image.offset if offsets else Vector2.ZERO)).round(),color)
 
 func human_frame(entity: Dictionary) -> int:
 	var motion:=actors.mover(entity)
@@ -334,11 +356,17 @@ func actor_idle_bounds(entity: Dictionary,head_only:=false) -> Rect2:
 		actor_bounds_cache[key]=bounds
 	return actor_bounds_cache[key]
 
+static func poison_tint(entity: Dictionary,seconds: float) -> Color:
+	# Reference actorbase.go getStateTint ceGreen; tint only while the living actor is poisoned.
+	var until:=maxf(float(entity.get("poison_until",0)),float(entity.get("green_poison",{}).get("until",0)))
+	return Color(0.3,1.0,0.3) if int(entity.get("hp",1))>0 and until>seconds else Color.WHITE
+
 func paint_actor(entity: Dictionary) -> void:
 	var at:=actors.anchor(entity)
+	var tint:=poison_tint(entity,elapsed)
 	if entity.kind=="traveler":
-		paint_human(at,1 if entity.get("gender","男")=="女" else 0,entity.get("equipment",{}),human_frame(entity))
-	else:sprite(entity.get("bank","npc"),actor_frame(entity),at)
+		paint_human(at,1 if entity.get("gender","男")=="女" else 0,entity.get("equipment",{}),human_frame(entity),tint)
+	else:sprite(entity.get("bank","npc"),actor_frame(entity),at,true,tint)
 
 func paint_player() -> void:
 	var sex:=1 if gender=="女" else 0
@@ -348,9 +376,9 @@ func paint_player() -> void:
 	var frame_index:=EditionAnimation.index(action,player.direction,time)
 	if motion_left<=0 and motion in ["walk","run"]:
 		frame_index=int(action.start)+player.direction*8+player.frame()%6
-	paint_human(player.anchor,sex,equipment,frame_index)
+	paint_human(player.anchor,sex,equipment,frame_index,poison_tint({"hp":1 if player_alive else 0,"poison_until":player_poison_until},elapsed))
 
-func paint_human(at: Vector2,sex: int,gear: Dictionary,frame_index: int) -> void:
+func paint_human(at: Vector2,sex: int,gear: Dictionary,frame_index: int,tint:=Color.WHITE) -> void:
 	var armor: Dictionary=EditionRules.ITEMS.get(gear.get("armor",""),{})
 	var dress:=(int(armor.get("shape",1 if gear.get("armor")=="robe" else 0))*2+sex)*600
 	var weapon:=-1
@@ -358,10 +386,10 @@ func paint_human(at: Vector2,sex: int,gear: Dictionary,frame_index: int) -> void
 	if not blade.is_empty():weapon=(int(blade.get("shape",1 if gear.get("weapon")=="wood_sword" else 2))*2+sex)*600+frame_index
 	var order: Array=weapon_order.get("worderFemale" if sex==1 else "worderMale",[])
 	var front: bool=frame_index<order.size() and order[frame_index]==1
-	if weapon>=0 and not front:sprite("weapon",weapon,at)
-	sprite("hum",dress+frame_index,at)
-	sprite("hair",(2+sex)*600+frame_index,at)
-	if weapon>=0 and front:sprite("weapon",weapon,at)
+	if weapon>=0 and not front:sprite("weapon",weapon,at,true,tint)
+	sprite("hum",dress+frame_index,at,true,tint)
+	sprite("hair",(2+sex)*600+frame_index,at,true,tint)
+	if weapon>=0 and front:sprite("weapon",weapon,at,true,tint)
 
 
 func front_position(cell: Vector2i,frame: Dictionary,additive: bool) -> Vector2:
@@ -401,11 +429,28 @@ func _draw() -> void:
 					if cell[8]&0x80:light_layer.commands.append([im.texture,at])
 					elif im.size.y<=32:draw_texture(im.texture,at)
 					else:objects[y].append([im.texture,at])
-	for y in range(y0,y1):
-		for obj in objects[y]:draw_texture(obj[0],obj[1])
+	# Ground overlay uses the same inclusive cells as the combat safety check.
+	for zone in EditionRegion.data().get("safe_zones",[]):
+		if not zone.enabled or zone.map!=metadata.id:continue
+		var bounds:=EditionRegion.safe_rect(zone)
+		if not bounds.intersects(Rect2(camera,view_size/zoom)):continue
+		draw_rect(bounds,Color(0.15,0.85,0.55,0.06),true)
+		draw_rect(bounds,Color(0.35,0.95,0.65,0.8),false,1.0)
+		var caption:="安全区"
+		var label_at:=bounds.position+Vector2((bounds.size.x-font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,14).x)/2,18)
+		draw_string_outline(font,label_at,caption,HORIZONTAL_ALIGNMENT_LEFT,-1,14,3,Color(0.04,0.12,0.08))
+		draw_string(font,label_at,caption,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color(0.65,1,0.75))
+	foreground_objects=objects;foreground_rows=Vector2i(y0,y1)
+	foreground_layer.queue_redraw()
+	EditionDragonAttack.draw_warning(self)
+	light_layer.queue_redraw()
+
+func paint_foreground(canvas: CanvasItem) -> void:
+	if resources==null or metadata.is_empty():return
+	sprite_canvas=canvas
+	for y in range(foreground_rows.x,foreground_rows.y):
+		for obj in foreground_objects.get(y,[]):canvas.draw_texture(obj[0],obj[1])
 		for entity in entities:
 			if int(actors.anchor(entity).y/32)==y:paint_actor(entity)
 		if int(player.anchor.y/32)==y:paint_player()
-	EditionDragonAttack.draw_warning(self)
-	light_layer.queue_redraw()
-	labels.queue_redraw()
+	sprite_canvas=null

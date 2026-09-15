@@ -33,7 +33,7 @@ func setup(host,entity: Dictionary={}) -> void:
 			if near_npc():app.rules.recover_at_village();app.info(app.rules.message))
 		action(services,"装备",func():app.show_bag();app.show_character())
 		action(services,"仓库",func():
-			if near_npc():app.show_warehouse())
+			if near_npc():app.show_warehouse(app.rules.story_npc("border:elder")))
 		action(services,"村庄地图",app.show_village_map)
 		action(services,"其他区域",app.show_travel)
 	refresh()
@@ -78,7 +78,7 @@ func refresh() -> void:
 		var done: bool=app.rules.state.quests.get(q.id)=="done"
 		submit_control=action(details,"已完成" if done else "交付任务" if accepted else "接受任务",func():
 			if not near_npc():return
-			var ok: bool=app.rules.novice_quest(selected);app.pending_message=app.rules.message
+			var ok: bool=app.rules.novice_quest(selected)
 			if ok and app.rules.state.quests.get(selected)=="done" and int(q.gold)>0:app.play_sound_id(106)
 			app.info(app.rules.message);refresh(),not done and EditionVillage.available(app.rules.state,q) and (not accepted or EditionVillage.ready(app.rules.state,q.id)))
 	if app.rules.state.quests.get(q.id)=="done":line(details,app.rules.quest_receipt_text(q.id),true)

@@ -32,7 +32,7 @@ func step() -> void:
 		var view=app.form.get_child(1);view.page=(view.page+1)%4;view.refresh()
 	if ticks==630:
 		app.windows.close_all();app.gameplay.show_assist();title.text="把重复操作交给本地辅助";subtitle.text="自动补给、脚下拾取与职业辅助 · 所有自动行为默认关闭"
-	if ticks==720:app.form.get_child(1).select(3)
+	if ticks==720:app.form.get_child(app.form.get_child_count()-1).select(3)
 	if ticks==870:
 		app.windows.close_all();app.enter_map("3",Vector2i(-1,-1));app.world.paused=false;title.text="熟悉的城镇，继续自己的旅程";subtitle.text="跨区域探索 · 本地任务与 NPC 服务"
 	if ticks==930:app.world.player.go_to(app.world.player.cell+Vector2i(4,0))

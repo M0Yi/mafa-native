@@ -4,6 +4,11 @@ var style:=0
 var map_id:=""
 var center:=Vector2i(-1,-1)
 var terrain: ImageTexture
+var marker_mesh:=ArrayMesh.new()
+var marker_vertices:=PackedVector3Array()
+var marker_colors:=PackedColorArray()
+var marker_specs: Array=[]
+var cached_specs: Array=[]
 var region:=Rect2()
 var map_rect:=Rect2(10,32,180,132)
 var title:=Label.new()
@@ -56,14 +61,32 @@ func rebuild() -> void:
 func marker(cell: Vector2i,color: Color,radius: float) -> void:
 	if not region.has_point(Vector2(cell)+Vector2(0.5,0.5)):return
 	var at:=map_rect.position+(Vector2(cell)+Vector2(0.5,0.5)-region.position)/region.size*map_rect.size
-	draw_circle(at,radius+1,Color.BLACK);draw_circle(at,radius,color)
+	marker_specs.append([at,color,radius])
+func append_marker_geometry(at: Vector2,color: Color,radius: float) -> void:
+	for ring in [[radius+1,Color.BLACK],[radius,color]]:
+		for i in range(24):
+			var a:=Vector2.from_angle(TAU*i/24.0)*float(ring[0])+at
+			var b:=Vector2.from_angle(TAU*(i+1)/24.0)*float(ring[0])+at
+			marker_vertices.append_array(PackedVector3Array([Vector3(at.x,at.y,0),Vector3(a.x,a.y,0),Vector3(b.x,b.y,0)]))
+			marker_colors.append_array(PackedColorArray([ring[1],ring[1],ring[1]]))
 func _draw() -> void:
 	draw_style_box(panel_style(),Rect2(Vector2.ZERO,size))
 	if style==2 or terrain==null:return
 	draw_texture_rect(terrain,map_rect,false)
+	marker_specs=[]
 	for entity in app.world.entities:
 		if entity.get("hp",1)<=0:continue
 		marker(Vector2i(entity.cell[0],entity.cell[1]),Color.GOLD if entity.kind=="npc" else Color.LIGHT_GREEN if entity.kind=="traveler" else Color.INDIAN_RED,1.5)
 	marker(app.world.player.cell,Color.WHITE,3)
+	if marker_specs!=cached_specs:
+		marker_vertices=PackedVector3Array();marker_colors=PackedColorArray()
+		for spec in marker_specs:append_marker_geometry(spec[0],spec[1],spec[2])
+		marker_mesh.clear_surfaces()
+		if not marker_vertices.is_empty():
+			var arrays: Array=[];arrays.resize(Mesh.ARRAY_MAX)
+			arrays[Mesh.ARRAY_VERTEX]=marker_vertices;arrays[Mesh.ARRAY_COLOR]=marker_colors
+			marker_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
+		cached_specs=marker_specs.duplicate(true)
+	if marker_mesh.get_surface_count()>0:draw_mesh(marker_mesh,null)
 func panel_style() -> StyleBoxFlat:
 	var box:=StyleBoxFlat.new();box.bg_color=Color("191812eb");box.border_color=Color("a88c52");box.set_border_width_all(2);box.set_corner_radius_all(5);return box

@@ -3,6 +3,8 @@ extends Button
 var app
 var index:=0
 func _can_drop_data(_at: Vector2,data) -> bool:
+	if not is_inside_tree() or is_queued_for_deletion() or app==null or app.mode!="game":return false
+	if app.windows.has_modal():return false
 	if not data is Dictionary or data.get("kind")!="item" or data.get("character")!=app.rules.character.id or app.world.paused or app.rules.state.hp<=0:return false
 	var item:=EditionInventory.find_item(app.rules.state,str(data.get("uid","")))
 	return item.get("container")=="inventory"
@@ -11,13 +13,13 @@ func _drop_data(at: Vector2,data) -> void:
 		app.rules.inventory_action("bind",{"uid":data.uid,"slot":index});app.pending_message=app.rules.message
 func _process(_delta: float) -> void:
 	if app==null or app.rules.state.is_empty():return
-	var id: String=app.rules.state.get("quickbar",["","","","","",""])[index]
+	var id: String=EditionInventory.quick_bindings(app.rules.state)[index]
 	text=str(index+1) if id.is_empty() else ""
 	tooltip_text="快捷栏 %d · 拖入背包物品"%(index+1) if id.is_empty() else "%s ×%d · 按 %d 使用"%[EditionRules.ITEMS.get(id,{}).get("name",id),int(app.rules.state.inventory.get(id,0)),index+1]
 	queue_redraw()
 func _draw() -> void:
 	if app==null or app.rules.state.is_empty():return
-	var id: String=app.rules.state.get("quickbar",["","","","","",""])[index]
+	var id: String=EditionInventory.quick_bindings(app.rules.state)[index]
 	if id.is_empty():return
 	var spec: Dictionary=EditionRules.ITEMS.get(id,{})
 	var f: Dictionary=app.resources.frame("items",int(spec.get("icon",0)))

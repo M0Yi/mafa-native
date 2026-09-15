@@ -1,0 +1,41 @@
+{
+  "scope": "source inventories only; does not prove intended artistic silence or listening/timing",
+  "single_stage_skills": {
+    "beam": {
+      "present": [
+        10100
+      ],
+      "absent": [
+        10101,
+        10102
+      ]
+    },
+    "manafire": {
+      "present": [
+        10450
+      ],
+      "absent": [
+        10451,
+        10452
+      ]
+    }
+  },
+  "sources": [
+    {
+      "source": "热血传奇10周年客户端/Wav/sound.lst",
+      "sha256": "4809796c762db735211d8ad4a6b725d50708c3bdfebf087db4b080785bf6a0ca",
+      "entries": [
+        "10100:  wav\\M10-1.wav",
+        "10450:\twav\\M45-0.wav"
+      ]
+    },
+    {
+      "source": "热血传奇16周年客户端/wav/sound.lst",
+      "sha256": "4809796c762db735211d8ad4a6b725d50708c3bdfebf087db4b080785bf6a0ca",
+      "entries": [
+        "10100:  wav\\M10-1.wav",
+        "10450:\twav\\M45-0.wav"
+      ]
+    }
+  ]
+}

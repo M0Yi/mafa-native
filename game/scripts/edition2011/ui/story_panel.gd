@@ -148,6 +148,8 @@ func refresh() -> void:
 		action(details,"放弃此任务",func():
 			if app.world.paused:app.info("请继续游戏后办理任务");return
 			app.windows.confirm("放弃“"+str(q.title)+"”？\n本任务到访、交谈、击杀等进度将清除；物品、技能和财富保留。\n以后需回原任务人物处重新接取。",func():
+				if not is_inside_tree() or is_queued_for_deletion():return
+				if app.world.paused:app.info("请继续游戏后办理任务");return
 				app.rules.abandon_story(quest_id);app.pending_message=app.rules.message
 				if is_instance_valid(self):refresh()))
 	if done:line(details,app.rules.quest_receipt_text(q.id),true)
@@ -160,7 +162,7 @@ func refresh() -> void:
 			if app.world.paused:app.info("暂停时不能办理任务");return
 			var operation: String="submit" if app.rules.state.quests.get(q.id)=="accepted" else "accept"
 			var ok: bool=app.rules.story_action(q.id,operation,npc.id,app.world.metadata.id,app.world.player.cell)
-			app.pending_message=app.rules.message;app.info(app.rules.message)
+			app.info(app.rules.message)
 			if ok:
 				app.play_sound_id(106 if operation=="submit" else 105)
 				preload("res://scripts/edition2011/ui/story_cinematic.gd").play(app,q,operation)
@@ -213,7 +215,7 @@ func refresh() -> void:
 			action(details,"打开仓库",func():
 				var keeper: Dictionary=app.rules.story_npc(objective.npc)
 				if not app.near_reference_npc(keeper):app.info("请回到保管员身边，并继续游戏后办理");return
-				app.show_warehouse())
+				app.show_warehouse(keeper))
 		if accepted and objective.type in ["purchase","binding","craft"] and npc.get("id","")==objective.npc and index==q.objectives.find(Story.next_objective(app.rules.state,q)):
 			action(details,"打开捆扎服务" if objective.type=="binding" else "打开合成服务" if objective.type=="craft" else "打开商店",func():
 				var merchant: Dictionary=app.rules.story_npc(objective.npc)

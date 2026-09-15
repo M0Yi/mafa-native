@@ -35,7 +35,7 @@ var fight_timer:=0.0
 var pending_attack: Dictionary={}
 var selected: Dictionary={}
 var selected_item_uid:=""
-var font:=SystemFont.new()
+var font: Font=preload("res://fonts/NotoSansCJKsc-Regular.otf")
 var job:="战士"
 var gender:="男"
 var preset:="easy"
@@ -81,13 +81,6 @@ func _ready() -> void:
 	dark_temple.setup(self)
 	cook_trials.setup(self)
 	get_tree().auto_accept_quit=false
-	font.font_names=PackedStringArray(["PingFang SC","Microsoft YaHei","Noto Sans CJK SC","WenQuanYi Micro Hei","Heiti SC"])
-	# macOS may resolve a partial system-font face; use its installed CJK font as fallback.
-	var cjk_path:="/System/Library/Fonts/STHeiti Light.ttc"
-	if FileAccess.file_exists(cjk_path):
-		var cjk:=FontFile.new()
-		if cjk.load_dynamic_font(cjk_path)==OK:font.fallbacks=[cjk]
-	font.fallbacks.append(load("res://fonts/NotoSansCJKsc-Regular.otf"))
 	world.font=font
 	var theme:=Theme.new();theme.default_font=font;theme.default_font_size=16
 	ui.theme=theme;hud.theme=theme
@@ -132,9 +125,11 @@ func _ready() -> void:
 		if world.paused or target not in world.entities or EditionRegion.safe(world.metadata.id,Vector2i(target.cell[0],target.cell[1])):return
 		gameplay.hit_traveler(target,attack))
 	world.monster_hit.connect(func(_entity,damage):
-		if rules.state.hp<=0 or EditionRegion.safe(world.metadata.id,world.player.cell):return
+		if not gameplay.available() or EditionRegion.safe(world.metadata.id,world.player.cell):return
 		if not rules.receive_damage(rules.incoming_monster_damage(damage,bool(_entity.get("magic_attack",false)),elapsed),bool(_entity.get("green_poison",false)),elapsed,bool(_entity.get("stone",false))):pending_message=rules.message;return
-		if rules.stoned(elapsed):pending_attack.clear();world.player.route.clear()
+		if rules.stoned(elapsed):
+			pending_attack.clear();world.player.route.clear()
+			gameplay.spell_events.clear();gameplay.visuals.clear();gameplay.skill_effects.clear();gameplay.queue_redraw()
 		pending_message=rules.message;world.animate("die" if rules.state.hp<=0 else "hurt")
 		play_sound_id((144 if world.gender=="男" else 145) if rules.state.hp<=0 else (138 if world.gender=="男" else 139))
 		if rules.state.hp<=0:world.player.route.clear();pending_attack.clear();gameplay.ensure_death())
@@ -146,7 +141,7 @@ func _ready() -> void:
 		for name in ["log-in-long2.wav","sellect-loop2.wav","field2.wav","1.wav","50.wav","100.wav","m11-1.wav"]:resources.sound(name)
 		var legacy:=FileAccess.file_exists("res://assets/generated/manifest.json")
 		print(JSON.stringify({"package_check":true,"resource_errors":resources.errors,"maps":resources.maps.size(),"legacy_assets_present":legacy,"architecture":Engine.get_architecture_name()}))
-		get_tree().quit(0 if resources.errors.is_empty() and not legacy else 1)
+		quit_application(0 if resources.errors.is_empty() and not legacy else 1)
 		return
 	var preview_cell:=Vector2i(-1,-1)
 	for arg in OS.get_cmdline_user_args():
@@ -215,7 +210,7 @@ func _notification(what: int) -> void:
 		if mode=="game" and automation.is_empty() and not save_world():return
 		if thread.is_started():thread.wait_to_finish()
 		if store.opened and not store.backup():info(store.error);return
-		store.close();get_tree().quit()
+		store.close();quit_application()
 
 func reset_panel(title: String) -> void:
 	for child in ui.get_children():ui.remove_child(child);child.queue_free()
@@ -244,6 +239,7 @@ func button(text: String,callback: Callable,parent: Node=null) -> Button:
 		b.add_theme_color_override("font_color",Color("e8d9b2"))
 	(parent if parent!=null else form).add_child(b)
 	b.pressed.connect(func():
+		if not b.is_inside_tree() or b.is_queued_for_deletion() or b.disabled:return
 		play_sound_id(105 if mode=="game" else 104)
 		var owner_window: Node=b
 		while owner_window!=null and not owner_window is EditionWindow:owner_window=owner_window.get_parent()
@@ -293,7 +289,30 @@ func show_create() -> void:
 	windows.close_all();entry.show_page("create")
 
 func start_character(c: Dictionary) -> void:
+	var previous_character: String=str(rules.character.get("id",""))
 	if not rules.attach(c,preset):info(rules.message);return
+	if rules.state.hp<=0:
+		var zone:=EditionRegion.revival_zone(str(rules.state.map),Vector2i(rules.state.cell[0],rules.state.cell[1]),resources.connections.by_map)
+		if zone.is_empty():info("找不到可达的城市安全区，角色存档已保留");return
+		if not world.enter_map(str(zone.map),Vector2i(zone.cell[0],zone.cell[1])):info("复活城市无法载入，请重试");return
+		var landing:=Vector2i(-1,-1)
+		var center:=Vector2i(zone.cell[0],zone.cell[1])
+		var npcs: Array=resources.npcs_by_map.get(zone.map,[])
+		var best:=INF
+		for y in range(center.y-int(zone.radius),center.y+int(zone.radius)+1):
+			for x in range(center.x-int(zone.radius),center.x+int(zone.radius)+1):
+				var point:=Vector2i(x,y)
+				if not world.navigation.mobile(point) or resources.connections.current.has(point) or npcs.any(func(n):return Vector2i(n.cell[0],n.cell[1])==point):continue
+				if resources.connections.landing_cells.get(zone.map,[]).has(point):continue
+				var distance:=point.distance_squared_to(center)
+				if distance<best:best=distance;landing=point
+		if landing==Vector2i(-1,-1):info("城市安全区没有可用落点，请重试");return
+		if not rules.revive_on_entry(str(zone.map),landing):info(rules.message);return
+	windows.close_all();selected_item_uid="";warehouse_keeper={}
+	if previous_character!=str(c.id):
+		fight_timer=0.0;ai_elapsed=0.0;save_elapsed=0.0;pending_message=""
+		gameplay.potion_ready=0.0;gameplay.pending_pickup="";gameplay.pickup_retry_left=0.0
+		gameplay.assist_left=0.0;gameplay.active_assist=false;gameplay.origin_map=""
 	chat_history.assign(rules.state.get("chat_log",[]));chat_revision+=1
 	gameplay.clear_death()
 	entry.hide();world.paused=false;world.gender=c.gender;mode="game";world.visible=true;elapsed=float(rules.state.time)
@@ -304,11 +323,12 @@ func start_character(c: Dictionary) -> void:
 
 func enter_map(id: String,cell:=Vector2i(-1,-1),record_arrival:=true) -> bool:
 	var previous_map: String=world.metadata.get("id","")
-	pending_attack.clear();gameplay.spell_events.clear();gameplay.visuals.clear();gameplay.queue_redraw();death_return_at=-1
-	region.reset(world)
+	var previous_entities: Array=world.entities
 	if cell==Vector2i(-1,-1):cell=EditionRegion.destination(id)
 	if not world.enter_map(id,cell):return false
-	world.elapsed=elapsed;world.player_alive=rules.state.get("hp",1)>0
+	pending_attack.clear();gameplay.spell_events.clear();gameplay.visuals.clear();gameplay.skill_effects.clear();gameplay.queue_redraw();death_return_at=-1
+	region.reset({"entities":previous_entities})
+	world.elapsed=elapsed;world.player_alive=rules.state.get("hp",1)>0;world.player_poison_until=float(rules.state.get("green_poison",{}).get("until",0))
 	selected={}
 	var spots: Array=world.metadata.service_spots
 	world.entities=resources.npcs_by_map.get(id,[]).duplicate(true)
@@ -316,10 +336,8 @@ func enter_map(id: String,cell:=Vector2i(-1,-1),record_arrival:=true) -> bool:
 		for npc in EditionVillage.entities():
 			if npc.get("service")=="village_quests":npc.name="边界村长";world.entities.append(npc)
 	world.register_npc_collision()
-	var missing: Array=resources.world_catalog.get(id,{}).get("missing_references",[])
-	var missing_frames:=0
-	for gap in missing:missing_frames+=gap.get("indexes",[]).size()
-	pending_message="%s：仍有 %d 个图像索引缺口，详见地图信息"%[resources.map_by_id[id].name,missing_frames] if not missing.is_empty() else "已进入"+world.zone_name()
+	pending_message="已进入"+world.zone_name()
+	# Detailed missing-frame diagnostics remain available in map information.
 	# Small interiors are service spaces; the old universal encounter loop put
 	# forest monsters inside every shop and could obstruct its only doorway.
 	region.populate(world,rules,0,elapsed)
@@ -633,6 +651,7 @@ func approach_story_npc(id: String) -> void:
 func show_reference_npc(npc: Dictionary) -> void:
 	if npc.id=="server:merchant:126":preload("res://scripts/edition2011/peach_crafting.gd").panel(self,npc);return
 	game_panel(npc.name)
+	panel.pin_notice()
 	if npc.has("dialogue_source"):label(str(npc.dialogue))
 	story_npc_button(npc)
 	if npc.id=="server:merchant:105":
@@ -696,7 +715,7 @@ func show_reference_npc(npc: Dictionary) -> void:
 			if near_reference_npc(npc):rules.reference_repair(npc.id);info(rules.message)
 			else:info("请回到商人身边"))
 		if shop.warehouse:button("仓库",func():
-			if near_reference_npc(npc):show_warehouse()
+			if near_reference_npc(npc):show_warehouse(npc)
 			else:info("请回到仓库管理员身边"))
 		if shop.warehouse:button("手柄仓库存取",func():show_controller_warehouse(npc))
 	if routes.is_empty() and shop.is_empty() and not npc.has("dialogue_source"):label(npc.get("dialogue","此人物的专用脚本已登记，尚未接入本地规则。"))
@@ -715,7 +734,7 @@ func teleport_with_npc(npc: Dictionary,route: Dictionary) -> bool:
 		if int(rules.state.inventory.get(item,0))<int(route.item_costs[item]):info("传送需要："+str(EditionRules.ITEMS[item].name)+" ×"+str(route.item_costs[item]));return false
 	var old_map: String=world.metadata.id;var old_cell:=world.player.cell
 	var target:=Vector2i(route.target_cell[0],route.target_cell[1])
-	if not enter_map(route.target_map,target,false):enter_map(old_map,old_cell,false);info("目标地图无法读取，未扣金币");return false
+	if not enter_map(route.target_map,target,false):info("目标地图无法读取，未扣金币");return false
 	if not rules.reference_teleport(route,world.player.cell,elapsed,old_map!=route.target_map,region.trap_snapshots(world)):
 		var error: String=rules.message;enter_map(old_map,old_cell,false);info(error);return false
 	windows.close_all();pending_message="已到达"+str(route.label)
@@ -732,8 +751,10 @@ func show_region_info() -> void:
 	button("默认抵达位置 [%d,%d]"%[default_cell.x,default_cell.y]+origin_label,func():world.approach(default_cell);windows.close_all(),list)
 	for z in EditionRegion.data().safe_zones:
 		if z.enabled and z.map==world.metadata.id:button("安全区 [%d,%d] · 半径%d格"%[z.cell[0],z.cell[1],z.radius],func():world.approach(Vector2i(z.cell[0],z.cell[1]));windows.close_all(),list)
-	for npc in world.entities:
-		if npc.kind=="npc":button(npc.name+" [%d,%d]"%[npc.cell[0],npc.cell[1]],func():world.approach(Vector2i(npc.cell[0],npc.cell[1]));windows.close_all(),list)
+	var nearby_npcs: Array=world.entities.filter(func(entity):return entity.kind=="npc")
+	nearby_npcs.sort_custom(func(a,b):return Vector2(a.cell[0]-world.player.cell.x,a.cell[1]-world.player.cell.y).length_squared()<Vector2(b.cell[0]-world.player.cell.x,b.cell[1]-world.player.cell.y).length_squared())
+	for npc in nearby_npcs:
+		button(npc.name+" [%d,%d]"%[npc.cell[0],npc.cell[1]],func():world.approach(Vector2i(npc.cell[0],npc.cell[1]));windows.close_all(),list)
 
 func cross_passage(route: Dictionary) -> bool:
 	if changing_map or world.paused or rules.state.hp<=0:return false
@@ -748,10 +769,12 @@ func cross_passage(route: Dictionary) -> bool:
 	var old_map: String=world.metadata.id;var old_cell:=world.player.cell
 	var target:=Vector2i(route.target_cell[0],route.target_cell[1])
 	var error:=""
-	if not enter_map(route.target_map,target,false):error="入口目标地图无法读取"
+	var loaded:=enter_map(route.target_map,target,false)
+	if not loaded:error="入口目标地图无法读取"
 	elif automation.is_empty() and not rules.save_location(world.metadata.id,world.player.cell,elapsed,chat_history,old_map!=route.target_map,region.special_snapshots(world),cook_trials.snapshot(),region.trap_snapshots(world)):error="切换地图未保存："+rules.message
 	if not error.is_empty():
-		enter_map(old_map,old_cell,false);pending_message=error+"，已留在原入口，可退后重试。"
+		if loaded:enter_map(old_map,old_cell,false)
+		pending_message=error+"，已留在原入口，可退后重试。"
 		resources.connections.armed=false;changing_map=false;return false
 	windows.close_all();save_elapsed=0
 	if automation.is_empty() and not store.backup():pending_message="已进入"+world.zone_name()+"；存档已写入，备份失败："+store.error
@@ -875,13 +898,16 @@ func show_map_info() -> void:
 	button("全部怪物等级与配置",func():EditionMonsterCatalog.show(self))
 	button("边界村地图与任务目标",show_village_map)
 	button("返回新手村",return_to_village)
-	label("%s\n源文件 %s\n尺寸 %d × %d　坐标 %d,%d\n走到门口、洞口或通路标记可进入相连地图；本区出入口列表可自动寻路。区域向导提供快捷旅行。"%[world.metadata.name,world.metadata.source,world.metadata.width,world.metadata.height,world.player.cell.x,world.player.cell.y])
+	label("%s\n当前位置：%d, %d\n走到门口、洞口或通路标记可进入相连地图；本区出入口列表可自动寻路。区域向导提供快捷旅行。"%[world.metadata.name,world.player.cell.x,world.player.cell.y])
 	for missing in resources.world_catalog.get(world.metadata.id,{}).get("missing_references",[]):label("未完成：%s 缺少 %d 个索引帧；详见 converted-check.json"%[missing.library,missing.indexes.size()])
 
 func interact(entity: Dictionary) -> void:
 	selected=entity
 	var p:=Vector2i(entity.cell[0],entity.cell[1])
-	if (p-world.player.cell).length()>4:world.approach(p);pending_message="请靠近后再次点击";return
+	var interaction_range:=1.5 if entity.kind=="monster" else 4.0
+	if (p-world.player.cell).length()>interaction_range:
+		pending_message="请靠近后再次点击" if world.approach(p) else "无法到达目标附近，请换一条路线"
+		return
 	if entity.kind=="npc" and not world.paused:
 		var before: int=rules.state.revision
 		if not rules.story_talk(entity.id,world.metadata.id,world.player.cell):
@@ -895,8 +921,10 @@ func interact(entity: Dictionary) -> void:
 			social_person=str(entity.name);show_social()
 		return
 	if entity.get("service")=="reference":show_reference_npc(entity);return
+	var warehouse_source: Dictionary=entity.duplicate(true)
+	warehouse_source.map=world.metadata.id
 	game_panel(entity.name)
-	if entity.get("service")=="room_warehouse":show_warehouse();return
+	if entity.get("service")=="room_warehouse":show_warehouse(warehouse_source);return
 	if entity.get("service")=="room_shop":
 		for id in entity.goods:
 			button("购买 %s · %d 金币"%[EditionRules.ITEMS[id].name,EditionRules.ITEMS[id].price],func():rules.shop(id,1);info(rules.message))
@@ -919,10 +947,10 @@ func interact(entity: Dictionary) -> void:
 		button("区域委托：接受 / 交付铁矿",func():rules.quest(world.metadata.id);info(rules.message))
 		button("前往其他区域",show_travel)
 		button("本区出入口",show_passages)
-		button("购买 / 出售",show_shop);button("仓库",show_warehouse)
+		button("购买 / 出售",show_shop);button("仓库",func():show_warehouse(warehouse_source))
 		button("修理装备",func():rules.repair();info(rules.message))
 	else:
-		button("购买 / 出售",show_shop);button("仓库",show_warehouse)
+		button("购买 / 出售",show_shop);button("仓库",func():show_warehouse(warehouse_source))
 		button("修理装备",func():rules.repair();info(rules.message))
 
 func show_travel() -> void:
@@ -955,7 +983,18 @@ func show_controller_warehouse(npc: Dictionary) -> void:
 	game_panel("手柄仓库",Vector2(480,440))
 	var view=load("res://scripts/edition2011/ui/controller_warehouse.gd").new();form.add_child(view);view.setup(self,npc)
 
-func show_warehouse() -> void:
+var warehouse_keeper: Dictionary={}
+func warehouse_access_allowed() -> bool:
+	if warehouse_keeper.is_empty():return true
+	if not windows.windows.has("个人仓库"):
+		pending_message="仓库已关闭，请重新与保管员对话。";return false
+	if near_reference_npc(warehouse_keeper):return true
+	pending_message="请回到保管员身边，并继续游戏后办理。"
+	return false
+func show_warehouse(keeper: Dictionary={}) -> void:
+	if keeper.is_empty():info("请与附近的仓库服务NPC对话后打开仓库。");return
+	if not keeper.is_empty() and not near_reference_npc(keeper):info("请回到保管员身边，并继续游戏后办理。");return
+	warehouse_keeper=keeper.duplicate(true)
 	show_bag();game_panel("个人仓库");panel.use_native(3,Rect2(10,0,296,12))
 	var grid=load("res://scripts/edition2011/ui/item_panel.gd").new();form.add_child(grid);grid.setup(self,"warehouse")
 
@@ -1050,25 +1089,42 @@ func show_guild_aid_log(page:=0) -> void:
 
 func show_settings() -> void:
 	game_panel("设置与操作");windows.pause("settings")
+	panel.pin_notice()
 	for bus in ["Music","Interface","Combat","Environment"]:
 		var row:=HBoxContainer.new();form.add_child(row)
 		var name:=Label.new();name.text={"Music":"音乐","Interface":"界面","Combat":"战斗","Environment":"环境"}[bus];row.add_child(name)
 		var slider:=HSlider.new();slider.min_value=-40;slider.max_value=0;slider.step=1;slider.custom_minimum_size=Vector2(280,25)
 		slider.value=sound_levels.get(bus,-6);row.add_child(slider)
-		slider.value_changed.connect(func(value):set_sound_level(bus,value))
+		slider.value_changed.connect(func(value):
+			if not slider.is_inside_tree() or slider.is_queued_for_deletion():return
+			if not set_sound_level(bus,value):slider.set_value_no_signal(sound_levels.get(bus,-6)))
 	for factor in [0,1,2,3,4]:
 		button("界面缩放："+("自动" if factor==0 else str(factor)+"×"),func():
-			windows.requested_scale=factor;store.put_metadata("ui_scale",str(factor)))
-	label("自动显示保持像素大小，调整窗口扩展视野。\nWASD / 方向键：走动　Shift：跑动\n左键：寻路 / 交互　右键按住：朝指针跑动\n空格：普通攻击　E：最近 NPC　B：背包\nQ：施法　R：切换技能　G：拾取　H：内挂\nT：切换攻击模式（默认和平），Shift 点击 AI 玩家攻击\n1–6：快捷物品，可从背包拖入绑定\nEsc：关闭窗口　P：暂停世界\n资源：2.0.1.11 基础 + 16周年补充（75帧、1音效）；目标 1.90 火龙神殿。当前为开发里程碑，未完成全部功能。")
-	for z in [0,1,2,3,4,6]:button("地图缩放："+("稳定像素（推荐）" if z==0 else str(z)+"×"),func():world.preferred_zoom=z;store.put_metadata("zoom",str(z)))
+			if not store.put_metadata("ui_scale",str(factor)):info("界面缩放保存失败："+store.error);return
+			windows.requested_scale=factor;info("界面缩放已保存"))
+	label("自动显示保持像素大小，调整窗口扩展视野。\nWASD / 方向键：走动　Shift：跑动\n左键：寻路 / 交互　右键按住：朝指针跑动\n空格：普通攻击　E：最近 NPC　B：背包　K：技能\nQ：施法　R：切换技能　G：拾取　H：内挂\nT：切换攻击模式（默认和平），Shift 点击 AI 玩家攻击\n1–6：快捷物品，可从背包拖入绑定\nEsc：关闭窗口　P：暂停世界\n手柄：左摇杆移动；X 普攻，Y 施法，LB/RB 切换技能\nBack 打开独立操作面板；面板内 LB/RB 切页，B 返回\nStart：暂停 / 继续；账号文字输入请使用键盘\n资源基准：十周年 2.0.1.11，支持十六周年补充。")
+	for z in [0,1,2,3,4,6]:button("地图缩放："+("稳定像素（推荐）" if z==0 else str(z)+"×"),func():
+		if not store.put_metadata("zoom",str(z)):info("地图缩放保存失败："+store.error);return
+		world.preferred_zoom=z;info("地图缩放已保存"))
 	button("全屏 / 窗口",toggle_fullscreen)
-	button("恢复推荐窗口大小",func():store.put_metadata("display:window_points","");setup_display())
+	button("恢复推荐窗口大小",func():
+		if not store.put_metadata("display:window_points",""):info("窗口设置保存失败："+store.error);return
+		setup_display();info("已恢复推荐窗口大小"))
 	button("静音 / 恢复声音",func():
-		muted=not muted;store.put_metadata("muted",str(muted));music.stream_paused=muted
-		for sound in effects:sound.stream_paused=muted
-		if not muted and not music.playing:music.play()
-		info("静音" if muted else "声音已恢复"))
-	button("保存进度",func():if save_world():info("已保存至 SQLite"))
+		if toggle_mute():info("静音" if muted else "声音已恢复")
+		else:info("静音设置保存失败："+store.error))
+	button("保存进度",func():
+		if save_world():info("游戏进度已保存")
+		else:info("保存未完成："+pending_message))
+
+func toggle_mute() -> bool:
+	if not store.put_metadata("muted",str(not muted)):return false
+	muted=not muted;music.stream_paused=muted
+	if muted:
+		for sound in effects:
+			sound.stop();sound.stream=null;sound.stream_paused=false
+	elif music.stream!=null and not music.playing:music.play()
+	return true
 
 func attack_target() -> void:
 	if rules.state.hp<=0:return
@@ -1102,34 +1158,38 @@ func resolve_attack() -> void:
 			if entity.id!=hit.id or entity.get("generation",-1)!=hit.generation or entity.get("hp",0)<=0:continue
 			if not gameplay.can_target(entity):continue
 			var target:=Vector2i(entity.cell[0],entity.cell[1]);var d:=target-world.player.cell
+			if attack.has("area_cell"):
+				var center:=Vector2i(attack.area_cell[0],attack.area_cell[1])
+				if maxi(absi(target.x-center.x),absi(target.y-center.y))>1:continue
 			if maxi(absi(d.x),absi(d.y))>int(attack.get("range",1)) or not gameplay.line_clear(world.player.cell,target):continue
 			if EditionRegion.safe(world.metadata.id,world.player.cell) or EditionRegion.safe(world.metadata.id,target):continue
-			if not impact_played and attack.has("skill"):gameplay.play_skill_stage(attack.skill,2);impact_played=true
-			apply_attack_hit(entity,attack)
+			var applied:=apply_attack_hit(entity,attack)
+			if applied and not impact_played and attack.has("skill"):gameplay.play_skill_stage(attack.skill,2);impact_played=true
 			break
 
-func apply_attack_hit(entity: Dictionary,attack: Dictionary) -> void:
-	if not gameplay.can_target(entity) or rules.state.hp<=0:return
-	if EditionRegion.safe(world.metadata.id,world.player.cell) or EditionRegion.safe(world.metadata.id,Vector2i(entity.cell[0],entity.cell[1])):return
+func apply_attack_hit(entity: Dictionary,attack: Dictionary) -> bool:
+	if not gameplay.can_target(entity) or rules.state.hp<=0:return false
+	if EditionRegion.safe(world.metadata.id,world.player.cell) or EditionRegion.safe(world.metadata.id,Vector2i(entity.cell[0],entity.cell[1])):return false
 	if attack.get("skill","")=="trap":
 		var learned=rules.state.skills.get("trap",{})
 		var rank:=int(learned.get("rank",1)) if learned is Dictionary else 1
 		var status: Dictionary=preload("res://scripts/edition2011/trap_status.gd").create(entity,int(rules.state.level),rank,elapsed)
 		if not status.is_empty():entity.trap_status=status;pending_message="困魔咒困住了"+str(entity.name)
-		return
+		return not status.is_empty()
 	if entity.kind=="traveler":
-		gameplay.hit_traveler(entity,attack);return
+		var hp_before:int=entity.hp
+		gameplay.hit_traveler(entity,attack)
+		if int(entity.hp)<hp_before:show_hit_effect(entity,attack)
+		return int(entity.hp)<hp_before
 	if not attack.has("skill") and not rules.melee_hits(int(entity.get("speed",0))):
 		pending_message="对"+str(entity.get("name","目标"))+"的普通攻击未命中"
-		return
+		return false
 	var defense:=int(entity.get("mac",0)) if EditionSkills.DEFINITIONS.get(attack.get("skill",""),{}).get("job","战士")!="战士" else int(entity.get("ac",0))
 	if attack.get("skill")=="thrust" and Vector2(entity.cell[0]-world.player.cell.x,entity.cell[1]-world.player.cell.y).length()>=2:defense=0
-	if attack.get("skill")=="poison" and not attack.get("periodic",false):entity.poison_until=elapsed+10;entity.poison_next=elapsed+1.5
-	if attack.get("skill")=="manafire":entity.mp=maxi(0,int(entity.get("mp",0))-20)
 	var remaining:=maxi(0,int(entity.hp)-maxi(1,int(attack.damage)-defense))
 	if remaining==0:
 		if not rules.reward_kill(Crypto.new().generate_random_bytes(16).hex_encode(),entity.get("species",""),entity.merged({"map":world.metadata.id},true),elapsed):
-			pending_message="奖励未写入，击杀未结算："+rules.message;return
+			pending_message="奖励未写入，击杀未结算："+rules.message;return false
 		entity.hp=0
 		entity.respawn=float(rules.state.regional_deaths[entity.id]) if entity.has("spawn_id") else elapsed+float(entity.get("respawn_seconds",30));entity.generation+=1
 		entity.motion="die";entity.motion_time=world.elapsed
@@ -1139,7 +1199,16 @@ func apply_attack_hit(entity: Dictionary,attack: Dictionary) -> void:
 		entity.hp=remaining
 		EditionMonsterAI.react_to_hit(entity,world.elapsed,bool(attack.get("periodic",false)))
 		play_sound_id(73);world.actors.sound(entity,"hurt")
+	# Do not mutate status or mana before a lethal reward transaction succeeds.
+	if attack.get("skill")=="poison" and not attack.get("periodic",false):entity.poison_until=elapsed+10;entity.poison_next=elapsed+1.5
+	if attack.get("skill")=="manafire":entity.mp=maxi(0,int(entity.get("mp",0))-20)
+	show_hit_effect(entity,attack)
+	return true
 
+func show_hit_effect(entity: Dictionary,attack: Dictionary) -> void:
+	if not attack.get("periodic",false) and not attack.get("visual_played",false):
+		gameplay.skill_effects.add(str(attack.get("skill","")),attack.get("effect_at",world.actors.anchor(entity)))
+		if EditionSkills.DEFINITIONS.get(attack.get("skill",""),{}).get("kind","")=="area":attack.visual_played=true
 
 func save_world() -> bool:
 	if not automation.is_empty():return true
@@ -1148,27 +1217,39 @@ func save_world() -> bool:
 	elif not store.backup():pending_message=store.error;return false
 	return ok
 
-func _exit_tree() -> void:
-	if thread.is_started():thread.wait_to_finish()
+func stop_audio() -> void:
+	# Stop while players are still in the tree, before normal application exit.
 	music.stop();music.stream=null
 	for sound in effects:sound.stop();sound.stream=null
 	resources.sounds.clear()
+
+func quit_application(exit_code: int=0) -> void:
+	stop_audio()
+	get_tree().quit(exit_code)
+
+func _exit_tree() -> void:
+	if thread.is_started():thread.wait_to_finish()
+	stop_audio()
 	store.close()
+	# Startup can fail before these owned nodes are attached to the scene.
+	for owned in [gameplay,world]:
+		if is_instance_valid(owned) and owned.get_parent()==null:owned.free()
 
 func fatal(text: String) -> void:
-	mode="error";reset_panel("无法启动");info(text);button("退出",func():get_tree().quit(1))
+	mode="error";reset_panel("无法启动");info(text);button("退出",func():quit_application(1))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if mode!="game":return
 	if event is InputEventJoypadButton and event.pressed:
 		controller_button(event.button_index);return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode==KEY_ESCAPE and not windows.has_modal():
+		close_panel();get_viewport().set_input_as_handled();return
 	if world.paused:
-		if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode==KEY_P and windows.pause_reason.is_empty():world.paused=false
+		if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode==KEY_P and windows.pause_reason.is_empty() and not typing():world.paused=false
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_LEFT and not pointer_blocked():
 		if not gameplay.click(event.position):world.handle_click(event.position)
 	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode==KEY_ESCAPE:close_panel();return
 		if typing():return
 		if rules.state.hp<=0:return
 		match event.physical_keycode:
@@ -1199,7 +1280,8 @@ func controller_button(key: int) -> void:
 		if windows.pause_reason.is_empty() and not windows.has_modal():world.paused=not world.paused
 		return
 	if key==JOY_BUTTON_B:
-		close_panel();return
+		if not windows.has_modal():close_panel()
+		return
 	if world.paused or rules.state.hp<=0 or typing() or windows.has_modal():return
 	if key==JOY_BUTTON_BACK:show_controller_panel();return
 	# Open windows own controller focus; gameplay must not receive their buttons.
@@ -1231,7 +1313,7 @@ func _process(delta: float) -> void:
 			await RenderingServer.frame_post_draw
 			get_viewport().get_texture().get_image().save_png(capture_path)
 			print("Captured ",capture_path," resource errors: ",resources.errors)
-			store.close();get_tree().quit()
+			store.close();quit_application()
 	if is_instance_valid(panel) and not panel is EditionWindow:panel.position=((get_viewport_rect().size-panel.size)/2).max(Vector2(12,110) if mode=="game" else Vector2(12,12))
 	if thread.is_started() and not thread.is_alive():
 		entry.finish_auth(bool(thread.wait_to_finish()))
@@ -1243,7 +1325,7 @@ func _process(delta: float) -> void:
 			elapsed+=delta;save_elapsed+=delta;fight_timer=maxf(0,fight_timer-delta)
 			resolve_attack()
 		world.display_density=display_density
-		world.equipment=rules.state.equipment;world.party=rules.state.party;world.player_alive=rules.state.hp>0;world.player_stoned=rules.stoned(elapsed)
+		world.equipment=rules.state.equipment;world.party=rules.state.party;world.player_alive=rules.state.hp>0;world.player_stoned=rules.stoned(elapsed);world.player_poison_until=float(rules.state.get("green_poison",{}).get("until",0))
 		var marker_key: String=str(rules.character.get("id",""))+":"+str(rules.state.revision)
 		if marker_key!=task_marker_key:
 			task_marker_key=marker_key;world.task_markers=EditionRules.Story.npc_markers(rules.state)
@@ -1263,15 +1345,16 @@ func _process(delta: float) -> void:
 		if save_elapsed>=30:save_elapsed=0;save_world()
 		if not world.paused and rules.state.hp>0 and rules.novice_patrol(world.metadata.id,world.player.cell):pending_message=rules.message
 		if is_instance_valid(status):
-			status.text="%s  Lv.%d · %s%s\n%s"%[rules.character.name,rules.state.level,world.zone_name()," · 安全区" if EditionRegion.safe(world.metadata.id,world.player.cell) else "",pending_message]
+			var status_text: String="%s  Lv.%d · %s%s\n%s"%[rules.character.name,rules.state.level,world.zone_name()," · 安全区" if EditionRegion.safe(world.metadata.id,world.player.cell) else "",pending_message]
 			var expedition_time: String=fire_dragon.time_text()
 			if expedition_time.is_empty():expedition_time=dark_temple.time_text()
 			if expedition_time.is_empty():expedition_time=cook_trials.time_text()
-			if not expedition_time.is_empty():status.text=expedition_time+" · "+status.text
+			if not expedition_time.is_empty():status_text=expedition_time+" · "+status_text
 			var active: String=gameplay.current_skill()
-			if not active.is_empty():status.text+=" · Q/Y："+EditionGameplay.SKILLS[active].name+"（R/肩键切换）"
-			if rules.state.has("green_poison"):status.text+=" · 绿毒 %d秒"%maxi(0,ceili(float(rules.state.green_poison.until)-elapsed))
-			if rules.stoned(elapsed):status.text+=" · 石化 %d秒"%ceili(float(rules.state.stone_until)-elapsed)
+			if not active.is_empty():status_text+=" · Q/Y："+EditionGameplay.SKILLS[active].name+"（R/肩键切换）"
+			if rules.state.has("green_poison"):status_text+=" · 绿毒 %d秒"%maxi(0,ceili(float(rules.state.green_poison.until)-elapsed))
+			if rules.stoned(elapsed):status_text+=" · 石化 %d秒"%ceili(float(rules.state.stone_until)-elapsed)
+			if status.text!=status_text:status.text=status_text
 			status.clip_text=true;status.size=Vector2(get_viewport_rect().size.x/ui_zoom-36,46)
 	queue_redraw()
 
@@ -1302,11 +1385,13 @@ func initialize_sound_buses() -> void:
 		var value:=clampf(float(saved),-40,0) if saved.is_valid_float() else -6.0
 		sound_levels[bus]=value;AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus),value)
 
-func set_sound_level(bus: String,value: float) -> void:
-	if not sound_levels.has(bus):return
-	sound_levels[bus]=clampf(value,-40,0)
+func set_sound_level(bus: String,value: float) -> bool:
+	if not sound_levels.has(bus):return false
+	var level:=clampf(value,-40,0)
+	if not store.put_metadata("volume:"+bus,str(level)):info("音量保存失败："+store.error);return false
+	sound_levels[bus]=level
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus),sound_levels[bus])
-	store.put_metadata("volume:"+bus,str(sound_levels[bus]))
+	return true
 
 func update_benchmark(delta: float) -> void:
 	if benchmark_seconds<=0 or mode!="game":return
@@ -1323,4 +1408,4 @@ func update_benchmark(delta: float) -> void:
 		if not benchmark_output.is_empty():
 			var output:=FileAccess.open(benchmark_output,FileAccess.WRITE)
 			if output!=null:output.store_string(JSON.stringify({"architecture":Engine.get_architecture_name(),"seconds":benchmark_elapsed,"samples":benchmark_samples,"errors":resources.errors},"  "))
-		get_tree().quit()
+		quit_application()

@@ -19,6 +19,29 @@ static func safe(id: String,cell: Vector2i) -> bool:
 	for z in data().get("safe_zones",[]):
 		if z.enabled and z.map==id and absi(cell.x-int(z.cell[0]))<=int(z.radius) and absi(cell.y-int(z.cell[1]))<=int(z.radius):return true
 	return false
+# Nearest town follows existing map exits; within a map choose the closest safe zone.
+static func revival_zone(id: String,cell: Vector2i,links: Dictionary) -> Dictionary:
+	var frontier: Array=[{"map":id,"cell":cell}];var seen: Dictionary={id:true}
+	while not frontier.is_empty():
+		var candidates: Array=[];var following: Array=[]
+		for node in frontier:
+			for zone in data().get("safe_zones",[]):
+				if zone.enabled and zone.map==node.map:
+					candidates.append({"zone":zone,"distance":node.cell.distance_squared_to(Vector2i(zone.cell[0],zone.cell[1]))})
+			for route in links.get(node.map,[]):
+				if seen.has(route.target_map):continue
+				seen[route.target_map]=true
+				following.append({"map":route.target_map,"cell":Vector2i(route.target_cell[0],route.target_cell[1])})
+		if not candidates.is_empty():
+			candidates.sort_custom(func(a,b):return a.distance<b.distance)
+			return candidates[0].zone.duplicate(true)
+		frontier=following
+	return {}
+
+static func safe_rect(zone: Dictionary) -> Rect2:
+	var radius:=int(zone.radius)
+	return Rect2(Vector2((int(zone.cell[0])-radius)*48,(int(zone.cell[1])-radius)*32),Vector2((radius*2+1)*48,(radius*2+1)*32))
+
 static func destination(id: String) -> Vector2i:
 	var cell: Array=data().get("defaults",{}).get(id,{}).get("cell",[-1,-1])
 	return Vector2i(cell[0],cell[1])

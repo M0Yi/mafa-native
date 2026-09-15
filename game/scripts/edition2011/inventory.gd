@@ -3,6 +3,10 @@ extends RefCounted
 const SLOTS=["weapon","armor","helmet","necklace","bracelet_left","bracelet_right","ring_left","ring_right","belt","boots","amulet","torch","charm"]
 const SLOT_NAMES=["武器","衣服","头盔","项链","左手镯","右手镯","左戒指","右戒指","腰带","鞋子","护符","照明","宝物"]
 
+# Missing bindings in older instance inventories use the same defaults in every view.
+static func quick_bindings(state: Dictionary) -> Array:
+	return state.get("quickbar",["potion","mana","","","",""])
+
 static func fits(type: String,slot: int) -> bool:
 	if slot<0 or slot>=SLOTS.size():return false
 	var kind: String=EditionRules.ITEMS.get(type,{}).get("slot","")
@@ -114,6 +118,10 @@ static func reconcile(state: Dictionary) -> bool:
 	mirror(state);return true
 
 static func validate(state: Dictionary) -> bool:
+	if state.has("quickbar"):
+		if not state.quickbar is Array or state.quickbar.size()!=6:return false
+		for binding in state.quickbar:
+			if not binding is String or (not binding.is_empty() and not EditionRules.ITEMS.has(binding)):return false
 	if not state.get("items") is Array:return false
 	var ids: Dictionary={};var slots: Dictionary={}
 	for item in state.items:
@@ -201,6 +209,7 @@ static func operate(state: Dictionary,action: String,args: Dictionary) -> String
 			var slot:=int(args.get("slot",-1))
 			if slot<0 or slot>=6:return "无效快捷栏"
 			if item.container!="inventory":return "只能绑定背包中的物品"
+			state.quickbar=quick_bindings(state).duplicate()
 			state.quickbar[slot]=item.type
 		_ :return "未知物品操作"
 	return ""

@@ -62,7 +62,9 @@ func attach(profile: Dictionary,preset: String="easy") -> bool:
 	state=store.load_world(profile.id)
 	if not store.error.is_empty():message=store.error;return false
 	if state.is_empty():
-		state=new_world(profile,preset)
+		var initial_preset: String=profile.get("initial_preset",preset)
+		if initial_preset not in ["easy","classic"]:message="角色成长档位无效，原存档保留";return false
+		state=new_world(profile,initial_preset)
 		if not store.commit(profile.id,state,"create_world"):message=store.error;return false
 	elif not valid(state):message="角色字段损坏；原数据库及备份保留，未覆盖";return false
 	if not state.has("items"):
@@ -324,6 +326,7 @@ func exchange_gold_bar(npc_id: String,map_id: String,cell: Vector2i,to_bar: bool
 	return true
 
 func shop(id: String,quantity: int,buy: bool=true) -> bool:
+	if state.hp<=0:message="死亡期间不能买卖物品";return false
 	if id=="ref:226" or MEDICINE_BUNDLES.has(id) or SCROLL_BUNDLES.has(id):message="金条和物品包请通过专门兑换或捆扎办理";return false
 	if not ITEMS.has(id) or quantity<=0 or quantity>99:message="无效商品数量";return false
 	if ITEMS[id].get("quest_material",false):message="任务凭证不能购买或出售，请按委托获取和交付";return false
@@ -338,6 +341,7 @@ func shop(id: String,quantity: int,buy: bool=true) -> bool:
 	return apply(next,"buy" if buy else "sell")
 
 func warehouse(id: String,deposit: bool) -> bool:
+	if state.hp<=0:message="死亡期间不能存取物品";return false
 	if not ITEMS.has(id):message="未知物品";return false
 	var next:=state.duplicate(true)
 	if int(ITEMS[id].get("std_mode",-1))==43 or ITEMS[id].has("slot"):
@@ -369,8 +373,15 @@ func inventory_action(action: String,args: Dictionary,trapped_monsters=null) -> 
 	if action=="use" and ITEMS.get(original.get("type",""),{}).get("crafting_material_only",false):message="此神水目前用于合成，饮用效果尚未接入，未消耗物品";return false
 	if action=="use" and original.get("type","")=="ref:135":return preload("res://scripts/edition2011/blessing_oil.gd").use(self,str(args.get("uid","")))
 	if action=="use" and original.get("type","")=="ref:226":message="金条请到东方宫殿二楼商人处兑换";return false
-	if not original.is_empty() and (action=="use" or args.get("container")=="equipment"):
-		var spec: Dictionary=ITEMS[original.type]
+	var equip_candidates: Array=[]
+	if not original.is_empty() and (action=="use" or args.get("container")=="equipment"):equip_candidates.append(original)
+	# Unequipping onto an occupied slot equips the displaced item in return.
+	if action=="move" and original.get("container")=="equipment":
+		for target in state.items:
+			if target.container==args.get("container") and int(target.slot)==int(args.get("slot",-1)) and target.uid!=original.uid:
+				equip_candidates.append(target)
+	for candidate in equip_candidates:
+		var spec: Dictionary=ITEMS[candidate.type]
 		if spec.has("slot"):
 			if spec.get("gender",character.gender)!=character.gender:message="这件装备的性别不符";return false
 			var requirement:=int(spec.get("need",0));var required:=int(spec.get("need_level",0))
@@ -382,7 +393,11 @@ func inventory_action(action: String,args: Dictionary,trapped_monsters=null) -> 
 		if original.container!="inventory":message="请先把物品放入背包";return false
 		var bundle: Dictionary=ITEMS[original.type].material_bundle
 		var unpacked:=state.duplicate(true)
-		if not count_item(unpacked,original.type,-1) or not count_item(unpacked,bundle.type,int(bundle.count)):message="材料拆分失败";return false
+		var packet:=EditionInventory.find_item(unpacked,original.uid)
+		packet.count-=1
+		if packet.count==0:unpacked.items.erase(packet)
+		EditionInventory.mirror(unpacked)
+		if not count_item(unpacked,bundle.type,int(bundle.count)):message="材料拆分失败";return false
 		message="拆分 "+ITEMS[original.type].name+"，获得 "+ITEMS[bundle.type].name+" ×"+str(int(bundle.count))
 		if not apply(unpacked,"unpack_spell_material"):return false
 		item_performed.emit(original.type,"use");return true
@@ -712,11 +727,21 @@ func revive_after_wait(cell: Vector2i,seconds: float,trapped_monsters: Dictionar
 	message="已在边界村苏醒，装备与物品保留。"
 	return apply(next,"death_return")
 
+func revive_on_entry(map_id: String,cell: Vector2i) -> bool:
+	if state.hp>0:return true
+	if not EditionRegion.safe(map_id,cell):message="城市复活点不在安全区，请重试";return false
+	var next:=state.duplicate(true)
+	next.map=map_id;next.cell=[cell.x,cell.y];next.hp=max_hp();next.mp=max_mp()
+	next.erase("death_due");next.erase("green_poison");next.erase("stone_until")
+	message="已在就近城市安全区复活，装备与物品保留。"
+	return apply(next,"death_reenter")
+
 func recover_at_village() -> bool:
 	var next:=state.duplicate(true);next.hp=max_hp();next.mp=max_mp();next.erase("death_due");next.erase("green_poison");next.erase("stone_until")
 	message="村长为你恢复了生命与魔法";return apply(next,"village_recover")
 
 func repair() -> bool:
+	if state.hp<=0:message="死亡期间不能修理";return false
 	var next:=state.duplicate(true);var cost:=0
 	for item in next.items:
 		if item.container=="equipment":cost+=100-int(item.durability)
@@ -873,13 +898,14 @@ func tick_traveler_poison(seconds: float) -> bool:
 		var poison: Dictionary=health.get("green_poison",{})
 		if poison.is_empty() or int(health.get("hp",0))<=0:continue
 		if seconds<float(poison.next) and seconds<float(poison.until):continue
-		var ticks:=maxi(0,int(floor(minf(seconds,float(poison.until)-0.0000001)-float(poison.next)))+1)
+		var interval:=maxf(0.1,float(poison.get("interval",1.0)))
+		var ticks:=maxi(0,int(floor((minf(seconds,float(poison.until)-0.0000001)-float(poison.next))/interval))+1)
 		var damage:=ticks*int(poison.power)
 		health.hp=maxi(0,int(health.hp)-damage)
 		if health.hp<=0:
 			health.generation=int(health.get("generation",0))+1;health.respawn=seconds+30
 		if health.hp<=0 or seconds>=float(poison.until):health.erase("green_poison")
-		else:health.green_poison.next=float(poison.next)+ticks
+		else:health.green_poison.next=float(poison.next)+ticks*interval
 		notices.append("%s：绿毒伤害%d%s"%[str(health.get("name",id)),damage,"，倒下后30秒恢复" if health.hp<=0 else ""])
 	if notices.is_empty():return false
 	next.time=maxf(float(next.time),seconds);message="；".join(notices)
@@ -962,6 +988,7 @@ func save_location(map_id: String,cell: Vector2i,seconds: float,chat_log=null,ar
 	return apply(next,"save_location")
 
 func reference_trade(npc_id: String,id: String,buy: bool,seconds: float,uid: String="") -> bool:
+	if state.hp<=0:message="死亡期间不能买卖物品";return false
 	if npc_id=="server:merchant:126" and buy:message="桃源合成产物需要材料制作，不能直接购买";return false
 	if id=="ref:226" or MEDICINE_BUNDLES.has(id) or SCROLL_BUNDLES.has(id):message="金条和物品包请通过专门兑换或捆扎办理";return false
 	var shop:=EditionRegion.shop(npc_id)

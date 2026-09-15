@@ -32,15 +32,36 @@ func json(path: String) -> Dictionary:
 
 func initialize() -> bool:
 	var manifest=json("manifest.json")
-	if manifest.get("resource_version")!="2.0.1.11":return false
+	if manifest.get("resource_version")!="2.0.1.11":
+		if not errors.has(BASE+"manifest.json"):errors[BASE+"manifest.json"]="素材版本不兼容：需要 2.0.1.11，实际为 "+str(manifest.get("resource_version","未提供"))
+		return false
+	var requested=manifest.get("supplements",[])
+	if not requested is Array or not requested.all(func(value):return value is String):
+		errors[BASE+"manifest.json"]="supplements 必须是补充素材名称数组";return false
 	var supplement_path:=SUPPLEMENT_BASE+"manifest.json"
 	if FileAccess.file_exists(supplement_path):
 		var raw=JSON.parse_string(FileAccess.get_file_as_string(supplement_path))
 		if not raw is Dictionary or raw.get("format_version")!=1 or raw.get("base_resource_version")!="2.0.1.11":errors[supplement_path]="补充素材清单不兼容";return false
+		for key in ["frames","audio"]:
+			if not raw.get(key,{}) is Dictionary:errors[supplement_path]="补充素材 "+key+" 必须是字典";return false
+		for bank in raw.get("frames",{}):
+			if not raw.frames[bank] is Dictionary:errors[supplement_path]="补充图像库结构错误："+str(bank);return false
 		supplement=raw
-	elif manifest.get("supplements",[]).has("supplement16"):
+	elif requested.has("supplement16"):
 		errors[supplement_path]="16周年补充素材清单缺失";return false
-	maps=json("maps.json").get("maps",[])
+	var map_catalog:=json("maps.json")
+	if errors.has(BASE+"maps.json"):return false
+	var entries=map_catalog.get("maps")
+	if not entries is Array:errors[BASE+"maps.json"]="地图目录 maps 必须是数组";return false
+	var ids: Dictionary={}
+	for index in range(entries.size()):
+		var record=entries[index]
+		if not record is Dictionary or not record.get("id") is String or str(record.get("id","")).strip_edges().is_empty():
+			errors[BASE+"maps.json"]="地图记录 %d 缺少有效 ID"%index;return false
+		if ids.has(record.id):errors[BASE+"maps.json"]="地图 ID 重复："+record.id;return false
+		ids[record.id]=true
+	if entries.size()!=707:errors[BASE+"maps.json"]="地图目录数量不完整：需要707，实际%d"%entries.size();return false
+	maps=entries
 	var naming=JSON.parse_string(FileAccess.get_file_as_string("res://content/2011/map-names.json"))
 	if not naming is Dictionary:errors["map-names.json"]="地图名称目录缺失或损坏";return false
 	for entry in naming.get("entries",[]):map_names[entry.id]=entry
@@ -89,21 +110,35 @@ func initialize() -> bool:
 	npcs_by_map[EditionFireDragon.MAP].append({"id":EditionFireDragon.GUARD,"map":EditionFireDragon.MAP,"kind":"npc","name":"神殿接引员 · 单机","cell":[45,84],"bank":"npc","frame":900,"frames":4,"service":"fire_dragon"})
 	return maps.size()==707 and errors.is_empty()
 
-func frame_location(bank: String,index: int) -> Dictionary:
+static func valid_frame_entry(entry: Array) -> bool:
+	if entry.size()<6:return false
+	for field in range(6):
+		if not (entry[field] is int or entry[field] is float) or not is_finite(float(entry[field])) or float(entry[field])!=floor(float(entry[field])):return false
+	return entry[0]>=0 and entry[1]>0 and entry[2]>0 and entry[3]>0
+
+func frame_location(bank: String,index: int,visited: Array=[]) -> Dictionary:
 	if index<0:return {}
+	var frame_id:=bank+":"+str(index)
+	if frame_id in visited:errors[frame_id]="图像替代映射循环："+" → ".join(visited+[frame_id]);return {}
 	if not libraries.has(bank):
 		libraries[bank]=json("libraries/"+bank+".json") if FileAccess.file_exists(BASE+"libraries/"+bank+".json") else {}
-	var frames: Array=libraries[bank].get("frames",[])
-	if index<frames.size() and frames[index].size()>=6:
-		return {"entry":frames[index],"pack":bank,"path":BASE+"libraries/"+bank+".pngpack"}
-	var extra: Array=supplement.get("frames",{}).get(bank,{}).get(str(index),[])
-	if extra.size()>=6:return {"entry":extra,"pack":"@supplement16","path":SUPPLEMENT_BASE+"frames.pngpack"}
+	var frames=libraries[bank].get("frames",[])
+	if not frames is Array:errors[BASE+"libraries/"+bank+".json"]="frames 必须是数组";return {}
+	if index<frames.size():
+		var entry=frames[index]
+		if not entry is Array or (not entry.is_empty() and not valid_frame_entry(entry)):
+			errors[bank+":"+str(index)]="基础图像帧索引无效";return {}
+		if not entry.is_empty():return {"entry":entry,"pack":bank,"path":BASE+"libraries/"+bank+".pngpack"}
+	var extra=supplement.get("frames",{}).get(bank,{}).get(str(index),[])
+	if not extra is Array or (not extra.is_empty() and not valid_frame_entry(extra)):
+		errors[bank+":"+str(index)]="补充图像帧索引无效";return {}
+	if not extra.is_empty():return {"entry":extra,"pack":"@supplement16","path":SUPPLEMENT_BASE+"frames.pngpack"}
 	if finish_fallbacks.is_empty() and FileAccess.file_exists("res://content/2011/finish-fallbacks.json"):
 		finish_fallbacks=JSON.parse_string(FileAccess.get_file_as_string("res://content/2011/finish-fallbacks.json"))
 	var replacement: Dictionary=finish_fallbacks.get("aliases",{}).get(bank+":"+str(index),{})
 	if not replacement.is_empty():
 		fallback_used[bank+":"+str(index)]=replacement
-		return frame_location(replacement.bank,int(replacement.index))
+		return frame_location(replacement.bank,int(replacement.index),visited+[frame_id])
 	errors[bank+":"+str(index)]="基础与补充素材均缺少此帧";return {}
 func frame_bounds(bank: String,index: int) -> Rect2:
 	var location:=frame_location(bank.to_lower(),index)
@@ -113,19 +148,24 @@ func frame_bounds(bank: String,index: int) -> Rect2:
 
 func frame(bank: String,index: int) -> Dictionary:
 	bank=bank.to_lower()
-	var location:=frame_location(bank,index)
-	if location.is_empty():return {}
 	var key:=bank+":"+str(index)
 	clock+=1
 	if textures.has(key):
 		textures[key].used=clock;return textures[key]
+	# Cached frames already include their resolved fallback, bounds and texture.
+	# Resolve the source index only on a miss; scene changes clear this cache.
+	var location:=frame_location(bank,index)
+	if location.is_empty():return {}
 	var pack_key: String=location.pack
 	if not packs.has(pack_key):packs[pack_key]=FileAccess.open(location.path,FileAccess.READ)
 	if packs[pack_key]==null:errors[location.path]="图像包无法打开";return {}
 	var f: FileAccess=packs[pack_key];var entry: Array=location.entry
+	if entry[0]<0 or entry[1]<=0 or entry[2]<=0 or entry[3]<=0 or entry[0]>f.get_length() or entry[1]>f.get_length()-entry[0]:
+		errors[key]="图像帧范围越界："+str(location.path);return {}
 	f.seek(int(entry[0]));var data:=f.get_buffer(int(entry[1]))
 	var im:=Image.new()
 	if im.load_png_from_buffer(data)!=OK:errors[key]="PNG 数据损坏";return {}
+	if im.get_width()!=int(entry[2]) or im.get_height()!=int(entry[3]):errors[key]="PNG 尺寸与帧索引不一致："+str(location.path);return {}
 	var bytes:=im.get_width()*im.get_height()*4
 	while memory_bytes+bytes>192*1024*1024 and not textures.is_empty():
 		var oldest: String="";var age:=9223372036854775807
@@ -147,12 +187,31 @@ func sound(name: String) -> AudioStream:
 	# Exported WAVs are remapped to Godot samples. FileAccess cannot follow that remap.
 	var stream: AudioStream
 	if ResourceLoader.exists(path,"AudioStream"):stream=ResourceLoader.load(path,"AudioStream") as AudioStream
-	elif FileAccess.file_exists(path):stream=AudioStreamWAV.load_from_file(path)
+	elif FileAccess.file_exists(path):stream=AudioStreamWAV.load_from_buffer(wav_runtime_bytes(FileAccess.get_file_as_bytes(path)))
 	else:errors[path]="声音缺失";return null
 	if stream==null:errors[path]="WAV 解码失败";return null
 	if sounds.size()>=24:sounds.erase(sounds.keys()[0])
 	sounds[name]=stream
 	return stream
+
+static func wav_runtime_bytes(data: PackedByteArray) -> PackedByteArray:
+	# Some client WAVs contain a valid zero-loop sampler chunk. The engine
+	# attempts to read a loop record anyway. Omit only this empty metadata;
+	# preserve PCM, other chunks, and every actual loop definition.
+	if data.size()<12 or data.slice(0,4).get_string_from_ascii()!="RIFF" or data.slice(8,12).get_string_from_ascii()!="WAVE":return data
+	var result:=data.slice(0,12)
+	var cursor:=12;var changed:=false
+	while cursor+8<=data.size():
+		var size:=int(data.decode_u32(cursor+4))
+		var end:=cursor+8+size+(size%2)
+		if end>data.size():return data
+		var empty_sampler:=data.slice(cursor,cursor+4).get_string_from_ascii()=="smpl" and size==36 and data.decode_u32(cursor+36)==0 and data.decode_u32(cursor+40)==0
+		if empty_sampler:changed=true
+		else:result.append_array(data.slice(cursor,end))
+		cursor=end
+	if not changed or cursor!=data.size():return data
+	result.encode_u32(4,result.size()-8)
+	return result
 
 func sound_id(id: int) -> AudioStream:
 	var name: String=audio_catalog.get("sound_ids",{}).get(str(id),"")

@@ -10,6 +10,7 @@ var tab_buttons:=HBoxContainer.new()
 var list:=ItemList.new()
 var detail:=Label.new()
 var hint:=Label.new()
+var displayed_revision:=-1
 func setup(host) -> void:
 	app=host;size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	add_child(tabs);tabs.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
@@ -23,7 +24,23 @@ func setup(host) -> void:
 	list.item_activated.connect(func(index):cursor=index;operate())
 	for label in [detail,hint]:label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;label.add_theme_font_size_override("font_size",14);add_child(label)
 	refresh()
+func _process(_delta: float) -> void:
+	if app==null or not app.windows.windows.has("手柄操作"):return
+	if int(app.rules.state.get("revision",0))!=displayed_revision:
+		var selected: Dictionary=rows[cursor].duplicate(true) if cursor>=0 and cursor<rows.size() else {}
+		refresh()
+		for i in range(rows.size()):
+			var key: String="quest" if page==3 else "skill" if page==2 else "uid"
+			if not selected.is_empty() and rows[i].get(key)==selected.get(key):
+				cursor=i;list.select(i);list.ensure_current_is_visible();describe();break
+	var window=app.windows.windows["手柄操作"]
+	var fixed_height: float=tabs.get_combined_minimum_size().y+tab_buttons.get_combined_minimum_size().y+detail.get_combined_minimum_size().y+hint.get_combined_minimum_size().y+4*get_theme_constant("separation")
+	for sibling in window.body.get_children():
+		if sibling!=self and sibling is Control and sibling.visible:
+			fixed_height+=sibling.get_combined_minimum_size().y+window.body.get_theme_constant("separation")
+	list.custom_minimum_size.y=clampf(window.scroll.size.y-fixed_height,80,250)
 func refresh() -> void:
+	displayed_revision=int(app.rules.state.get("revision",0))
 	rows.clear();list.clear()
 	for i in range(tab_buttons.get_child_count()):tab_buttons.get_child(i).set_pressed_no_signal(i==page)
 	tabs.text="LB  ◀   "+["背包","装备","技能","任务"][page]+"   ▶  RB"
@@ -62,17 +79,26 @@ func describe() -> void:
 	detail.text=EditionRules.ITEMS[item.type].name+"\n"+EditionInventory.condition_text(item)+" · A "+("使用 / 穿戴" if page==0 else "脱下至背包")
 	if not item.is_empty() and EditionRules.ITEMS[item.type].has("material_bundle"):detail.text+="\n"+EditionRules.material_bundle_text(item.type)
 func operate(bind:=false) -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
+	if app.mode!="game" or app.windows.has_modal():return
 	if rows.is_empty() or app.world.paused or app.rules.state.hp<=0:return
 	var row: Dictionary=rows[cursor]
+	if page<2:
+		var current:=EditionInventory.find_item(app.rules.state,str(row.uid))
+		if current.get("container","")!=("inventory" if page==0 else "equipment"):
+			app.info("物品已移动或不存在，请重新选择。");refresh();return
 	if page==3:app.rules.track_story(row.quest);app.pending_message=app.rules.message
 	elif page==2:app.gameplay.select_skill(row.skill)
 	elif bind and page==0:app.rules.inventory_action("bind",{"uid":row.uid,"slot":quick});app.pending_message=app.rules.message
 	elif page==1:app.rules.inventory_action("move",{"uid":row.uid,"container":"inventory","slot":EditionInventory.free_slot(app.rules.state.items,"inventory")});app.pending_message=app.rules.message
 	else:app.gameplay.use_item_uid(row.uid)
+	app.info(app.pending_message)
 	refresh()
 func _input(event: InputEvent) -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
 	if app==null or app.mode!="game" or app.windows.order.is_empty() or app.windows.order.back()!="手柄操作" or app.windows.has_modal():return
 	if not event is InputEventJoypadButton or not event.pressed:return
+	if event.button_index==JOY_BUTTON_START:return
 	get_viewport().set_input_as_handled()
 	match event.button_index:
 		JOY_BUTTON_X:app.gameplay.show_assist()
@@ -87,5 +113,5 @@ func _input(event: InputEvent) -> void:
 		JOY_BUTTON_A:operate()
 		JOY_BUTTON_Y:
 			if page==0:operate(true)
-			elif page==3 and not rows.is_empty() and app.rules.state.get("tracked_story","")==rows[cursor].quest:
-				app.rules.track_story("");app.pending_message=app.rules.message;refresh()
+			elif page==3 and not app.world.paused and app.rules.state.hp>0 and not rows.is_empty() and app.rules.state.get("tracked_story","")==rows[cursor].quest:
+				app.rules.track_story("");app.info(app.rules.message);refresh()

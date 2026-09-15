@@ -30,7 +30,7 @@ func setup(host,person: Dictionary) -> void:
 	list.custom_minimum_size=Vector2(0,210);list.add_theme_font_size_override("font_size",17);add_child(list)
 	list.item_selected.connect(func(index):cursor=index)
 	list.item_activated.connect(func(index):cursor=index;open_detail())
-	text.custom_minimum_size=Vector2(0,285);text.bbcode_enabled=false;text.add_theme_font_size_override("normal_font_size",15);add_child(text)
+	text.custom_minimum_size=Vector2(0,235);text.bbcode_enabled=false;text.add_theme_font_size_override("normal_font_size",15);add_child(text)
 	hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;hint.add_theme_font_size_override("font_size",14);add_child(hint);refresh()
 func refresh(preserve_selection: bool=true) -> void:
 	quest_states=app.rules.state.get("quests",{}).duplicate(true)
@@ -88,7 +88,7 @@ func open_successors() -> void:
 	if not reading or rows.is_empty():return
 	var id: String=rows[cursor].id
 	if not Story.data().quests.any(func(q):return id in q.requires and actionable_successor(q)):return
-	navigation_history.append({"related_from":related_from,"cursor":cursor,"reading":reading,"prerequisites":prerequisites})
+	navigation_history.append({"related_from":related_from,"cursor":cursor,"selected_id":id,"reading":reading,"prerequisites":prerequisites})
 	related_from=id;prerequisites=false;cursor=0;refresh(false)
 func actionable_successor(q: Dictionary) -> bool:
 	return q.get("status","") not in ["planned","not_implemented","missing","disabled"] and (not q.has("jobs") or app.rules.character.job in q.jobs) and app.rules.state.quests.get(q.id)!="done" and Story.available(app.rules.state,q)
@@ -96,14 +96,19 @@ func open_prerequisites() -> void:
 	if not reading or rows.is_empty() or rows[cursor].novice:return
 	var id: String=rows[cursor].id
 	if Story.quest(id).requires.is_empty():return
-	navigation_history.append({"related_from":related_from,"cursor":cursor,"reading":reading,"prerequisites":prerequisites})
+	navigation_history.append({"related_from":related_from,"cursor":cursor,"selected_id":id,"reading":reading,"prerequisites":prerequisites})
 	related_from=id;prerequisites=true;cursor=0;refresh(false)
 func back() -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
 	if reading:refresh();return
 	if not navigation_history.is_empty():
 		var previous: Dictionary=navigation_history.pop_back()
 		related_from=previous.related_from;prerequisites=previous.prerequisites;cursor=previous.cursor;refresh(false)
-		if previous.reading:open_detail()
+		var restored:=false
+		for i in range(rows.size()):
+			if rows[i].id==previous.get("selected_id",""):
+				cursor=i;list.select(i);list.ensure_current_is_visible();restored=true;break
+		if previous.reading and restored:open_detail()
 	else:app.windows.close("手柄人物委托")
 func status(q: Dictionary) -> String:
 	if q.has("jobs") and app.rules.state.get("story_job","") not in q.jobs:return "限定职业："+"、".join(q.jobs)
@@ -176,6 +181,7 @@ func has_repair_service() -> bool:
 	return q.objectives.any(func(o):return o.type=="repair" and o.npc==npc.id)
 
 func operate() -> void:
+	if not is_inside_tree() or is_queued_for_deletion() or app.mode!="game" or app.windows.has_modal():return
 	if rows.is_empty() or app.world.paused or app.rules.state.hp<=0:return
 	if not app.rules.story_near(npc.id,app.world.metadata.id,app.world.player.cell):app.info("请回到任务人物身边");return
 	var row: Dictionary=rows[cursor]
@@ -186,7 +192,7 @@ func operate() -> void:
 	elif npc.id not in [Story.quest(row.id).start_npc,Story.quest(row.id).end_npc]:
 		app.info("此人物提供相关见闻或服务，请向交付人物办理委托");return
 	else:ok=app.rules.story_action(row.id,"submit" if app.rules.state.quests.get(row.id)=="accepted" else "accept",npc.id,app.world.metadata.id,app.world.player.cell)
-	app.pending_message=app.rules.message;app.info(app.rules.message)
+	app.info(app.rules.message)
 	if ok:
 		app.play_sound_id(106 if app.rules.state.quests.get(row.id)=="done" else 105)
 		if not row.novice:preload("res://scripts/edition2011/ui/story_cinematic.gd").play(app,Story.quest(row.id),"submit" if app.rules.state.quests.get(row.id)=="done" else "accept")
@@ -198,6 +204,7 @@ func request_abandon() -> void:
 	abandon_id=id
 	app.windows.confirm("放弃“"+str(Story.quest(id).title)+"”？\n任务记录进度将清除，物品、技能和财富保留。\nA 确认 · B 取消",func():finish_abandon(id))
 func finish_abandon(id: String) -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
 	abandon_id=""
 	if app.world.paused:app.info("请继续游戏后办理任务");return
 	app.rules.abandon_story(id);app.pending_message=app.rules.message;refresh()
@@ -206,17 +213,19 @@ func _abandon_input(event: InputEvent) -> void:
 	if app!=null and not abandon_id.is_empty() and app.windows.modal.visible and app.windows.pause_reason.is_empty():
 		if event is InputEventJoypadButton and event.pressed:
 			get_viewport().set_input_as_handled()
-			if event.button_index==JOY_BUTTON_B:app.windows.modal.hide();abandon_id=""
+			if event.button_index==JOY_BUTTON_B:app.windows.modal.canceled.emit();app.windows.modal.hide();abandon_id=""
 			elif event.button_index==JOY_BUTTON_A:
-				var id:=abandon_id;app.windows.modal.hide();finish_abandon(id)
+				app.windows.modal.confirmed.emit();app.windows.modal.hide();abandon_id=""
 		return
 
 func _input(event: InputEvent) -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
 	var confirming:=not abandon_id.is_empty()
 	_abandon_input(event)
 	if confirming:return
 	if app==null or app.mode!="game" or app.windows.has_modal() or app.windows.order.is_empty() or app.windows.order.back()!="手柄人物委托":return
 	if not event is InputEventJoypadButton or not event.pressed:return
+	if event.button_index==JOY_BUTTON_START:return
 	get_viewport().set_input_as_handled()
 	match event.button_index:
 		JOY_BUTTON_B,JOY_BUTTON_BACK:

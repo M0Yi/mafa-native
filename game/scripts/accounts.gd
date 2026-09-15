@@ -38,12 +38,17 @@ func valid_db(value) -> bool:
 		if a.has("archived") and (not a.archived is Array or a.archived.size()>256):return false
 		ids[a.id]=true;names[a.username]=true
 		var char_names: Dictionary={}
-		for c in a.characters:
+		var records: Array=a.characters+a.get("archived",[])
+		for index in range(records.size()):
+			var c=records[index]
+			var active: bool=index<a.characters.size()
 			if not c is Dictionary or not c.get("id") is String or not c.get("name") is String:return false
 			if not matches(c.id,"^[0-9a-f]{32}$") or character_ids.has(c.id):return false
-			if not matches(c.name,"^[\\p{L}\\p{N}_·]{2,12}$") or char_names.has(c.name.to_lower()):return false
+			if not matches(c.name,"^[\\p{L}\\p{N}_·]{2,12}$") or (active and char_names.has(c.name.to_lower())):return false
 			if c.get("job") not in JOBS or c.get("gender") not in GENDERS or c.get("level")!=1:return false
-			character_ids[c.id]=true;char_names[c.name.to_lower()]=true
+			if c.has("initial_preset") and c.initial_preset not in ["easy","classic"]:return false
+			character_ids[c.id]=true
+			if active:char_names[c.name.to_lower()]=true
 	return true
 
 func load_database() -> bool:
@@ -138,8 +143,9 @@ func character_directory(id: String) -> String:
 	if current_id.is_empty() or character(id).is_empty():return ""
 	return directory.path_join("profiles").path_join(current_id).path_join(id)
 
-func create_character(name: String,job: String,gender: String,import_legacy := false) -> Dictionary:
+func create_character(name: String,job: String,gender: String,import_legacy := false,initial_preset: String="") -> Dictionary:
 	message="";name=name.strip_edges()
+	if initial_preset not in ["","easy","classic"]:message="请选择有效的成长档位。";return {}
 	if account().is_empty():message="请先登录。";return {}
 	if not matches(name,"^[\\p{L}\\p{N}_·]{2,12}$"):message="角色名需要 2–12 个汉字、字母、数字或 _·。";return {}
 	if job not in JOBS or gender not in GENDERS:message="请选择有效的职业和性别。";return {}
@@ -147,6 +153,7 @@ func create_character(name: String,job: String,gender: String,import_legacy := f
 	for c in characters():
 		if c.name.to_lower()==name.to_lower():message="这个角色名已被使用。";return {}
 	var c: Dictionary={"id":Crypto.new().generate_random_bytes(16).hex_encode(),"name":name,"job":job,"gender":gender,"level":1,"created":Time.get_unix_time_from_system()}
+	if not initial_preset.is_empty():c.initial_preset=initial_preset
 	var next:=data.duplicate(true)
 	for a in next.accounts:
 		if a.id==current_id:a.characters.append(c)

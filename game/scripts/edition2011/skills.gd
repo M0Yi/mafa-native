@@ -78,7 +78,7 @@ const DEFINITIONS={
   "cooldown": 0.8,
   "range": 2,
   "power": 1.5,
-  "action": "heavy_attack",
+  "action": "attack",
   "sound": "m12-1.wav",
   "serial": 12
  },
@@ -90,7 +90,7 @@ const DEFINITIONS={
   "cooldown": 1.2,
   "range": 1,
   "power": 1.2,
-  "action": "wide_attack",
+  "action": "attack",
   "sound": "m25-1.wav",
   "serial": 25
  },
@@ -102,7 +102,7 @@ const DEFINITIONS={
   "cooldown": 6.0,
   "range": 1,
   "power": 2.6,
-  "action": "heavy_attack",
+  "action": "attack",
   "sound": "m26-1.wav",
   "serial": 26
  },

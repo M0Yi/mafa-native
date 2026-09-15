@@ -31,4 +31,8 @@ func action(box: Node,text: String,callback: Callable,enabled:=true) -> Button:
 		button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 		button.tooltip_text=text.trim_prefix("◆ ")
 		if text.begins_with("◆ "):button.add_theme_color_override("font_color",Color("ffe1a0"))
-	box.add_child(button);button.pressed.connect(callback);return button
+	box.add_child(button)
+	button.pressed.connect(func():
+		if not button.is_inside_tree() or button.is_queued_for_deletion() or button.disabled:return
+		callback.call())
+	return button

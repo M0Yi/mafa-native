@@ -30,16 +30,18 @@ func select(index: int) -> void:
 		var label:=Label.new();label.text=row[1];label.size_flags_horizontal=Control.SIZE_EXPAND_FILL;label.add_theme_font_size_override("font_size",16);line.add_child(label)
 		var control: Control
 		if row.size()==2:
-			var check:=CheckButton.new();control=check;check.text="开启";check.button_pressed=app.rules.state.get("assist",{}).get(row[0],row[0] in ["gold","equipment","materials"])
+			var check:=CheckButton.new();control=check;check.button_pressed=app.rules.state.get("assist",{}).get(row[0],row[0] in ["gold","equipment","materials"])
+			check.text="已开启" if check.button_pressed else "已关闭"
 			check.toggled.connect(func(value):
 				if not app.rules.set_assist(row[0],value):check.set_pressed_no_signal(not value)
+				check.text="已开启" if check.button_pressed else "已关闭"
 				app.info(app.rules.message))
 		else:
 			var number:=SpinBox.new();number.focus_mode=Control.FOCUS_ALL;control=number;number.min_value=1;number.max_value=12 if row[0]=="radius" else 95;number.step=1;number.value=app.rules.state.get("assist",{}).get(row[0],row[2])
 			number.value_changed.connect(func(value):
 				if not app.rules.set_assist(row[0],value):number.set_value_no_signal(app.rules.state.get("assist",{}).get(row[0],row[2]))
 				app.info(app.rules.message))
-		control.custom_minimum_size=Vector2(160,42);line.add_child(control);controls.append(control)
+		control.custom_minimum_size=Vector2(160,42);line.add_child(control);register_control(control)
 	if page==4:
 		add_action("将当前位置设为活动中心",func():app.gameplay.origin=app.world.player.cell;app.gameplay.origin_map=app.world.metadata.id;app.info("活动中心已更新"))
 		add_action("加点与便利用品",app.gameplay.show_utilities)
@@ -49,15 +51,24 @@ func select(index: int) -> void:
 	if page==1:hint.text+="\n只拾取角色所在格的物品，背包或负重不足时保留在地上。"
 	if not controls.is_empty():controls[0].grab_focus()
 func add_action(title: String,callback: Callable) -> void:
-	var b:=Button.new();b.text=title;b.custom_minimum_size.y=42;body.add_child(b);b.pressed.connect(callback);controls.append(b)
+	var b:=Button.new();b.text=title;b.custom_minimum_size.y=42;body.add_child(b);b.pressed.connect(callback);register_control(b)
+func register_control(control: Control) -> void:
+	controls.append(control)
+	var sync:=func():
+		var index:=controls.find(control)
+		if index>=0:cursor=index
+	control.focus_entered.connect(sync)
+	if control is SpinBox:control.get_line_edit().focus_entered.connect(sync)
 func _process(_delta: float) -> void:
 	if app==null or not app.windows.windows.has("内挂设置"):return
 	var win=app.windows.windows["内挂设置"]
 	var zoom:=EditionDisplay.ui_zoom(app.get_viewport_rect().size,app.windows.requested_scale,app.display_density)
 	win.custom_minimum_size=app.get_viewport_rect().size/zoom-Vector2(24,24);win.size=win.custom_minimum_size;win.position=Vector2(12,12)
 func _input(event: InputEvent) -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
 	if app==null or app.windows.order.is_empty() or app.windows.order.back()!="内挂设置" or app.windows.has_modal():return
 	if not event is InputEventJoypadButton or not event.pressed:return
+	if event.button_index==JOY_BUTTON_START:return
 	get_viewport().set_input_as_handled()
 	match event.button_index:
 		JOY_BUTTON_LEFT_SHOULDER:select(page-1)

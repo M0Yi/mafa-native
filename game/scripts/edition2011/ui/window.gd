@@ -18,6 +18,13 @@ var close_button:=EditionSkinButton.new()
 var scroll:=ScrollContainer.new()
 var native_mode:=false
 var surface_mask: BitMap
+var preferred_size:=Vector2.ZERO
+var reserved_bottom:=0.0
+var fixed_notice:=false
+
+func pin_notice() -> void:
+	if fixed_notice:return
+	fixed_notice=true;body.remove_child(notice);add_child(notice)
 
 static func skin_style(res: EditionResources,index:=380) -> StyleBoxTexture:
 	var style:=StyleBoxTexture.new();var frame:=res.frame("prguse",index)
@@ -29,7 +36,7 @@ static func skin_style(res: EditionResources,index:=380) -> StyleBoxTexture:
 	return style
 
 func configure(id: String,title: String,res: EditionResources,dimensions:=Vector2(416,360)) -> void:
-	window_id=id;resources=res;size=dimensions;custom_minimum_size=dimensions
+	window_id=id;resources=res;size=dimensions;custom_minimum_size=dimensions;preferred_size=dimensions
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	var skin:=res.frame("prguse",384)
 	if not skin.is_empty():background.texture=skin.texture
@@ -84,16 +91,28 @@ func layout_skin() -> void:
 	close_button.position=Vector2(size.x-17,1)
 	scroll.position=Vector2(12,38);scroll.size=size-Vector2(42,51)
 	notice.custom_minimum_size.x=0;notice.visible=not notice.text.is_empty()
+	if fixed_notice and notice.visible:
+		notice.size.x=scroll.size.x
+		var height:=notice.get_combined_minimum_size().y
+		notice.position=Vector2(scroll.position.x,size.y-13-height)
+		notice.size.y=height
+		scroll.size.y=maxf(40,notice.position.y-scroll.position.y-8)
 
 func _process(_delta: float) -> void:
-	layout_skin()
 	var bounds: Vector2=get_viewport_rect().size/get_parent().scale
+	bounds.y=maxf(120,bounds.y-reserved_bottom)
+	if reserved_bottom>0 and not native_mode:
+		custom_minimum_size=Vector2(minf(preferred_size.x,bounds.x),minf(preferred_size.y,bounds.y))
+		size=custom_minimum_size
+	layout_skin()
 	var available:=(bounds-size).max(Vector2.ZERO)
 	if placement.x<0:placement=position.clamp(Vector2.ZERO,available)/available.max(Vector2.ONE)
 	if not dragging:position=EditionDisplay.restore_position(placement,bounds,size)
 
 func drag_to(pointer: Vector2) -> void:
-	var available: Vector2=(get_viewport_rect().size/get_parent().scale-size).max(Vector2.ZERO)
+	var bounds: Vector2=get_viewport_rect().size/get_parent().scale
+	bounds.y=maxf(120,bounds.y-reserved_bottom)
+	var available: Vector2=(bounds-size).max(Vector2.ZERO)
 	position=(window_origin+(pointer-pointer_origin)/get_parent().scale).round().clamp(Vector2.ZERO,available)
 	placement=position/available.max(Vector2.ONE)
 
@@ -112,10 +131,12 @@ func navigation_buttons(node: Node) -> Array[Button]:
 	return result
 
 func _input(event: InputEvent) -> void:
-	if not button_navigation or not event is InputEventJoypadButton or not event.pressed:return
+	if not is_inside_tree() or is_queued_for_deletion() or not button_navigation or not event is InputEventJoypadButton or not event.pressed:return
 	var manager=get_parent()
 	if manager.order.is_empty() or manager.order.back()!=window_id or manager.has_modal():return
 	if event.button_index not in [JOY_BUTTON_A,JOY_BUTTON_B,JOY_BUTTON_DPAD_UP,JOY_BUTTON_DPAD_DOWN]:return
+	var focus:=get_viewport().gui_get_focus_owner()
+	if event.button_index!=JOY_BUTTON_B and (focus is LineEdit or focus is TextEdit):return
 	get_viewport().set_input_as_handled()
 	if event.button_index==JOY_BUTTON_B:manager.close(window_id);return
 	if not manager.app.gameplay.available():return

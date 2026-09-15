@@ -8,6 +8,7 @@ var title:=Label.new()
 var list:=ItemList.new()
 var detail:=Label.new()
 var result:=Label.new()
+var displayed_revision:=-1
 func setup(host,keeper: Dictionary) -> void:
 	app=host;npc=keeper.duplicate(true);size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	add_child(title);list.custom_minimum_size=Vector2(0,220);add_child(list)
@@ -15,6 +16,7 @@ func setup(host,keeper: Dictionary) -> void:
 	list.item_selected.connect(func(index):cursor=index;describe())
 	refresh()
 func refresh() -> void:
+	displayed_revision=int(app.rules.state.get("revision",0))
 	rows.clear();list.clear()
 	title.text=npc.name+" · "+("背包 → 仓库" if page==0 else "仓库 → 背包")
 	for item in app.rules.state.items:
@@ -23,10 +25,19 @@ func refresh() -> void:
 	cursor=clampi(cursor,0,maxi(0,rows.size()-1))
 	if not rows.is_empty():list.select(cursor);list.ensure_current_is_visible()
 	describe()
+func _process(_delta: float) -> void:
+	if app==null or displayed_revision==int(app.rules.state.get("revision",0)):return
+	var uid: String=rows[cursor].uid if cursor>=0 and cursor<rows.size() else ""
+	refresh()
+	for i in range(rows.size()):
+		if rows[i].uid==uid:
+			cursor=i;list.select(i);list.ensure_current_is_visible();break
 func describe() -> void:
 	detail.text="LB/RB 切换背包与仓库 · 上下选择\nA "+("存入" if page==0 else "取回")+"选中整组物品 · B 关闭"
 	if rows.is_empty():detail.text+="\n此页没有物品。"
 func operate() -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
+	if app.mode!="game" or app.windows.has_modal():return
 	if not app.near_reference_npc(npc):result.text="请回到保管员身边，并继续游戏后办理。";return
 	if rows.is_empty():return
 	var row: Dictionary=rows[cursor]
@@ -36,8 +47,10 @@ func operate() -> void:
 	app.rules.inventory_action("move",{"uid":row.uid,"container":target,"slot":EditionInventory.free_slot(app.rules.state.items,target)})
 	result.text=app.rules.message;app.pending_message=result.text;refresh()
 func _input(event: InputEvent) -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
 	if app==null or app.windows.order.is_empty() or app.windows.order.back()!="手柄仓库" or app.windows.has_modal():return
 	if not event is InputEventJoypadButton or not event.pressed:return
+	if event.button_index==JOY_BUTTON_START:return
 	get_viewport().set_input_as_handled()
 	match event.button_index:
 		JOY_BUTTON_B,JOY_BUTTON_BACK:app.windows.close("手柄仓库")

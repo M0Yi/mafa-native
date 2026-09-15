@@ -1,5 +1,6 @@
 import importlib.util,json,sys,tempfile,unittest
 from pathlib import Path
+from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools'))
 from convert_client2011 import child
 from import_client import validate
@@ -7,6 +8,15 @@ class ImportTests(unittest.TestCase):
  def test_case_insensitive_directories(self):
   with tempfile.TemporaryDirectory() as raw:
    p=Path(raw);(p/'dAtA').mkdir();self.assertEqual(child(p,'Data').name,'dAtA')
+ def test_unicode_and_space_path(self):
+  with tempfile.TemporaryDirectory(prefix='玛法 客户端 ') as raw:
+   p=Path(raw);folder=p/'mAp';folder.mkdir()
+   self.assertEqual(child(p,'Map'),folder)
+ def test_ambiguous_case_is_rejected(self):
+  p=Path('/fixture/client')
+  # Simulate a case-sensitive filesystem without requiring one on the host Mac.
+  with patch.object(Path,'iterdir',return_value=iter([p/'Data',p/'DATA'])):
+   with self.assertRaisesRegex(ValueError,'ambiguous'):child(p,'Data')
  def test_missing_directory(self):
   with tempfile.TemporaryDirectory() as raw:
    with self.assertRaises(ValueError):child(Path(raw),'Map')

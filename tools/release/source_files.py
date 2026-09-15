@@ -2,8 +2,11 @@
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 def files():
- exact=['game/tests2011/promo_capture.gd','tools/run_dev.py','启动最新开发版.command','.gitignore','README.md','game/project.godot','game/export_presets.cfg','game/bootstrap.tscn','game/edition2011.tscn','game/main.tscn','game/session.tscn','tools/import_client.py','tools/convert_client2011.py','tools/client2011_formats.py','tools/client16_formats.py','tools/supplement_client16.py','tools/build.py','tools/build2011.py','docs/GODOT_LICENSE.txt','docs/MIRGO_LICENSE.txt']
+ exact=['AGENTS.md','docs/SKILL_EFFECTS_REPAIR.md','game/tests2011/promo_capture.gd','tools/run_dev.py','tools/sample_process.py','tools/check_item_ui_closeout.py','启动最新开发版.command','.gitignore','README.md','game/project.godot','game/export_presets.cfg','game/bootstrap.tscn','game/edition2011.tscn','game/main.tscn','game/session.tscn','tools/import_client.py','tools/convert_client2011.py','tools/client2011_formats.py','tools/client16_formats.py','tools/supplement_client16.py','tools/build.py','tools/build2011.py','docs/GODOT_LICENSE.txt','docs/MIRGO_LICENSE.txt']
  selected=[ROOT/p for p in exact]
+ # Ship reproducible checks, never their generated captures or test databases.
+ for p in (ROOT/'game/tests2011').rglob('*'):
+  if p.is_file() and not p.is_symlink() and p.suffix in {'.gd','.uid'}:selected.append(p)
  for folder in ['game/scripts','game/content','game/fonts','game/addons','tools/release','tests/release','release','.github']:
   for p in (ROOT/folder).rglob('*'):
    if not p.is_file() or p.is_symlink() or any(x in p.parts for x in ['__pycache__','media','.DS_Store']):continue
@@ -14,6 +17,8 @@ def audit():
  forbidden={'.wil','.wix','.wis','.wzl','.wzx','.uib','.wav','.pngpack','.mapbin','.walk','.map','.sqlite','.login','.mp4','.avi'}
  for p in files():
   assert p.is_file(),p
+  assert not p.is_symlink(),p
+  assert p.resolve().is_relative_to(ROOT.resolve()),p
   assert p.suffix.lower() not in forbidden,p
   assert not any(part in p.relative_to(ROOT).parts for part in ['assets','.cache','mirgo','artifacts','data']),p
  return files()

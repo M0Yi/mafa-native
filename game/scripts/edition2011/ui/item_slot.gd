@@ -15,15 +15,23 @@ func setup(host,container: String,index: int) -> void:
 	var style:=StyleBoxFlat.new();style.bg_color=Color(0.03,0.025,0.02,0.18);style.border_color=Color(0.55,0.45,0.25,0.4);style.set_border_width_all(1)
 	add_theme_stylebox_override("normal",style)
 	pressed.connect(func():
-		if not item.is_empty():app.selected_item_uid=item.uid;app.pending_message=tooltip_text;app.play_sound_id(EditionRules.item_sound(item.type)))
+		if item_is_current():app.selected_item_uid=item.uid;app.pending_message=tooltip_text;app.play_sound_id(EditionRules.item_sound(item.type)))
 	gui_input.connect(func(event):
-		if event is InputEventMouseButton and event.pressed and not item.is_empty():
+		if event is InputEventMouseButton and event.pressed and item_is_current():
 			if event.button_index==MOUSE_BUTTON_RIGHT or event.double_click:
+				if app.mode!="game" or app.rules.state.hp<=0 or app.windows.has_modal():accept_event();return
+				if app.world.paused:app.pending_message="请继续游戏后操作物品";accept_event();return
+				if container_id=="warehouse" and not app.warehouse_access_allowed():accept_event();return
 				var ok:=false
 				if container_id in ["equipment","warehouse"]:ok=app.rules.inventory_action("move",{"uid":item.uid,"container":"inventory","slot":EditionInventory.free_slot(app.rules.state.items,"inventory")})
 				else:ok=app.gameplay.use_item_uid(item.uid)
 				if container_id in ["equipment","warehouse"]:app.pending_message=app.rules.message
 				accept_event())
+
+func item_is_current() -> bool:
+	if not is_inside_tree() or is_queued_for_deletion() or item.is_empty():return false
+	var current:=EditionInventory.find_item(app.rules.state,str(item.get("uid","")))
+	return current.get("container","")==container_id and int(current.get("slot",-1))==slot_index
 
 func _process(_delta: float) -> void:
 	if app==null:return
@@ -45,12 +53,18 @@ func _process(_delta: float) -> void:
 	tooltip_text+="\n拖拽移动 · 右键/双击取回背包" if container_id=="warehouse" else "\n拖拽移动 · 右键/双击使用或穿脱"
 
 func _get_drag_data(_position: Vector2):
-	if item.is_empty() or app.world.paused:return null
+	if not item_is_current() or app.mode!="game" or app.world.paused or app.rules.state.hp<=0 or app.windows.has_modal():return null
 	var preview:=Label.new();preview.text=EditionRules.ITEMS[item.type].name;set_drag_preview(preview)
 	return {"kind":"item","uid":item.uid,"character":app.rules.character.id}
 
 func _can_drop_data(_position: Vector2,data) -> bool:
-	return data is Dictionary and data.get("kind")=="item" and data.get("character")==app.rules.character.id and not app.world.paused
+	if not is_inside_tree() or is_queued_for_deletion() or app==null or app.mode!="game":return false
+	if app.windows.has_modal():return false
+	if not data is Dictionary or data.get("kind")!="item" or data.get("character")!=app.rules.character.id or app.world.paused or app.rules.state.hp<=0:return false
+	if not data.get("uid") is String or data.uid.is_empty():return false
+	var source:=EditionInventory.find_item(app.rules.state,data.uid)
+	if (container_id=="warehouse" or source.get("container")=="warehouse") and not app.warehouse_access_allowed():return false
+	return not source.is_empty()
 
 func _drop_data(_position: Vector2,data) -> void:
 	if not _can_drop_data(_position,data):return

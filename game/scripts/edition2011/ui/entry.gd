@@ -17,6 +17,7 @@ var chosen_sex:=0
 var difficulty:="easy"
 var selection_time:=0.0
 var busy:=false
+var pending_creation: Dictionary={}
 var artwork: Array=[]
 var portraits: Array=[]
 var modal_text:=""
@@ -26,6 +27,9 @@ var remembered_user:=""
 var selection_effect: TextureRect
 const REVIVAL_DURATION:=0.65
 const Layout=preload("res://scripts/edition2011/ui/entry_layout.gd")
+
+func _notification(what: int) -> void:
+	if what==NOTIFICATION_PREDELETE and is_instance_valid(canvas) and canvas.get_parent()==null:canvas.free()
 
 func setup(host) -> void:
 	app=host
@@ -68,6 +72,7 @@ func input(key: String,rect: Rect2,secret:=false) -> LineEdit:
 	node.add_theme_constant_override("minimum_character_width",1)
 	canvas.add_child(node);node.size=rect.size;fields[key]=node
 	node.text_submitted.connect(func(_value):
+		if busy or not node.is_inside_tree() or node.is_queued_for_deletion() or not node.editable:return
 		get_viewport().set_input_as_handled()
 		submit())
 	return node
@@ -79,7 +84,7 @@ func button(id: String,rect: Rect2,callback: Callable,normal:=-1,pressed:=-1,cap
 	b.normal_frame=normal;b.pressed_frame=pressed;b.text=caption;b.tooltip_text={"login":"登录本机账号","register":"注册本机账号","password":"修改密码","quit":"退出游戏","back":"返回","enter":"进入游戏","delete":"删除选中角色","create":"创建角色","restore":"恢复已删除角色","recovery":"恢复本机账号","register_submit":"创建账号","create_submit":"创建角色","close":"关闭","confirm":"确认","logout":"返回登录"}.get(id,caption)
 	b.add_theme_font_size_override("font_size",14);canvas.add_child(b);controls[id]=b
 	b.pressed.connect(func():
-		if busy:return
+		if busy or b.disabled or not b.is_inside_tree() or b.is_queued_for_deletion():return
 		if sound_id>=0:app.play_sound_id(sound_id)
 		callback.call())
 	return b
@@ -258,10 +263,19 @@ func build_create() -> void:
 func difficulty_text() -> String:return "轻松：经验×3 / 金币×2" if difficulty=="easy" else "经典：经验×1 / 金币×1"
 
 func create_character() -> void:
-	var c: Dictionary=app.accounts.create_character(fields.name.text,LocalAccounts.JOBS[chosen_job],LocalAccounts.GENDERS[chosen_sex])
-	if c.is_empty():notify(app.accounts.message);return
+	if not pending_creation.is_empty() and (pending_creation.account!=app.accounts.current_id or app.accounts.character(pending_creation.id).is_empty()):pending_creation={}
+	var c: Dictionary={}
+	if not pending_creation.is_empty():
+		c=app.accounts.character(pending_creation.id)
+		if fields.name.text.strip_edges()!=c.name or LocalAccounts.JOBS[chosen_job]!=c.job or LocalAccounts.GENDERS[chosen_sex]!=c.gender:
+			notify("角色「%s」已创建，初始化尚未完成；请保持原名称、职业和性别重试，或返回选角。"%c.name);return
+	else:
+		c=app.accounts.create_character(fields.name.text,LocalAccounts.JOBS[chosen_job],LocalAccounts.GENDERS[chosen_sex],false,difficulty)
+		if c.is_empty():notify(app.accounts.message);return
+		pending_creation={"account":app.accounts.current_id,"id":c.id,"preset":difficulty}
 	# Attach saves the immutable preset before returning to the roster.
-	if not app.rules.attach(c,difficulty):notify(app.rules.message);return
+	if not app.rules.attach(c,pending_creation.preset):notify("角色已保留，初始化未完成："+app.rules.message+"。请再次点击创建重试。");return
+	pending_creation={}
 	selected_id="";previous_id="";roster_page=(app.accounts.characters().size()-1)/2
 	# Start one matching revival event when the successfully saved character appears.
 	select_character(c.id);show_page("roster")
@@ -276,7 +290,11 @@ func quit_prompt() -> void:modal_text="确定退出游戏？";show_page("quit")
 
 func confirm_modal() -> void:
 	match page:
-		"notice":visible=false;app.start_character(app.accounts.character(selected_id))
+		"notice":
+			app.start_character(app.accounts.character(selected_id))
+			if app.mode!="game":
+				var reason: String=app.pending_message
+				show_page("roster");notify(reason)
 		"credits":show_page("roster")
 		"quit":app._notification(NOTIFICATION_WM_CLOSE_REQUEST)
 		"recovery_code":app.accounts.last_recovery_code="";show_page("login")
@@ -296,12 +314,18 @@ func authenticate(kind: String) -> void:
 	var use_saved:=kind=="login" and password.is_empty() and user.strip_edges().to_lower()==remembered_user and not remembered_user.is_empty()
 	busy=true;auth_kind=kind;notify("正在验证，请稍候…")
 	for b in controls.values():b.disabled=true
-	app.thread.start(func():
+	var start_error: int=app.thread.start(func():
 		match kind:
 			"login":return EditionRememberedLogin.login(app.accounts,user) if use_saved else app.accounts.login(user,password)
 			"register":return app.accounts.register_account(user,password,confirmation)
 			"recovery":return app.accounts.recover_password(user,old,password,confirmation)
 		return app.accounts.change_password(user,old,password,confirmation))
+	if start_error!=OK:authentication_start_failed(start_error)
+
+func authentication_start_failed(error: int) -> void:
+	busy=false
+	for control in controls.values():control.disabled=false
+	notify("无法启动本机账号验证，请重试（错误 %d）"%error)
 
 func finish_auth(ok: bool) -> void:
 	busy=false

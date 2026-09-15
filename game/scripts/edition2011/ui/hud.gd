@@ -63,8 +63,8 @@ func logout() -> void:
 
 func use_quick(index: int) -> void:
 	if app.world.paused or app.rules.state.hp<=0:return
-	var ids: Array=app.rules.state.get("quickbar",["potion","mana","","","",""])
-	if index>=ids.size() or str(ids[index]).is_empty():app.pending_message="这个快捷栏尚未绑定物品";return
+	var ids: Array=EditionInventory.quick_bindings(app.rules.state)
+	if index<0 or index>=ids.size() or str(ids[index]).is_empty():app.pending_message="这个快捷栏尚未绑定物品";return
 	app.gameplay.use_type(ids[index])
 
 func blocks_pointer() -> bool:

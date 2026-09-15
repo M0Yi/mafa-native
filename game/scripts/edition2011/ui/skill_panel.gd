@@ -2,6 +2,8 @@ extends "res://scripts/edition2011/ui/journal_layout.gd"
 var app
 var selected: String=""
 var filter:=0
+var observed_revision: int=-1
+var observed_state: Dictionary={}
 func setup(host) -> void:
 	app=host;build()
 	for i in range(3):action(toolbar,["本职业","已学习","未学习"][i],func():filter=i;refresh())
@@ -9,7 +11,21 @@ func setup(host) -> void:
 	action(self,"技能书商店",app.gameplay.show_books)
 	action(self,"客户端技能说明（含尚未实现条目）",app.show_skill_catalog)
 	refresh()
+func presentation_state() -> Dictionary:
+	var books: Dictionary={}
+	var ranks: Dictionary={}
+	for id in app.rules.state.skills:ranks[id]=app.rules.state.skills[id].get("rank",1)
+	for type in app.rules.state.inventory:
+		if not EditionRules.ITEMS.get(type,{}).get("skill_book","").is_empty():books[type]=app.rules.state.inventory[type]
+	return {"level":app.rules.state.level,"skills":ranks,"books":books,"current":app.gameplay.current_skill(),"job":app.rules.character.job,"accuracy":app.rules.melee_accuracy() if selected=="spirit" else 0}
+func _process(_delta: float) -> void:
+	if app==null or not is_visible_in_tree():return
+	var revision: int=int(app.rules.state.get("revision",0))
+	if revision==observed_revision:return
+	observed_revision=revision
+	if presentation_state()!=observed_state:refresh()
 func refresh() -> void:
+	observed_revision=int(app.rules.state.get("revision",0));observed_state=presentation_state()
 	clear(entries);clear(details)
 	var ids: Array=[]
 	for id in EditionSkills.DEFINITIONS:

@@ -15,8 +15,10 @@ func refresh() -> void:
 func _process(_delta: float) -> void:
 	if app!=null and revision!=int(app.rules.state.get("revision",0)):refresh()
 func _input(event: InputEvent) -> void:
+	if not is_inside_tree() or is_queued_for_deletion():return
 	if app==null or app.mode!="game" or app.windows.has_modal() or app.windows.order.is_empty() or app.windows.order.back()!="手柄技能指引":return
 	if not event is InputEventJoypadButton or not event.pressed:return
+	if event.button_index==JOY_BUTTON_START:return
 	get_viewport().set_input_as_handled()
 	match event.button_index:
 		JOY_BUTTON_B,JOY_BUTTON_BACK:app.windows.close("手柄技能指引")

@@ -1,0 +1,519 @@
+{
+  "created": "2026-09-13",
+  "scope": "现有内容收尾，操作页面优先；地图仅代表场景和已知卡点抽查，不逐张检查全部地图",
+  "plan": "CLOSEOUT_PLAN.md",
+  "automatic_goal": "blocked",
+  "tasks": [
+    {
+      "id": "C00",
+      "title": "建立收尾基线",
+      "status": "done",
+      "evidence": []
+    },
+    {
+      "id": "C01",
+      "title": "现有发布单元检查",
+      "status": "done",
+      "evidence": [
+        "2026-09-13 tests/release: 5 passed"
+      ]
+    },
+    {
+      "id": "C02",
+      "title": "导入异常与重试",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-import-tests.log: 12 tests passed; 7 fault injection tests",
+        "artifacts/closeout-bootstrap-check.log",
+        "artifacts/closeout-supplement-tests.log: 29 tests passed including interrupted generation retry",
+        "artifacts/closeout-cache-startup.json: real checker processes; independent status directories and native close-request guard passed headlessly",
+        "artifacts/closeout-launcher-startup-regression.log：经tools/run_dev.py实际启动本机Godot，导入错误与错误配置恢复三个标志通过；headless隔离配置，非完整导入或真实输入。",
+        "artifacts/ui-closeout-pages/report.json：18组页面回归通过；导入错误测试真实启动并等待3个Godot --version子进程退出，验证状态缺失/未写完/数组格式时恢复重试提示。修复状态JSON解析错误日志；不是完整导入中断恢复实测。",
+        "artifacts/closeout-full-import-interruption.json、artifacts/closeout-full-import-interruption.log及check_full_import_interruption.py：原十周年真实转换在chrsel图集写入1888464字节时杀进程组(-9)，同独立输出重试完整转换exit0/ready，新generation通过导入器校验，707地图/780音频；独立临时缓存已清理。非GUI强退或补充库转换中断。",
+        "artifacts/closeout-parallel-cache-verification.json及check_parallel_cache_verification.py：同时启动两个真实verify-cache进程，共享只读缓存、独立状态目录，均exit0/ready。未验证两个应用共享resources.cfg写入。",
+        "artifacts/closeout-supplement-interruption.json：实际补充转换在写入4039字节后检查点暂停并SIGKILL，未插桩重试退出0且validate_supplement通过；临时输出清理。非完整导入GUI中断。",
+        "artifacts/closeout-supplement-interruption.json：补充转换首次写入4039字节后终止，退出-9；无插桩重试退出0，临时输出清理。覆盖独立真实补充转换子进程，不覆盖完整导入GUI或多实例共享设置。"
+      ],
+      "remaining": [
+        "应用界面强退后重新启动、重选客户端和恢复导入的实际操作验证",
+        "完整导入界面在十六周年补充阶段中断后的恢复流程（独立补充转换子进程中断／重试已有证据）",
+        "启动页真实鼠标交互与多应用实例共享设置的验证"
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "缓存完整性验收",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-cache-tests.log: 21 tests passed",
+        "artifacts/closeout-real-cache-check.log: 707 real maps, all base library hashes and frame bounds, catalogued WAV hashes/header checks",
+        "artifacts/closeout-supplement-tests.log: supplement SHA-256, frame bounds, PNG decode/dimensions and WAV validation",
+        ".cache/closeout-cache-verification/import-status.json: real base and supplement cache ready",
+        "artifacts/closeout-cache-startup.json: valid cache accepted; missing cache rejected; retry controls restored",
+        "artifacts/closeout-resource-settings.json: isolated config save, unknown fields preserved, corrupt file preserved, write failure rejected",
+        "artifacts/closeout-map-failure.log: 缺walk/mapbin失败保留当前场景与战斗状态，有效切图重试保留旧地图spawn记忆；隔离故障注入通过。",
+        "closeout-map-failure.log 六种缺失/损坏包保护通过；closeout-map-header-compatibility.json 当前707张头部/长度兼容通过。",
+        "artifacts/closeout-cache-verify-interruption.json及check_cache_verify_interruption.py：真实全缓存校验进程在running期间SIGKILL(-9)，同独立输出目录重试exit0/ready。仅校验器重启，不是完整转换中断或GUI恢复。",
+        "artifacts/closeout-parallel-settings.json、closeout-config-writer.gd、check_parallel_settings.py：两个真实Godot进程调用生产save_and_launch（launch截获），60次保存均成功，每次配置可读且静态附加字段保留，无.tmp残留。仅macOS后校验保存步骤；未验证并发修改不同附加字段、GUI或Windows/Linux。",
+        "artifacts/closeout-settings-permission.json及check_settings_permission.py/.gd：真实macOS临时配置目录chmod555，生产save_and_launch保存失败提示明确、旧配置字节不变且未启动；恢复755后重试成功、附加字段保留、无.tmp残留。不是GUI或Windows/Linux权限验收。"
+      ],
+      "remaining": [
+        "已有缓存失败后的真实界面重选",
+        "替换配置时操作系统拒绝写入及中断的验证",
+        "所有基础引用图像实际解码及声音播放检查另按 C12/C13 执行"
+      ],
+      "latest_automated_evidence": {
+        "command": [
+          ".cache/venv/bin/python -m unittest discover -s tests/release -p test_cache_integrity.py",
+          ".cache/venv/bin/python -m unittest discover -s tests/release -p test_supplement_integrity.py"
+        ],
+        "passed": 16,
+        "limits": "小型临时夹具验证格式/校验和失败保护，非全地图扫描或真实资源视觉验收"
+      }
+    },
+    {
+      "id": "C04",
+      "title": "素材与发布边界",
+      "status": "in_progress",
+      "evidence": [
+        "tools/release/source_files.py: 264 allowlisted files pass extension/path exclusions",
+        "artifacts/closeout-source-boundary.json: 259 tracked working files within allowlist, no symlinks or SQLite/M211/WAV signatures",
+        "artifacts/closeout-publication-tests.log: 30 tests pass; publication now includes game regression .gd/.uid sources",
+        "artifacts/closeout-git-history.json",
+        "当前source_files.audit 838项通过，publication 3项测试覆盖直接符号链接及父目录越界链接；仅当前源码选择清单，未打包、未重新核验全部Git历史。",
+        "artifacts/closeout-git-history-current.json：当前本地可达4个提交、270个blob，路径/SQLite/WAV/M211特征检查0发现；当前源码允许清单843项通过。未扫描远端不可达对象、秘密信息或改名图片版权。",
+        "修复发布允许清单遗漏tools/sample_process.py，避免已发布test_process_sampling.py缺依赖；publication3项及独立复制两文件的采样3项通过，当前允许清单846项。证据artifacts/closeout-sampling-source-dependency.json；没有生成归档。",
+        "artifacts/closeout-isolated-source-tests.json、artifacts/closeout-isolated-source-tests.log：仅复制当前发布清单846文件至独立临时目录，53项tests/release全部通过，临时副本自动清理。解释器依赖复用现有虚拟环境；非新系统安装、游戏运行或正式归档验收。",
+        "bootstrap发布审计报告写入现在检查打开和flush结果，失败明确exit1。实际缺失输出父目录检查通过；有效输出路径JSON正常且退出码与code_only一致。证据artifacts/closeout-audit-write-failure.json、closeout-audit-write-success.json；并非当前开发目录code-only通过。",
+        "artifacts/closeout-source-allowlist-current.json：当前850文件源码允许清单审计通过，新验收说明和复活/导入退出测试已包含；无artifacts/cache/output/assets目录。只读检查，非图片来源许可或最终包审计。"
+      ],
+      "remaining": [
+        "实际正式发布归档的素材/用户数据复核；当前只核验源码清单和本地可达Git历史",
+        "当前文本配置与宣传素材来源的人工核查；改名图片和秘密信息不在历史脚本覆盖范围"
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "六种新角色流程",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-novice-gender.log: 100 checks, six job/gender starter flows and legacy wrong-clothing migration",
+        "artifacts/closeout-novice-font.log: female preview, injected viewport double-click equip and turn-in passed",
+        "2026-09-13 computer-use native Godot window: click 新用户, enter isolated local account + password/confirmation via keyboard Tab, submit, recovery confirmation displayed; manual harness session 58534 still running",
+        "computer-use real input: login, local world, gate transition, Chinese-named female character creation, selection and village entry; artifacts/closeout-manual-village.png",
+        "computer-use native female character: accept/submit arrival, receive female robe, B bag, double-click sword and female robe, submit nv_equip and unlock hunt; artifacts/closeout-manual-equipped.png",
+        "artifacts/closeout-native-registration-current.png、closeout-native-input-current.log：当前原生Godot隔离临时存档窗口，computer-use实际点击新用户进入注册页并通过窗口关闭按钮正常退出（进程0）。未输入/创建账号，不构成完整注册、输入法或六角色流程验收。",
+        "entry.gd：旧页面已脱离节点、禁用按钮、不可编辑输入框不再执行提交/页面切换回调；entry_failure_closeout_test新增验证通过，18组pages回归通过。程序化生命周期测试，非完整六角色真实输入验收。",
+        "artifacts/closeout-native-registration-input.json：当前原生独立库，computer-use真实点击与键盘验证Tab三输入框、Enter密码不一致提示、修正确认后账号创建、恢复码页确认返回登录及关闭exit0。未覆盖登录/六角色/中文输入法；报告不保存凭据或恢复码。",
+        "artifacts/closeout-native-login-restart.json及world/roster截图：重开刚才注册的隔离数据库，真实Tab/Enter登录成功，点击本机世界经过门过渡抵达空选角页，关闭exit0。未覆盖六角色创建、输入法或动画逐帧/听感。",
+        "artifacts/closeout-live-female-equip-turnin.png及JSON：当前隔离女战士经sky实际点击首任务接取交付、双击木剑/布衣(女)、整装出发交付；SQLite确认nv_arrival/nv_equip done，装备wood_sword/ref:5，金币560。未覆盖全部六角色或重复领奖实机。"
+      ],
+      "remaining": [
+        "六种角色从注册/创建开始的真实鼠标键盘流程",
+        "其余新手任务实际游玩与退出恢复"
+      ],
+      "latest_automated_evidence": {
+        "report": "../artifacts/ui-closeout-pages/report.json",
+        "cases": [
+          "character_restore_closeout_test",
+          "entry_failure_closeout_test",
+          "entry_creation_failure_probe",
+          "character_switch_closeout_test"
+        ],
+        "result": "functional_pass",
+        "limits": "隔离账号与存档回归，非真实六种新角色输入与预览验收"
+      }
+    },
+    {
+      "id": "C06",
+      "title": "任务与奖励闭环",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-story-transaction.log: 18 checks; bag/weight refusal, SQL transaction rollback and retry, duplicate reward rejection"
+      ],
+      "remaining": [
+        "其他任务类型与真实界面交付验证",
+        "强制终止写入的持久化恢复"
+      ],
+      "latest_automated_evidence": {
+        "report": "../artifacts/ui-closeout-all/report.json",
+        "cases": [
+          "quest_inventory_refresh_closeout_test"
+        ],
+        "result": "functional_pass",
+        "limits": "隔离存档/headless代码回归；不代替实机输入、听音、跨平台或长期稳定性验收"
+      }
+    },
+    {
+      "id": "C07",
+      "title": "战斗技能拾取",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-books.log: 332 checks, 23 runtime skills, books, attack modes and event sounds; no playback/visual verification",
+        "artifacts/closeout-auto-combat.json and closeout-auto-pickup.log: simulated main-loop combat produces four ground drops without inventory change; walking onto a drop picks it up, remote drops remain, inventory and remaining loot survive same-process DB close/reopen. JSON numeric types normalized for comparison; no hardware input or FPS claim.",
+        "artifacts/closeout-pickup-retry.log: failed pickup backoff independent of protection; actual auto potion consumes once and heals while retry pending; isolated fixture.",
+        "artifacts/closeout-auto-order-boundary.log and closeout-bind-selection.log: configured skill order filtering, failed SQLite binding/selection preserves state, explicit failure feedback, retry persists.",
+        "gameplay.bind_skill补齐available状态保护；skill_bind_failure_test验证暂停、死亡、选角状态不修改内存和SQLite，恢复后保存失败重试仍正常。18组pages通过，未重跑items组。",
+        "2026-09-14 技能结算修复：施毒/灭天火致命攻击写入失败保持完整目标状态，无命中特效或音频；正常命中仍施毒与扣蓝。artifacts/fireball-resolution-test.log；当前36组headless回归通过，非实机验收。",
+        "2026-09-14 范围技能修复：选中目标固定特效中心，结算排除跑出3×3区域的原目标；直线空目标不消耗。artifacts/fireball-resolution-test.log自动入口/结算测试通过；退出资源警告仍在，非画面或性能验收。"
+      ],
+      "remaining": [
+        "真实键鼠战斗、技能使用及拾取操作回归",
+        "背包与负重边界、实际掉落声音和显示验收"
+      ],
+      "latest_automated_evidence": {
+        "report": "../artifacts/ui-closeout-all/report.json",
+        "cases": [
+          "skill_panel_refresh_closeout_test",
+          "skill_bind_failure_test"
+        ],
+        "result": "functional_pass",
+        "limits": "隔离存档/headless代码回归；不代替实机输入、听音、跨平台或长期稳定性验收"
+      }
+    },
+    {
+      "id": "C08",
+      "title": "物品与经济事务",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-inventory_test.log: 25 checks, split, warehouse, catalog purchase, equip instance and persistence",
+        "Native sky.drag from potion bag slot to sixth HUD slot did not bind; read-only isolated DB: quickbar [potion,mana,empty,empty,empty,empty], potion 7 unchanged; artifacts/closeout-manual-quickbar-unbound.png",
+        "closeout_manual.gd --trace-drag adds opt-in raw pointer/hover/dragging/paused logging; parse check artifacts/closeout-drag-probe-check.log; not yet enabled in running process",
+        "artifacts/closeout-warehouse-restart.json: two-process normal deposit/resume pass (11 + 9 checks)",
+        "artifacts/closeout-warehouse-crash.json: confirmed live Godot after commit killed (-9); new process resumes and passes 9 checks",
+        "artifacts/closeout-observed.log: native tool drag start/end clicks hit bag/quickbar, no held-motion events and dragging=false; requested physical mouse confirmation",
+        "artifacts/closeout-drag-hit.log: injected drag hit overlapping adventure next-page button, not quick slot.",
+        "artifacts/closeout-gameplay-cleanup.log and closeout-small-fixed.log: native graphical injected gameplay suite 995 checks passes at default and 800x600 after panel bounds fix; not physical mouse acceptance.",
+        "C08/C14仓库存取当前原生回归：story_warehouse_controller_test 14检查failures[]，从NPC服务入口通过Viewport手柄事件进入仓库，拒写保持状态、重试存入、RB切页、距离/暂停拒绝、取回推进任务、B关闭通过。查看artifacts/world-story/warehouse-controller.png确认800×600说明和结果可见；列表此时为空为取回后状态。closeout-warehouse-controller.log；地图/任务前置为隔离夹具，非实体手柄或自然任务验收。脚本新增自身数据库及附属文件退出清理，不改用户存档。",
+        "artifacts/closeout-mongchon-warehouse-current.log：当前源码盟重仓库原生注入鼠标14项通过，药品拖入、取回及任务提示联动正常；非物理输入。",
+        "artifacts/closeout-drag-live-result.json及closeout-drag-live.log：sky.drag命中药品格与第六快捷格，但无按住移动事件、Godot dragging=false，未绑定且药品5不变；真实拖拽仍未通过，原因未定。"
+      ],
+      "remaining": [
+        "实体鼠标拖拽绑定与使用、退出恢复；此前工具未发送持续按住移动事件，不能用注入回归替代",
+        "其余经济窗口真实操作及失败反馈验收"
+      ],
+      "latest_automated_evidence": {
+        "report": "../artifacts/ui-closeout-all/report.json",
+        "cases": [
+          "shop_death_guard_closeout_test",
+          "split_selection_closeout_test",
+          "item_drag_guard_closeout_test",
+          "item_use_feedback_closeout_test",
+          "warehouse_distance_closeout_test"
+        ],
+        "result": "functional_pass",
+        "limits": "隔离存档/headless代码回归；不代替实机输入、听音、跨平台或长期稳定性验收"
+      }
+    },
+    {
+      "id": "C09",
+      "title": "通路与传送",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-connections.log: 707 maps, 7511 checks; 7 failed assertions (0151 return at 30/60/120 FPS and blacksmith service)",
+        "artifacts/closeout-map-graph.log: 707 maps / 3747 routes / 856 actual floor components, 0 connectivity errors with runtime NPC occupancy",
+        "artifacts/closeout-route-probe.log identifies obsolete direct go_to and room_shop assertions; corrected real world.approach + reference shop check: artifacts/closeout-connections.log 7511 checks / 707 maps, no failures",
+        "artifacts/closeout-stone_tomb_test.log: 6 injected viewport entry/walk/exit/old stuck save checks pass",
+        "artifacts/closeout-fire_passage_test.log: 16 permit, pause, failed commit/retry, mobile landing checks pass",
+        "artifacts/closeout-fire_dragon_story_entry_test.log: 34 locked-task UI and reward order/rollback checks pass",
+        "closeout-map-failure.log: 六种失败经NPC传送和通路入口验证原场景保留、金币不扣、重试状态复位。"
+      ],
+      "remaining": [
+        "仅抽查页面操作涉及的新手村、商铺、传送入口及已知石墓卡点；不做全地图逐张验收"
+      ]
+    },
+    {
+      "id": "C10",
+      "title": "死亡暂停存档恢复",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-death_return_test.log: 10 checks, 30-second boundary, pause, write refusal and revival retry",
+        "native close/relaunch/login same isolated database: female robe appearance, village coordinate 289,618 and completed novice progression restored",
+        "artifacts/closeout-store-recovery.json: real SQLite missing-primary recovery, corrupt quarantine, both corrupt refusal; all pass",
+        "artifacts/closeout-interruption-tests.log: 31 tests pass; real subprocess kill after world update, after receipt insert, after commit; SQLite integrity and atomic pair verified; not Godot process/power loss",
+        "store_recovery_closeout_test: missing primary with orphan WAL refuses new DB and preserves bytes; quarantine random suffix avoids collisions",
+        "artifacts/closeout-warehouse-restart.json: two-process normal deposit/resume pass (11 + 9 checks)",
+        "artifacts/closeout-warehouse-crash.json: confirmed live Godot after commit killed (-9); new process resumes and passes 9 checks",
+        "artifacts/closeout-map-failure.log: 缺walk/mapbin失败保留当前场景与战斗状态，有效切图重试保留旧地图spawn记忆；隔离故障注入通过。",
+        "artifacts/closeout-death-items.log：17项通过，死亡禁止六种物品事务与使用入口；30秒边界、暂停、复活拒写重试与恢复仍通过。死亡与时间为夹具，非实机输入。",
+        "artifacts/closeout-death-modal.log：死亡页22项通过；artifacts/closeout-death-feedback-800.png已查看原生800×600错误提示完整显示，场景隐藏且无物理操作。",
+        "artifacts/ui-closeout-all/reentry_revival_test.log：重进就近城市立即复活、入口保存失败与缺地图恢复、边界保护及暂停延迟命中回归通过；隔离回调测试，非物理操作。",
+        "artifacts/closeout-death-reentry-800.png：已查看原生800×600当前死亡灰色页、倒计时及重进复活按钮完整显示；直接致死夹具，非真实战斗或物理点击。"
+      ],
+      "remaining": [
+        "当前原生窗口真实操作确认死亡灰色停留、30秒等待、返回选角后立即就近复活、暂停与失焦恢复；程序化夹具不覆盖整个实机流程。"
+      ]
+    },
+    {
+      "id": "C11",
+      "title": "界面与缩放",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-novice-font.log: bundled CJK font removes previous FreeType/font shaping errors; task UI assertions pass",
+        "artifacts/closeout-quest-chat.json: accept/submit each writes one message, reward unchanged, independent repeated messages retained; same duplicate assignments removed from story/controller NPC",
+        "artifacts/closeout-manual-chat-fixed.png: native restarted app, mouse accept nv_hunt, exactly one new system acceptance line",
+        "artifacts/closeout-bag-small.png and closeout-bag-small-bottom.png: visually inspected actual 800x600 top/bottom renders; quickbar exposed, bottom controls visible after programmatic scroll.",
+        "artifacts/closeout-window-position.json: six legacy pixel/normalized placement resize cases plus reopen preserve quickbar region; headless node layout only.",
+        "实际鼠标小地图全图→收起→附近及打开地图通过；artifacts/closeout-manual-minimap-collapsed.png、artifacts/closeout-manual-minimap-full.png、artifacts/closeout-manual-minimap-nearby.png、closeout-manual-map-panel.png；地图说明文案check-only通过，下一次启动复核。",
+        "C08/C11原生窗口实际操作：恢复失焦暂停、Esc关闭地图、B打开冒险面板、Right切装备、鼠标点击技能和任务页、Esc关闭返回游戏均成功。默认1280×800，装备/技能/任务标签切换正确，底部返回导航及快捷栏可见。截图closeout-manual-equipment-tab.png、closeout-manual-skill-tab.png、closeout-manual-quest-tab.png、closeout-manual-panel-closed.png。当前角色未学技能，此次未验施法绑定；未含实体拖拽、全部尺寸或手柄。任务详情长句右缘需在后续宽度测量/截图放大复核，未断言全部文本无裁切。运行实例为此前已启动的源码基线，不含随后地图异常保护改动。",
+        "C11/C14内挂保存异常：assist_focus_closeout_test对隔离SQLite启用query_only，复选框/数值修改失败后控件恢复原值、规则状态不变、页面notice显示失败消息；恢复可写后数值重试落库，关闭重开恢复值。原焦点/A/方向键检查仍通过。closeout-assist-focus.log exit0；两条readonly SQL错误为主动故障注入，另有系统CA环境警告。此为控件信号与数据库测试，非真实磁盘故障或实体手柄验收。",
+        "C11内挂布局矩阵：800×600、1280×800、1920×1080下五个页签共15组合，窗口及关闭按钮位于视口内，各操作控件横向位于滚动容器内；hint在全部组合无需垂直滚动即可到达。closeout-assist-layout.json，assist_focus_closeout_test exit0；保存拒写/重试和焦点检查仍通过。headless几何检查，非像素视觉/实体输入或长错误消息状态验收。",
+        "C11/C14手柄长提示原生截图：controller_feedback_closeout_test在800×600图形渲染exit0，查看closeout-controller-feedback.png确认两行保存失败文字、四行物品、详情及两行按键说明完整可见，关闭按钮可见；hint底边583位于scroll底边583。closeout-controller-feedback-native.log，SQL只读为预期故障注入，退出IMK环境日志保留。截图为实际渲染、操作由测试调用，不代表实体鼠标/手柄完成。",
+        "artifacts/closeout-window-settings-regression.log：位置恢复/失败提示修改后，设置页拒写回退、保存重试、Esc/B关闭、失焦确认取消、文本焦点/P拦截、旧滑块保护通过。headless合成输入，非实机验收。",
+        "artifacts/closeout-controller-npc-probe.log及world-story/controller-npc.png：手柄NPC详情缩短正文最小高度后底部三行完整，当前完整24组自动操作回归通过。",
+        "artifacts/closeout-live-bag-reopened.png：当前原生隔离窗口，通过sky键盘B关闭/重开背包、sky拖动标题后再次B关闭/重开，观察保留移动后位置；不涵盖重启或全尺寸。",
+        "artifacts/closeout-live-bag-restarted.png：sky点击原生关闭按钮，旧进程96814退出0；新进程85111使用相同隔离SQLite，sky按B打开背包，位置与退出前一致。仅当前1280×800原生开发窗口，不代表所有尺寸或用户存档。"
+      ],
+      "remaining": [
+        "原生前台布局、字宽变化、Retina与各窗口尺寸的视觉和点击验收",
+        "故事和手柄NPC页面消息真实操作复核"
+      ],
+      "latest_automated_evidence": {
+        "report": "../artifacts/ui-closeout-all/report.json",
+        "cases": [
+          "character_switch_closeout_test"
+        ],
+        "result": "functional_pass",
+        "limits": "隔离存档/headless代码回归；不代替实机输入、听音、跨平台或长期稳定性验收"
+      }
+    },
+    {
+      "id": "C12",
+      "title": "标记遮挡与替代贴图",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-finish-scope.log: 1863 checks, labels/regeneration/learned-only assists/injected shoulder tabs/layout bounds/fallback decodes; no physical controller/visual acceptance",
+        "artifacts/closeout-map-light.log: 4 village blend light cells, each animation frame anchoring, no failures; headless no screenshots",
+        "artifacts/closeout-full-png-decode.json",
+        "artifacts/closeout-safe-zone-mengzhong.png：M1 Max原生1280×800隔离场景已查看，安全区边界与文字可见、人物未被覆盖；非实机输入/全尺寸验收。"
+      ],
+      "remaining": [
+        "代表场景截图复核人物/怪物/NPC名称、受伤血条、任务标记、掉落物与地图光效",
+        "缺图替代场景的建筑形状与碰撞一致性人工核查；不逐张检查全部地图",
+        "城市安全区地面范围、文字和边界线的代表场景视觉验收；已有代码边界一致性检查。"
+      ]
+    },
+    {
+      "id": "C13",
+      "title": "动画与声音",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-audio-decode.json: 781 WAV runtime decodes with nonzero duration; 12 missing index entries",
+        "artifacts/closeout-audio-warnings.json: decode warning file list",
+        "artifacts/closeout-audio-normalized.log: 781 runtime WAV decodes, no read-length warnings; byte invariants preserve PCM/other chunks and nonempty loop metadata",
+        "artifacts/closeout-missing-sound-usage.json: enabled regional profile sounds and enabled spawns do not reference the 12 missing IDs",
+        "artifacts/closeout-monster_sound_test.log: 2 appearance/no-repeat checks pass",
+        "artifacts/closeout-item_use_audio_test.log: 425 item event lookup checks pass",
+        "release/AUDIO_EXIT_DIAGNOSIS.md：独立AudioStreamGenerator脚本在4.7.2退出残留播放对象，与上游#76745一致。应用提前stop不足以保证清洁退出，保留警告。",
+        "artifacts/closeout-audio-files-current.json：当前开发client2011音频目录780文件均存在且SHA-256匹配，原索引仍声明15条缺失引用；不将文件完整性当作缺失引用已补齐、补充库回退核验或音效听感/时序通过。",
+        "artifacts/closeout-audio-missing-resolution.json：15条源缺失引用中1922/10110/10111映射m11-1.wav且补充文件存在；其余12条在原十六周年780个WAV中也无同名文件。只核对文件与路径，未断言这些引用的运行时事件必需或听感通过。",
+        "artifacts/closeout-regional-audio-calls.log及同名.gd：通过生产EditionCreatures.sound_id检查区域目录379种怪物与全部声音事件，未调用12条未补齐索引；专属sounds覆盖部分外观公式候选。仅区域目录，不包括脚本实体、技能阶段或声音听感。",
+        "artifacts/closeout-skill-audio-calls.json、artifacts/closeout-skill-audio-calls.gd、artifacts/closeout-skill-audio-calls.log：23个技能、69个0/1/2阶段通过生产play_skill_stage，记录音频分发，无12条剩余源缺失索引调用。未执行实际施法/播放，静默阶段和既知阶段索引缺口仍需核验。",
+        "artifacts/closeout-skill-audio-decode.json、artifacts/closeout-skill-audio-decode.gd、artifacts/closeout-skill-audio-decode.log：前轮技能分发涉及40个唯一音效ID，通过当前生产资源加载器全部解码且时长大于0；包含当前补充资源配置。没有播放到扬声器，不证明听感与动作时序。",
+        "2026-09-14 fireball_resolution_test --verbose 实际复现7音频退出残留（5 PlaybackWAV、2 WAV；field2.wav/1800-4.wav），未列出节点残留。artifacts/fireball-resolution-verbose.log，详见AUDIO_EXIT_DIAGNOSIS.md；缺口未关闭。"
+      ],
+      "remaining": [
+        "脚本生成怪物与动态技能声音调用的缺失索引核查",
+        "实际播放、听感与动画时序验收"
+      ],
+      "latest_automated_evidence": {
+        "report": "../artifacts/ui-closeout-all/report.json",
+        "cases": [
+          "mute_feedback_closeout_test"
+        ],
+        "result": "functional_pass",
+        "limits": "隔离存档/headless代码回归；不代替实机输入、听音、跨平台或长期稳定性验收"
+      }
+    },
+    {
+      "id": "C14",
+      "title": "实体手柄",
+      "status": "in_progress",
+      "evidence": [
+        "artifacts/closeout-finish-scope.log: 1863 checks, labels/regeneration/learned-only assists/injected shoulder tabs/layout bounds/fallback decodes; no physical controller/visual acceptance",
+        "artifacts/closeout-controller-fit.png and closeout-controller-fit.log: native 800x600 image inspected, footer instructions fully visible after dynamic list height; injected page/bind/back pass.",
+        "artifacts/closeout-controller-refresh.log: external inventory fixture refreshes count while preserving selected item UID; graphical event test passes.",
+        "artifacts/closeout-controller-progress-current.json: 16 checks pass, novice task list/detail updates after kill, pickup, warehouse transfer and submission; injected joypad, prerequisite/kill fixtures, no physical controller.",
+        "C11/C14内挂保存异常：assist_focus_closeout_test对隔离SQLite启用query_only，复选框/数值修改失败后控件恢复原值、规则状态不变、页面notice显示失败消息；恢复可写后数值重试落库，关闭重开恢复值。原焦点/A/方向键检查仍通过。closeout-assist-focus.log exit0；两条readonly SQL错误为主动故障注入，另有系统CA环境警告。此为控件信号与数据库测试，非真实磁盘故障或实体手柄验收。",
+        "C08/C14仓库存取当前原生回归：story_warehouse_controller_test 14检查failures[]，从NPC服务入口通过Viewport手柄事件进入仓库，拒写保持状态、重试存入、RB切页、距离/暂停拒绝、取回推进任务、B关闭通过。查看artifacts/world-story/warehouse-controller.png确认800×600说明和结果可见；列表此时为空为取回后状态。closeout-warehouse-controller.log；地图/任务前置为隔离夹具，非实体手柄或自然任务验收。脚本新增自身数据库及附属文件退出清理，不改用户存档。",
+        "artifacts/closeout-task-history.log：任务历史按ID恢复，缺失任务返回列表，不打开替代详情；artifacts/closeout-repair-stale.log：旧修理/合成面板拒绝回调；artifacts/closeout-crafting-navigation.log：合成委托16项Viewport注入回归通过。均非实体手柄验收。",
+        "artifacts/closeout-controller-devices.json：原生macOS Godot4.7.2等待2秒枚举，当前devices=[]。仅当前进程连接快照，不证明系统永远无设备；实体按键/摇杆未验收。已询问可用手柄与Windows/Linux验收环境。"
+      ],
+      "remaining": [
+        "实体手柄连接、摇杆、肩键切页及完整操作验收",
+        "各页长文本、任务详情和分辨率视觉检查；不能以注入事件替代硬件"
+      ]
+    },
+    {
+      "id": "C15",
+      "title": "主平台两小时前台测试",
+      "status": "in_progress",
+      "evidence": [
+        "optional --record-performance in isolated manual harness, passive JSONL sampler; artifacts/closeout-performance-test.log confirms headless excludes active time",
+        "session28852 native M1 Max Compatibility recorder active; artifacts/closeout-performance-590abe19c72c50a7.jsonl; login/unfocused time not gameplay acceptance",
+        "artifacts/closeout-performance-590abe19c72c50a7.jsonl: foreground village with bag open ~35 FPS, ~960 draw calls at 1280x800; below 60 target, requires diagnosis",
+        "artifacts/closeout-performance-c82ac046f5863da8.jsonl",
+        "artifacts/closeout-lazy-village.png",
+        "tools/sample_process.py 不再将ps权限错误/异常输出误判为进程退出；tests/release/test_process_sampling.py 3项模拟检查通过，区分正常样本、无匹配PID、僵尸与采样失败。尚未运行真实两小时RSS采样。",
+        "artifacts/closeout-performance-recorder.log：headless时间排除、暂停恢复间隔和失焦通知后的间隔排除通过；记录器仅连续有效帧累计active_seconds。为程序化时间戳和通知检查，不是原生失焦实测或两小时验收。"
+      ],
+      "remaining": [
+        "启用采样的原生前台两小时实际探索、战斗、切图、开窗",
+        "外部RSS采样与大规模战斗记录；静态内存不等于RSS"
+      ],
+      "current_run": {
+        "manifest": "../artifacts/closeout-native-soak-v2-session.json",
+        "status": "ended_before_active_target",
+        "acceptance": "failed_duration; 2667.855 active seconds, not two hours",
+        "result": "../artifacts/closeout-native-soak-v2-result.json"
+      }
+    },
+    {
+      "id": "C16",
+      "title": "Windows/Linux实机",
+      "status": "todo",
+      "evidence": [],
+      "remaining": [
+        "当前源码Windows和Linux图形实机启动、资源导入及核心流程；历史构建和模拟路径检查不能替代"
+      ]
+    },
+    {
+      "id": "C17",
+      "title": "交付资料一致性",
+      "status": "in_progress",
+      "evidence": [
+        "release/SAVE_RECOVERY.md: cache retry, backup restoration boundaries, orphan WAL handling and unverified cases",
+        "release/UI_ACCEPTANCE.md与release/AUDIO_EXIT_DIAGNOSIS.md保留代码回归/真实输入/引擎退出问题的证据边界。",
+        "README.md、release/宣传文章.md 与 output/bilibili/哔哩哔哩文章.html 明确区分历史预览包检查和当前源码修复；全平台实体手柄/长时稳定性仍待验收。artifacts/closeout-article-consistency.json 验证可见正文及复制payload同步、6处嵌入图片数据未变；未执行浏览器剪贴板或对外发布。",
+        "release/RELEASE_READINESS.md 汇总可确认范围和剩余交付缺口，区分23组历史全套与后续18组pages检查，不将不同源码证据合并。",
+        "README与启动指南纠正“可配置快捷键”为当前Q施法/R切技能，并明确无任意键位重绑定界面；依据main._unhandled_input和gameplay.bind_skill（实际配置自动技能顺序）。不新增重绑定功能。"
+      ],
+      "remaining": [
+        "最终源码冻结后统一README、启动指南、版本说明、素材替代记录、宣传视频和B站文章的版本与限制",
+        "核对已知问题、恢复方法和反馈说明与最终未关闭项一致"
+      ]
+    },
+    {
+      "id": "C18",
+      "title": "清理与缺陷复核",
+      "status": "in_progress",
+      "evidence": [
+        "warehouse restart logs report 2 leaked ObjectDB instances / 1 resource at normal test exit; requires verbose ownership diagnosis",
+        "artifacts/closeout-leak-repetition.json: intermittent field2.wav AudioStreamPlaybackWAV (1/3) on immediate headless shutdown",
+        "artifacts/closeout-leak-settle.json: mixer-clock 0.2s teardown wait verification",
+        "artifacts/closeout-fixture-cleanup.json",
+        "artifacts/closeout-gameplay-cleanup.log: successful fixture database cleanup; exact generated database and WAL/SHM/backup independently confirmed absent.",
+        "artifacts/closeout-window-close-audio.log：真实quit调用前保存/备份及stream清空断言通过，进程仍有WAV播放残留；独立引擎复现见artifacts/closeout-engine-audio-exit.log。不归咎所有资源警告、不声称运行中内存稳定。",
+        "artifacts/closeout-test-store-cleanup.json：四项测试正常退出后随机SQLite及WAL/SHM/备份已由外部检查确认删除；带限定路径校验，不处理用户或历史存档。",
+        "2026-09-14新增的3组云玩家/绿毒回归已补正常及报告失败退出路径的临时SQLite清理；实跑3组均功能通过，按日志中本次随机路径检查SQLite/WAL/SHM/backup均不存在。artifacts/traveler_recovery_test-cleanup.log、traveler_audio_test-cleanup.log、green_poison_test-cleanup.log。未扫描删除旧临时文件或用户存档；异常进程被杀时的清理仍由系统临时目录管理。"
+      ],
+      "remaining": [
+        "冻结前复核当前源码差异与全部未关闭缺陷，按严重程度确认P0/P1门槛",
+        "退出资源释放警告保持开放；最终检查临时文件清理和证据对应源码，保留用户数据及正式成果"
+      ]
+    },
+    {
+      "id": "C19",
+      "title": "最终验收与获授权发布",
+      "status": "todo",
+      "evidence": [],
+      "remaining": [
+        "完成收尾门槛的逐项审计，未实测项目不得标为通过",
+        "收到明确发布指令后执行一次最终无素材构建、归档校验、GitHub同步及发布验证"
+      ]
+    }
+  ],
+  "priority_order": [
+    "C11",
+    "C08",
+    "C05",
+    "C06",
+    "C14",
+    "C10",
+    "C07",
+    "C13",
+    "C09",
+    "C02",
+    "C03",
+    "C04",
+    "C12",
+    "C15",
+    "C16",
+    "C17",
+    "C18",
+    "C19"
+  ],
+  "latest_ui_regression": {
+    "report": "../artifacts/ui-closeout-all/report.json",
+    "total": 39,
+    "functional_pass": 39,
+    "finished_at_utc": "2026-09-15T02:17:32.559137+00:00",
+    "source_sha256": "0c9b8d295b0eee148d23a9d5321290360a162fcc63b2690091ef4b9ef851c182",
+    "source_changed_during_run": false,
+    "resource_shutdown_warning_cases": [
+      "green_poison_test",
+      "item_drag_guard_closeout_test",
+      "controller_stale_item_closeout_test",
+      "entry_creation_failure_probe",
+      "warehouse_distance_closeout_test"
+    ],
+    "scope": "Headless operation-page/transaction regressions; not physical input, rendering or platform acceptance.",
+    "note": "39组通过，新增云玩家恢复/群疗/伤害分类、持续中毒和音效派发；包含Start及暂停操作保护。仍非硬件/视觉/听感验收。",
+    "date": "2026-09-14"
+  },
+  "latest_release_regression": {
+    "command": ".cache/venv/bin/python -m unittest discover -s tests/release",
+    "passed": 61,
+    "log": "../artifacts/closeout-release-regression.log",
+    "scope": "Local Python release-tool regressions, including synthetic failures; not full GUI importing, physical input, or Windows/Linux gameplay acceptance",
+    "verified_at_utc": "2026-09-14T09:43:05.178920+00:00",
+    "importer_sha256": "287fb86f2646b04c4d5e7227576432f196c27708ddf6427e156d4bdfcaebaa96"
+  },
+  "latest_page_regression": {
+    "report": "../artifacts/ui-closeout-pages/report.json",
+    "total": 22,
+    "functional_pass": 22,
+    "finished_at_utc": "2026-09-13T15:46:39.176365+00:00",
+    "source_sha256": "4b86b7c0a3fbd48850ef2d0c120931b2b8805bee386b5584b2858da4bc5da9b5",
+    "source_changed_during_run": false,
+    "resource_shutdown_warning_cases": [
+      "window_close_audio_closeout_test",
+      "story_filter_closeout_test",
+      "mute_feedback_closeout_test",
+      "warehouse_distance_closeout_test"
+    ],
+    "scope": "Headless operation-page/transaction regressions; not physical input, rendering or platform acceptance.",
+    "note": "此报告只对应所列源码指纹；不同批次不可合并宣称当前源码全套通过。"
+  },
+  "latest_item_regression": {
+    "report": "../artifacts/item-ui-closeout/report.json",
+    "total": 6,
+    "functional_pass": 6,
+    "finished_at_utc": "2026-09-13T15:38:03.920602+00:00",
+    "source_sha256": "15049a22f67a3bb2bf457fc129eb2ad6ce4e69fae555da9de4c54c886ff4f298",
+    "source_changed_during_run": false,
+    "resource_shutdown_warning_cases": [
+      "quest_inventory_refresh_closeout_test",
+      "item_use_feedback_closeout_test"
+    ],
+    "scope": "Headless operation-page/transaction regressions; not physical input, rendering or platform acceptance.",
+    "note": "此报告只对应所列源码指纹；不同批次不可合并宣称当前源码全套通过。"
+  },
+  "latest_resource_fault_regression": {
+    "report": "../artifacts/ui-closeout-resources/report.json",
+    "total": 4,
+    "functional_pass": 4,
+    "source_sha256": "9ff4f8a2007c6794d4b17a5f8afd4d30a522e97b513c3a4a6fda33ec556e0f52",
+    "finished_at_utc": "2026-09-13T15:53:00.100342+00:00",
+    "scope": "isolated malformed-resource fixtures; not full client or graphical acceptance"
+  },
+  "blocking_conditions": {
+    "reason": "连续三轮未获得实机环境及正版效果参考补充，自动检查不能替代剩余验收",
+    "needed": [
+      "实体手柄及Windows/Linux图形实机测试条件",
+      "Mac两小时持续前台实测安排",
+      "正版安全区与缺失技能表现的可核验参考"
+    ],
+    "preserved": "全部C00–C19未完成要求和现有证据保留；不标记完成，不发布"
+  }
+}
